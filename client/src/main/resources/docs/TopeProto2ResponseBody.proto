@@ -1,0 +1,10 @@
+option java_package = "com.why.netty.core.entity";
+
+//Netty框架返回参数消息协议
+serverMessage ResponseBody
+{
+  required string url = 1;    //业务标识
+  optional bytes data = 2;    //业务信息
+  optional string code = 3;   //状态码 200成功 500服务器错误
+  optional string serverMessage = 4;   //提示消息
+}

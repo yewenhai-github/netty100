@@ -1,0 +1,266 @@
+/*
+ * Copyright 1999-2018 Alibaba Group Holding Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.netty100.cluster.naming.consistency.persistent.impl;
+
+import com.netty100.cluster.api.exception.CapException;
+import com.netty100.cluster.api.exception.runtime.CapRuntimeException;
+import com.netty100.cluster.common.notify.NotifyCenter;
+import com.netty100.cluster.common.utils.ByteUtils;
+import com.netty100.cluster.common.utils.TypeUtils;
+import com.netty100.cluster.consistency.DataOperation;
+import com.netty100.cluster.consistency.SerializeFactory;
+import com.netty100.cluster.consistency.Serializer;
+import com.netty100.cluster.consistency.cp.RequestProcessor4CP;
+import com.netty100.cluster.consistency.entity.ReadRequest;
+import com.netty100.cluster.consistency.entity.Response;
+import com.netty100.cluster.consistency.entity.WriteRequest;
+import com.netty100.cluster.consistency.snapshot.SnapshotOperation;
+import com.netty100.cluster.core.exception.KvStorageException;
+import com.netty100.cluster.core.storage.kv.KvStorage;
+import com.netty100.cluster.naming.consistency.Datum;
+import com.netty100.cluster.naming.consistency.KeyBuilder;
+import com.netty100.cluster.naming.consistency.RecordListener;
+import com.netty100.cluster.naming.consistency.ValueChangeEvent;
+import com.netty100.cluster.naming.consistency.persistent.PersistentConsistencyService;
+import com.netty100.cluster.naming.consistency.persistent.PersistentNotifier;
+import com.netty100.cluster.naming.constants.Constants;
+import com.netty100.cluster.naming.misc.Loggers;
+import com.netty100.cluster.naming.misc.UtilsAndCommons;
+import com.netty100.cluster.naming.pojo.Record;
+import com.google.protobuf.ByteString;
+import com.netty100.cluster.naming.misc.SwitchDomain;
+
+import java.lang.reflect.Type;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+/**
+ * New service data persistence handler.
+ *
+ * @author yewenhai
+ */
+public abstract class BasePersistentServiceProcessor extends RequestProcessor4CP
+        implements PersistentConsistencyService {
+    
+    enum Op {
+        /**
+         * write ops.
+         */
+        Write("Write"),
+        
+        /**
+         * read ops.
+         */
+        Read("Read"),
+        
+        /**
+         * delete ops.
+         */
+        Delete("Delete");
+        
+        protected final String desc;
+        
+        Op(String desc) {
+            this.desc = desc;
+        }
+    }
+    
+    protected final KvStorage kvStorage;
+    
+    protected final Serializer serializer;
+    
+    /**
+     * Whether an unrecoverable error occurred.
+     */
+    protected volatile boolean hasError = false;
+    
+    protected volatile String jRaftErrorMsg;
+    
+    /**
+     * If use old raft, should not notify listener even new listener add.
+     */
+    protected volatile boolean startNotify = false;
+    
+    /**
+     * During snapshot processing, the processing of other requests needs to be paused.
+     */
+    protected final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    
+    protected final ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
+    
+    protected final PersistentNotifier notifier;
+    
+    protected final int queueMaxSize = 16384;
+    
+    protected final int priority = 10;
+    
+    public BasePersistentServiceProcessor() throws Exception {
+        this.kvStorage = new NamingKvStorage(Paths.get(UtilsAndCommons.DATA_BASE_DIR, "data").toString());
+        this.serializer = SerializeFactory.getSerializer("JSON");
+        this.notifier = new PersistentNotifier(key -> {
+            try {
+                byte[] data = kvStorage.get(ByteUtils.toBytes(key));
+                Datum datum = serializer.deserialize(data, getDatumTypeFromKey(key));
+                return null != datum ? datum.value : null;
+            } catch (KvStorageException ex) {
+                throw new CapRuntimeException(ex.getErrCode(), ex.getErrMsg());
+            } catch (Exception e) {
+                throw new CapRuntimeException(CapException.SERVER_ERROR, e.getMessage());
+            }
+        });
+    }
+    
+    @SuppressWarnings("unchecked")
+    public void afterConstruct() {
+        NotifyCenter.registerToPublisher(ValueChangeEvent.class, queueMaxSize);
+    }
+    
+    @Override
+    public Response onRequest(ReadRequest request) {
+        final Lock lock = readLock;
+        lock.lock();
+        try {
+            final List<byte[]> keys = serializer
+                    .deserialize(request.getData().toByteArray(), TypeUtils.parameterize(List.class, byte[].class));
+            final Map<byte[], byte[]> result = kvStorage.batchGet(keys);
+            final BatchReadResponse response = new BatchReadResponse();
+            result.forEach(response::append);
+            return Response.newBuilder().setSuccess(true).setData(ByteString.copyFrom(serializer.serialize(response)))
+                    .build();
+        } catch (KvStorageException e) {
+            return Response.newBuilder().setSuccess(false).setErrMsg(e.getErrMsg()).build();
+        } catch (Exception e) {
+            Loggers.RAFT.warn("On read request failed, ", e);
+            return Response.newBuilder().setSuccess(false).setErrMsg(e.getMessage()).build();
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    @Override
+    public Response onApply(WriteRequest request) {
+        final byte[] data = request.getData().toByteArray();
+        final Lock lock = readLock;
+        lock.lock();
+        try {
+            final BatchWriteRequest bwRequest = serializer.deserialize(data, BatchWriteRequest.class);
+            final Op op = Op.valueOf(request.getOperation());
+            switch (op) {
+                case Write:
+                    kvStorage.batchPut(bwRequest.getKeys(), bwRequest.getValues());
+                    break;
+                case Delete:
+                    kvStorage.batchDelete(bwRequest.getKeys());
+                    break;
+                default:
+                    return Response.newBuilder().setSuccess(false).setErrMsg("unsupport operation : " + op).build();
+            }
+            publishValueChangeEvent(op, bwRequest);
+            return Response.newBuilder().setSuccess(true).build();
+        } catch (KvStorageException e) {
+            return Response.newBuilder().setSuccess(false).setErrMsg(e.getErrMsg()).build();
+        } catch (Exception e) {
+            Loggers.RAFT.warn("On apply write request failed, ", e);
+            return Response.newBuilder().setSuccess(false).setErrMsg(e.getMessage()).build();
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    private void publishValueChangeEvent(final Op op, final BatchWriteRequest request) {
+        final List<byte[]> keys = request.getKeys();
+        final List<byte[]> values = request.getValues();
+        for (int i = 0; i < keys.size(); i++) {
+            final String key = new String(keys.get(i));
+            // Ignore old 1.x version data
+            if (!KeyBuilder.matchSwitchKey(key)) {
+                continue;
+            }
+            final Datum datum = serializer.deserialize(values.get(i), getDatumTypeFromKey(key));
+            final Record value = null != datum ? datum.value : null;
+            final ValueChangeEvent event = ValueChangeEvent.builder().key(key).value(value)
+                    .action(Op.Delete.equals(op) ? DataOperation.DELETE : DataOperation.CHANGE).build();
+            NotifyCenter.publishEvent(event);
+        }
+    }
+    
+    @Override
+    public String group() {
+        return Constants.NAMING_PERSISTENT_SERVICE_GROUP;
+    }
+    
+    @Override
+    public List<SnapshotOperation> loadSnapshotOperate() {
+        return Collections.singletonList(new NamingSnapshotOperation(this.kvStorage, lock));
+    }
+    
+    @Override
+    public void onError(Throwable error) {
+        super.onError(error);
+        hasError = true;
+        jRaftErrorMsg = error.getMessage();
+    }
+    
+    protected Type getDatumTypeFromKey(String key) {
+        return TypeUtils.parameterize(Datum.class, getClassOfRecordFromKey(key));
+    }
+    
+    protected Class<? extends Record> getClassOfRecordFromKey(String key) {
+        if (KeyBuilder.matchSwitchKey(key)) {
+            return SwitchDomain.class;
+        }
+        return Record.class;
+    }
+    
+    protected void notifierDatumIfAbsent(String key, RecordListener listener) throws CapException {
+        if (KeyBuilder.SERVICE_META_KEY_PREFIX.equals(key)) {
+            notifierAllServiceMeta(listener);
+        } else {
+            Datum datum = get(key);
+            if (null != datum) {
+                notifierDatum(key, datum, listener);
+            }
+        }
+    }
+    
+    /**
+     * This notify should only notify once during startup.
+     */
+    private void notifierAllServiceMeta(RecordListener listener) throws CapException {
+        for (byte[] each : kvStorage.allKeys()) {
+            String key = new String(each);
+            if (listener.interests(key)) {
+                Datum datum = get(key);
+                if (null != datum) {
+                    notifierDatum(key, datum, listener);
+                }
+            }
+        }
+    }
+    
+    private void notifierDatum(String key, Datum datum, RecordListener listener) {
+        try {
+            listener.onChange(key, datum.value);
+        } catch (Exception e) {
+            Loggers.RAFT.error("CAP-RAFT failed to notify listener", e);
+        }
+    }
+}

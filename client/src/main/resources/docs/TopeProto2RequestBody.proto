@@ -1,0 +1,10 @@
+option java_package = "com.why.netty.core.entity";
+
+//Netty框架请求参数消息协议
+serverMessage RequestBody
+{
+  required string url = 1;
+  required string token = 2;
+  optional bytes data = 3;
+}
+

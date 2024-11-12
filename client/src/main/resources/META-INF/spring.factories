@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.netty100.netty.producer.WhyMessageProducerAutoConfiguration

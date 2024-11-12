@@ -1,0 +1,15 @@
+
+         ,--.
+       ,--.'|
+   ,--,:  : |                                           Cap ${application.version}
+,`--.'`|  ' :                       ,---.               Running in ${cap.mode} mode, ${cap.function.mode} function modules
+|   :  :  | |                      '   ,'\   .--.--.    Port: ${server.port}
+:   |   \ | :  ,--.--.     ,---.  /   /   | /  /    '   Pid: ${pid}
+|   : '  '; | /       \   /     \.   ; ,. :|  :  /`./   Console: http://${cap.local.ip}:${server.port}${server.servlet.contextPath}/index.html
+'   ' ;.    ;.--.  .-. | /    / ''   | |: :|  :  ;_
+|   | | \   | \__\/: . ..    ' / '   | .; : \  \    `.      https://cap.io
+'   : |  ; .' ," .--.; |'   ; :__|   :    |  `----.   \
+|   | '`--'  /  /  ,.  |'   | '.'|\   \  /  /  /`--'  /
+'   : |     ;  :   .'   \   :    : `----'  '--'.     /
+;   |.'     |  ,     .-./\   \  /            `--'---'
+'---'        `--`---'     `----'

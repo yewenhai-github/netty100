@@ -1,0 +1,62 @@
+#
+# Copyright 1999-2020 Alibaba Group Holding Ltd.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+com.netty100.cluster.api.remote.request.ClientDetectionRequest
+com.netty100.cluster.api.remote.request.ConnectionSetupRequest
+com.netty100.cluster.api.remote.request.ConnectResetRequest
+com.netty100.cluster.api.remote.request.HealthCheckRequest
+com.netty100.cluster.api.remote.request.PushAckRequest
+com.netty100.cluster.api.remote.request.ServerCheckRequest
+com.netty100.cluster.api.remote.request.ServerLoaderInfoRequest
+com.netty100.cluster.api.remote.request.ServerReloadRequest
+com.netty100.cluster.api.remote.response.ClientDetectionResponse
+com.netty100.cluster.api.remote.response.ConnectResetResponse
+com.netty100.cluster.api.remote.response.ErrorResponse
+com.netty100.cluster.api.remote.response.HealthCheckResponse
+com.netty100.cluster.api.remote.response.ServerCheckResponse
+com.netty100.cluster.api.remote.response.ServerLoaderInfoResponse
+com.netty100.cluster.api.remote.response.ServerReloadResponse
+#com.netty100.cluster.api.config.remote.request.ClientConfigMetricRequest
+#com.netty100.cluster.api.config.remote.request.ConfigBatchListenRequest
+#com.netty100.cluster.api.config.remote.request.ConfigChangeNotifyRequest
+#com.netty100.cluster.api.config.remote.request.ConfigPublishRequest
+#com.netty100.cluster.api.config.remote.request.ConfigQueryRequest
+#com.netty100.cluster.api.config.remote.request.ConfigRemoveRequest
+#com.netty100.cluster.api.config.remote.response.ClientConfigMetricResponse
+#com.netty100.cluster.api.config.remote.response.ConfigChangeBatchListenResponse
+#com.netty100.cluster.api.config.remote.response.ConfigChangeNotifyResponse
+#com.netty100.cluster.api.config.remote.response.ConfigPublishResponse
+#com.netty100.cluster.api.config.remote.response.ConfigQueryResponse
+#com.netty100.cluster.api.config.remote.response.ConfigRemoveResponse
+#com.netty100.cluster.api.config.remote.request.cluster.ConfigChangeClusterSyncRequest
+#com.netty100.cluster.api.config.remote.response.cluster.ConfigChangeClusterSyncResponse
+#com.netty100.cluster.api.naming.remote.request.BatchInstanceRequest
+#com.netty100.cluster.api.naming.remote.request.InstanceRequest
+#request.remote.naming.api.com.netty100.cluster.NotifySubscriberRequest
+#com.netty100.cluster.api.naming.remote.request.ServiceListRequest
+#com.netty100.cluster.api.naming.remote.request.ServiceQueryRequest
+#com.netty100.cluster.api.naming.remote.request.SubscribeServiceRequest
+#com.netty100.cluster.api.naming.remote.response.BatchInstanceResponse
+#com.netty100.cluster.api.naming.remote.response.InstanceResponse
+#com.netty100.cluster.api.naming.remote.response.NotifySubscriberResponse
+#com.netty100.cluster.api.naming.remote.response.QueryServiceResponse
+#com.netty100.cluster.api.naming.remote.response.ServiceListResponse
+#com.netty100.cluster.api.naming.remote.response.SubscribeServiceResponse
+
+com.netty100.cluster.core.cluster.remote.request.MemberReportRequest
+com.netty100.cluster.core.cluster.remote.response.MemberReportResponse
+
+com.netty100.cluster.naming.cluster.remote.request.DistroDataRequest
+com.netty100.cluster.naming.cluster.remote.response.DistroDataResponse

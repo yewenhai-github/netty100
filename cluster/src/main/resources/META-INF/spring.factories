@@ -1,0 +1,9 @@
+# ApplicationListener
+org.springframework.context.ApplicationListener=\
+com.netty100.cluster.core.code.StandaloneProfileApplicationListener
+# SpringApplicationRunListener
+org.springframework.boot.SpringApplicationRunListener=\
+com.netty100.cluster.core.code.SpringApplicationRunListener
+# ApplicationContextInitializer
+org.springframework.context.ApplicationContextInitializer=\
+  com.netty100.cluster.sys.utils.ApplicationUtils
