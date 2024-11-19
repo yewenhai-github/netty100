@@ -3,6 +3,7 @@
 # 基础架构
 ## 架构概要
 <img src="https://github.com/yewenhai-github/netty100/blob/main/documents/img/architecture_diagram.png">
+
 * nameserver：负责管理broker端、采集broker端的状态、监控broker端的连接、监控broker端的消息处理情况等各种统计分析指标
 * broker：tcp的长连接服务端，负责接收客户端的连接并转发客户端的消息；反之，也管理服务端的连接并转发服务端的消息，支持消息的单发与广播等多种消息模式
 * server：java后端服务的接入sdk，负责接收客户端的消息，并将消息转发给broker将消息发达给客户端
@@ -137,3 +138,6 @@ public class LoginController implements WhyMessageConsumerService<LoginMessage.L
 * 3 protobuf3
 * 4 json
 * 5 java bean
+
+# 联系我，欢迎一起谈论技术、一起分享、一起为社会做贡献。
+<img src="https://github.com/yewenhai-github/netty100/blob/main/documents/img/me.png">
