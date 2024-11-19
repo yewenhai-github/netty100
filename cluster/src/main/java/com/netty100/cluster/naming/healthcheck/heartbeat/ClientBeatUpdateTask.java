@@ -24,7 +24,7 @@ import com.netty100.cluster.naming.core.v2.pojo.InstancePublishInfo;
 /**
  * Client beat update task.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientBeatUpdateTask extends AbstractExecuteTask {
     

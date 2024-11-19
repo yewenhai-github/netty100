@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * SPI push executor holder.
  *
- * @author yewenhai
+ * @author why
  */
 public class SpiImplPushExecutorHolder {
     

@@ -22,7 +22,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroKey;
 /**
  * Distro transport agent.
  *
- * @author yewenhai
+ * @author why
  */
 public interface DistroTransportAgent {
     

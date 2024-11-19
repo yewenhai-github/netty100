@@ -64,7 +64,7 @@ import java.util.function.BiConsumer;
 /**
  * JRaft StateMachine implemented.
  *
- * @author yewenhai
+ * @author why
  */
 class CapStateMachine extends StateMachineAdapter {
     

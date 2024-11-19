@@ -22,7 +22,7 @@ import com.netty100.cluster.api.remote.response.Response;
 /**
  * ServerRequestHandler, to process the request from server side.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerRequestHandler.java, v 0.1 2020年07月14日 11:41 AM liuzunfei Exp $
  */
 public interface ServerRequestHandler {

@@ -24,7 +24,7 @@ import org.codehaus.jackson.util.VersionUtil;
 /**
  * Client info.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientInfo {
     

@@ -21,7 +21,7 @@ import com.netty100.cluster.api.remote.Requester;
 /**
  * connection on client side.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: Connection.java, v 0.1 2020年08月09日 1:32 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

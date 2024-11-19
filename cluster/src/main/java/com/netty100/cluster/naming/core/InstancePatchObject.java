@@ -23,7 +23,7 @@ import java.util.Map;
  * Patch object for instance update. To save which variables will be update by {@link
  * com.netty100.cluster.naming.controllers.InstanceController#patch(HttpServletRequest)} API
  *
- * @author yewenhai
+ * @author why
  */
 public class InstancePatchObject {
     

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ClientChannelLogMapper">
+
+    <sql id="baseColumn">
+        id
+        ,log_point,server_id,cluster_id,cluster_name,log_content,log_time,local_address,local_port,remote_address,remote_port,user_id,message_source,message_dest,enable,create_time,update_time,version
+    </sql>
+
+    <insert id="batchSave">
+        insert into api_client_channel_log values
+        <foreach collection="list" separator="," item="item">
+            (null,#{item.serverId},#{item.clusterId},#{item.clusterName},#{item.logPoint},#{item.logContent},#{item.logTime},#{item.localAddress},
+            #{item.localPort},#{item.remoteAddress},#{item.remotePort},#{item.userId},#{item.messageSource},
+            #{item.messageDest},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <delete id="deleteExpiredLog">
+        delete
+        from api_client_channel_log
+        where log_time &lt; #{date}
+    </delete>
+
+    <select id="getList" resultType="com.netty100.pojo.vo.ClientChannelLogVo">
+        select id
+        ,log_point,server_id,cluster_id,cluster_name,log_content,log_time,local_address,local_port,remote_address,remote_port,user_id,message_source,message_dest
+        from api_client_channel_log
+        <where>
+            <if test="startTime!=null">log_time between #{startTime} and #{endTime}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="@org.springframework.util.StringUtils@hasText(remoteAddress)">
+                and remote_address like #{remoteAddress}
+            </if>
+            <if test="@org.springframework.util.StringUtils@hasText(localAddress)">
+                and local_address like #{localAddress}
+            </if>
+            <if test="messageSource!=null">
+                and message_source = #{messageSource}
+            </if>
+            <if test="messageDest!=null">
+                and message_dest = #{messageDest}
+            </if>
+        </where>
+
+    </select>
+    <select id="queryMaxMinId" resultType="java.util.Map">
+        SELECT MAX(id) maxId,MIN(id) minId
+        FROM api_client_channel_log
+        WHERE log_time &lt; #{date}
+    </select>
+
+    <delete id="deleteExpiredLogById">
+        DELETE
+        FROM api_client_channel_log
+        WHERE id &lt;= #{maxId}
+    </delete>
+</mapper>

@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 /**
  * Distro protocol.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class DistroProtocol {

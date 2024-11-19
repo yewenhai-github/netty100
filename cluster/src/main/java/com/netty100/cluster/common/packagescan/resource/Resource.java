@@ -33,7 +33,7 @@ import java.nio.channels.ReadableByteChannel;
  * physical form, but a URL or File handle can just be returned for
  * certain resources. The actual behavior is implementation-specific.
  *
- * @author yewenhai
+ * @author why
  * @see #getInputStream()
  * @see #getUrl()
  * @see #getUri()

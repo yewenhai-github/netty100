@@ -20,7 +20,7 @@ import java.util.Objects;
 
 /**
  * Check precondition, throws an {@code IllegalArgumentException} If the conditions are not met.
- * @author yewenhai
+ * @author why
  * @date 2021/7/29
  */
 public class Preconditions {

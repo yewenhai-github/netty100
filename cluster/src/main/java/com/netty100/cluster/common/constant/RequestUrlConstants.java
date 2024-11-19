@@ -19,7 +19,7 @@ package com.netty100.cluster.common.constant;
 /**
  * Cap request url constants.
  *
- * @author yewenhai
+ * @author why
  */
 public interface RequestUrlConstants {
     

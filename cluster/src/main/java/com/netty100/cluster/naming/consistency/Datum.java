@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Naming data.
  *
- * @author yewenhai
+ * @author why
  */
 public class Datum<T extends Record> implements Serializable {
     

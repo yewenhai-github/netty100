@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * simple count rule barrier.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class SimpleCountRuleBarrier extends RuleBarrier {

@@ -25,7 +25,7 @@ import java.util.Properties;
 /**
  * gRPC client for sdk.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcSdkClient.java, v 0.1 2020年09月07日 11:05 AM liuzunfei Exp $
  */
 public class GrpcSdkClient extends GrpcClient {

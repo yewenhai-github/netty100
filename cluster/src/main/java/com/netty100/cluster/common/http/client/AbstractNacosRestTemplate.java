@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * For NacosRestTemplate and NacosAsyncRestTemplate, provide initialization and register of response converter.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public abstract class AbstractNacosRestTemplate {

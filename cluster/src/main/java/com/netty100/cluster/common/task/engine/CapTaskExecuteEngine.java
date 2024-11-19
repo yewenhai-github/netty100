@@ -25,7 +25,7 @@ import java.util.Collection;
 /**
  * Cap task execute engine.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CapTaskExecuteEngine<T extends CapTask> extends Closeable {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote;
 /**
  * constants define of remote.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionMetaConstants.java, v 0.1 2020年08月13日 1:05 PM liuzunfei Exp $
  */
 public class RemoteConstants {

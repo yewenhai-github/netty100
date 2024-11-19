@@ -29,7 +29,7 @@ import java.util.Objects;
 /**
  * JRaft operations interface.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.ClassNamingShouldBeCamelRule")
 public class JRaftMaintainService {

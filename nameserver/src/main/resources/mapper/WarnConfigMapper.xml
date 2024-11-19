@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.WarnConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.netty100.entity.WarnConfig">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="server_id" jdbcType="INTEGER" property="serverId"/>
+        <result column="type_group" jdbcType="VARCHAR" property="typeGroup"/>
+        <result column="type_index" jdbcType="INTEGER" property="typeIndex"/>
+        <result column="type_title" jdbcType="VARCHAR" property="typeTitle"/>
+        <result column="type_threshold" jdbcType="DECIMAL" property="typeThreshold"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        warn_config
+        .
+        id
+        as id, warn_config.server_id as server_id,type_group, warn_config.type_index as type_index,
+        warn_config.type_title as type_title, warn_config.type_threshold as type_threshold
+    </sql>
+
+    <delete id="deleteById">
+        delete
+        from warn_config
+        where id = #{id}
+          and enable = 1
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config
+        where warn_config.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryAll" resultType="com.netty100.entity.WarnConfig">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config where enable = 1
+    </select>
+
+    <select id="getList" resultType="com.netty100.entity.WarnConfig">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config and enable = 1
+    </select>
+
+    <select id="getList0" resultType="com.netty100.entity.WarnConfig">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config where server_id = #{serverId} and enable = 1
+    </select>
+
+    <select id="getOne" resultType="com.netty100.entity.WarnConfig">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config where server_id = #{serverId} and type_group = #{typeGroup} and type_title = #{typeTitle} and enable = 1
+    </select>
+
+    <select id="getById" resultType="com.netty100.entity.WarnConfig">
+        select
+        <include refid="Base_Column_List"/>
+        from warn_config where id = #{id} and enable = 1
+    </select>
+
+    <insert id="insertSelective" parameterType="com.netty100.entity.WarnConfig">
+        insert into warn_config
+        values (null, #{serverId}, #{typeGroup}, #{typeIndex}, #{typeTitle}, #{typeThreshold}, 1, now(), now(), 1)
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.netty100.entity.WarnConfig">
+        update warn_config
+        <set>
+            <if test="serverId!=null">server_id = #{serverId},</if>
+            <if test="typeIndex!=null">type_index = #{typeIndex},</if>
+            <if test="typeTitle!=null">type_title = #{typeTitle},</if>
+            <if test="typeGroup!=null">type_group = #{typeGroup},</if>
+            <if test="typeThreshold!=null">type_threshold = #{typeThreshold}</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER} and enable = 1
+    </update>
+
+    <update id="update">
+        update warn_config
+        set type_threshold = #{typeThreshold},
+            version        = version + 1,
+            update_time    = now()
+        where id = #{id}
+          and enable = 1
+    </update>
+</mapper>

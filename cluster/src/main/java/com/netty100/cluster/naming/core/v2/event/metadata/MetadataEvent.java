@@ -22,7 +22,7 @@ import com.netty100.cluster.naming.core.v2.pojo.Service;
 /**
  * Metadata event.
  *
- * @author yewenhai
+ * @author why
  */
 public class MetadataEvent extends Event {
     

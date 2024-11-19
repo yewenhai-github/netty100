@@ -37,7 +37,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * corresponds to one {@link WatchService}. It can only monitor up to 32 file directories. When a file change occurs, a
  * {@link FileChangeEvent} will be issued
  *
- * @author yewenhai
+ * @author why
  */
 public class WatchFileCenter {
     

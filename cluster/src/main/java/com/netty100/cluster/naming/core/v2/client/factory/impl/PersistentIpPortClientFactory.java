@@ -24,7 +24,7 @@ import com.netty100.cluster.naming.core.v2.client.impl.IpPortBasedClient;
 /**
  * Client factory for persistent {@link IpPortBasedClient}.
  *
- * @author yewenhai
+ * @author why
  */
 public class PersistentIpPortClientFactory implements ClientFactory<IpPortBasedClient> {
     

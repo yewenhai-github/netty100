@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Cap naming metadata manager.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class NamingMetadataManager extends SmartSubscriber {

@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.response;
 /**
  * connection reset response.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectResetResponse.java, v 0.1 2020年09月01日 2:43 PM liuzunfei Exp $
  */
 public class ConnectResetResponse extends Response {

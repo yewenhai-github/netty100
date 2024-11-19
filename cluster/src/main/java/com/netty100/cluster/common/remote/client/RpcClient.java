@@ -47,7 +47,7 @@ import java.util.regex.Pattern;
 /**
  * abstract remote client to connect to server.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RpcClient.java, v 0.1 2020年07月13日 9:15 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

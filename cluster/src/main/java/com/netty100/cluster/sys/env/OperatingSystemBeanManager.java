@@ -30,7 +30,7 @@ import java.util.Objects;
 /**
  * OperatingSystemBeanManager related.
  *
- * @author yewenhai
+ * @author why
  */
 public class OperatingSystemBeanManager {
 

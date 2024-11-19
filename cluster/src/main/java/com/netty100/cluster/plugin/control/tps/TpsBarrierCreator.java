@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps;
 /**
  * tps barrier creator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface TpsBarrierCreator {
     

@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * InstanceOperationInfo. operation resources's description
  *
- * @author yewenhai
+ * @author why
  * @since 1.4.0
  */
 public class InstanceOperationInfo {

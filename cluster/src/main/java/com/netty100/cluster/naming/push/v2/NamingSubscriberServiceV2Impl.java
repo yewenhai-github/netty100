@@ -45,7 +45,7 @@ import java.util.stream.Stream;
 /**
  * Naming subscriber service for v2.x.
  *
- * @author yewenhai
+ * @author why
  */
 @org.springframework.stereotype.Service
 public class NamingSubscriberServiceV2Impl extends SmartSubscriber implements NamingSubscriberService {

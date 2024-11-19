@@ -1,0 +1,21 @@
+export const messageLogPointList = [
+    {value: "01", label: "c2s-消息接收成功"},
+    {value: "02", label: "c2s-消息发送成功"},
+    {value: "03", label: "c2s-消息发送失败,服务器不在线"},
+    {value: "04", label: "c2s-消息接收错误"},
+    {value: "31", label: "s2c-消息读取成功"},
+    {value: "32", label: "s2c-消息发送成功"},
+    {value: "33", label: "s2c-消息发送失败,用户不在线"},
+    {value: "34", label: "s2c-消息接收错误"},
+    {value: "41", label: "s2c-消息转发(定点)发送成功"},
+    {value: "42", label: "s2c-消息转发(定点)发送命中失败，消息丢弃"},
+    {value: "43", label: "s2c-消息转发(定点)消费命中失败，消息丢弃"},
+    {value: "44", label: "s2c-消息转发(定点)消费成功"},
+    {value: "45", label: "s2c-消息转发(群发)发送成功"},
+    {value: "46", label: "s2c-消息转发(群发)消费命中失败，消息丢弃"},
+    {value: "47", label: "s2c-消息转发(群发)消费成功"},
+    {value: "48", label: "s2c-转发消费未知错误"},
+    {value: "61", label: "s2c-广播消费向其他内核节点通知成功"},
+    {value: "62", label: "s2c-广播消费成功"},
+    {value: "99", label: "未知错误"}
+];

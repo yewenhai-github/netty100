@@ -26,7 +26,7 @@ package com.netty100.cluster.api.common;
  * <li> Config module code starts with 30001.
  * <li> Core module code starts with 40001.
  *
- * @author yewenhai
+ * @author why
  * @since 1.2.0
  */
 public class ResponseCode {

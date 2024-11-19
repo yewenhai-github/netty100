@@ -39,8 +39,8 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * The manager of {@code IpPortBasedClient} and persistence.
  *
- * @author yewenhai
- * @author yewenhai
+ * @author why
+ * @author why
  */
 @Component("persistentIpPortClientManager")
 public class PersistentIpPortClientManager implements ClientManager {

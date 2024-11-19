@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft.utils;
 /**
  * Retry function.
  *
- * @author yewenhai
+ * @author why
  */
 @FunctionalInterface
 public interface RetryRunner {

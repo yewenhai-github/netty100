@@ -18,7 +18,7 @@ package com.netty100.cluster.common.utils;
 
 /**
  * Number utils.
- * @author yewenhai
+ * @author why
  */
 public class NumberUtils {
 

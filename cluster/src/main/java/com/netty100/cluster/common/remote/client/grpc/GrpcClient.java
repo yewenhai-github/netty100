@@ -66,7 +66,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * gRPC Client.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcClient.java, v 0.1 2020年07月13日 9:16 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

@@ -30,7 +30,7 @@ import com.netty100.cluster.core.utils.Loggers;
 /**
  * Abstract distro execute task.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractDistroExecuteTask extends AbstractExecuteTask {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.request;
 /**
  * push ack request.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushAckRequest.java, v 0.1 2020年07月29日 8:25 PM liuzunfei Exp $
  */
 public class PushAckRequest extends InternalRequest {

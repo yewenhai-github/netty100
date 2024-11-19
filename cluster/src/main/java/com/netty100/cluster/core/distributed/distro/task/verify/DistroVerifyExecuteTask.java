@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Execute distro verify task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroVerifyExecuteTask extends AbstractExecuteTask {
     

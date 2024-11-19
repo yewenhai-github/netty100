@@ -21,7 +21,7 @@ import com.netty100.cluster.naming.interceptor.Interceptable;
 /**
  * Cap health check task.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CapHealthCheckTask extends Interceptable, Runnable {
     

@@ -22,7 +22,7 @@ package com.netty100.cluster.core.cluster;
  * <p>1.3.0 The unified sinking operation should be done first, and the node state
  * should be radiated out later, mainly for whether the request can be processed and so on</p>
  *
- * @author yewenhai
+ * @author why
  */
 public enum NodeState {
     

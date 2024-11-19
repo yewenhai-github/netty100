@@ -41,7 +41,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * Push service.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 @SuppressWarnings("PMD.ThreadPoolCreationRule")

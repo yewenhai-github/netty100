@@ -25,7 +25,7 @@ package com.netty100.cluster.common.packagescan.resource;
  * custom protocols to be handled without subclassing the loader
  * implementation (or application context implementation).
  *
- * @author yewenhai
+ * @author why
  * @see DefaultResourceLoader#addProtocolResolver
  * @since 4.3
  */

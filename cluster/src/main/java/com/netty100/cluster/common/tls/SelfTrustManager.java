@@ -36,7 +36,7 @@ import java.util.Collection;
 /**
  * A TrustManager tool returns the specified TrustManager.
  *
- * @author yewenhai
+ * @author why
  */
 public final class SelfTrustManager {
     

@@ -21,7 +21,7 @@ import java.util.function.BiFunction;
 /**
  * Event publisher factory.
  *
- * @author yewenhai
+ * @author why
  */
 public interface EventPublisherFactory extends BiFunction<Class<? extends Event>, Integer, EventPublisher> {
     

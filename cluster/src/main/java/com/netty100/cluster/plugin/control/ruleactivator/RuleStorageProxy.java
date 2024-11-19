@@ -27,7 +27,7 @@ import java.util.Collection;
 /**
  * rule storage proxy.
  *
- * @author yewenhai
+ * @author why
  */
 public class RuleStorageProxy {
     

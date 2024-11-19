@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * rpc scheduler executor .
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RpcScheduledExecutor.java, v 0.1 2020年09月07日 4:12 PM liuzunfei Exp $
  */
 public class RpcScheduledExecutor extends ScheduledThreadPoolExecutor {

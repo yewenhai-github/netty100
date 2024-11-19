@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Health check status.
  *
- * @author yewenhai
+ * @author why
  */
 public class HealthCheckStatus implements Serializable {
     

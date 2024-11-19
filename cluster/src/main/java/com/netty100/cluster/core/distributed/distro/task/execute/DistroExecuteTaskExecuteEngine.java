@@ -22,7 +22,7 @@ import com.netty100.cluster.core.utils.Loggers;
 /**
  * Distro execute task execute engine.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroExecuteTaskExecuteEngine extends CapExecuteTaskExecuteEngine {
     

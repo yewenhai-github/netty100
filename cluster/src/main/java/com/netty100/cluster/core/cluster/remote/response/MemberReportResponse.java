@@ -24,7 +24,7 @@ import com.netty100.cluster.core.cluster.Member;
 /**
  * MemberReportResponse.
  *
- * @author yewenhai
+ * @author why
  */
 public class MemberReportResponse extends Response {
     

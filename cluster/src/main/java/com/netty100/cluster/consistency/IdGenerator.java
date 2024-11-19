@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Id generator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface IdGenerator {
     

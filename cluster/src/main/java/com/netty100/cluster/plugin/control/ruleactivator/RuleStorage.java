@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.ruleactivator;
 /**
  * rule storage.
  *
- * @author yewenhai
+ * @author why
  * @date 2022-10-26 11:43:00
  */
 public interface RuleStorage {

@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Grpc server side constants.
  *
- * @author yewenhai
+ * @author why
  * @date 2023/1/5 15:48
  */
 final class GrpcServerConstants {

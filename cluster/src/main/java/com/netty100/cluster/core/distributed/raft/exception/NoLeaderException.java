@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft.exception;
 /**
  * This exception is thrown if the current Raft Group Cluster does not elect a leader.
  *
- * @author yewenhai
+ * @author why
  */
 public class NoLeaderException extends Exception {
     

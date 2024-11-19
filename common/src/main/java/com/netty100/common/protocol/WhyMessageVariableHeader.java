@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author yewenhai
+ * @author why
  * @version 1.0.4, 2023/6/8
  * @since 1.0.4, 2023/6/8
  */

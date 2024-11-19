@@ -23,7 +23,7 @@ import com.netty100.cluster.core.storage.kv.MemoryKvStorage;
 /**
  * Ket-value Storage factory.
  *
- * @author yewenhai
+ * @author why
  */
 public final class StorageFactory {
     

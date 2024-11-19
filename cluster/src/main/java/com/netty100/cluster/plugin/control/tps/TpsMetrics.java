@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * tps metrics.
  *
- * @author yewenhai
+ * @author why
  */
 public class TpsMetrics {
     

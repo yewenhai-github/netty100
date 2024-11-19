@@ -27,7 +27,7 @@ import java.util.HashMap;
 /**
  * Client factory holder.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientFactoryHolder {
     

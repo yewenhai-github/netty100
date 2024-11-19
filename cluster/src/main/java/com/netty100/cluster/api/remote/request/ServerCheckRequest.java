@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.request;
 /**
  * request to check server if unimpeded.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerCheckRequest.java, v 0.1 2020年07月22日 8:32 PM liuzunfei Exp $
  */
 public class ServerCheckRequest extends InternalRequest {

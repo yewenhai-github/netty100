@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ServerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.Server">
+        <id column="id" property="id"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="domain" property="domain"/>
+        <result column="extranet_ip" property="extranetIp"/>
+        <result column="intranet_ip" property="intranetIp"/>
+        <result column="port" property="port"/>
+        <result column="server_status" property="serverStatus"/>
+        <result column="last_boot_time" property="lastBootTime"/>
+        <result column="last_heart_beat_time" property="lastHeartBeatTime"/>
+        <result column="boot_times" property="bootTimes"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id id,
+		cluster_id clusterId,
+        domain,
+		extranet_ip extranetIp,
+		intranet_ip intranetIp,
+		port port,
+		server_status serverStatus,
+		last_boot_time lastBootTime,
+		last_heart_beat_time lastHeartBeatTime,
+		boot_times bootTimes,
+		create_time createTime
+    </sql>
+
+    <insert id="save">
+        insert into app_server(cluster_id,domain, extranet_ip, intranet_ip, port, server_status, last_boot_time,
+                               last_heart_beat_time,
+                               boot_times, enable, create_time, update_time, version)
+        values (#{clusterId},#{domain}, #{extranetIp}, #{intranetIp}, #{port}, #{serverStatus}, #{lastBootTime}, #{lastHeartBeatTime},
+                #{bootTimes}, 1, now(), now(), 1)
+
+    </insert>
+
+    <update id="deleteById">
+        update app_server
+        set enable      = 0,
+            update_time = now(),
+            version     = version + 1
+        where id = #{id}
+          and enable = 1
+    </update>
+
+    <update id="update">
+        update app_server
+        set last_boot_time = #{lastBootTime},
+            server_status  = #{serverStatus},
+            update_time    = now(),
+            boot_times     = boot_times + 1,
+            version        = version + 1
+        where id = #{id}
+          and enable = 1
+    </update>
+
+    <update id="updateLastHeartBeatTime">
+        update app_server
+        set last_heart_beat_time = #{lastHeartBeatTime},
+            client_connect_count = #{clientConnectCount},
+            server_connect_count = #{serverConnectCount},
+            server_status        = 1,
+            update_time          = now(),
+            version              = version + 1
+        where id = #{id}
+          and enable = 1
+    </update>
+
+    <update id="markServerShutdown">
+        update app_server
+        set server_status        = 2,
+            server_connect_count = 0,
+            client_connect_count = 0,
+            update_time          = now(),
+            version              = version + 1
+        where id = #{id}
+          and enable = 1
+    </update>
+
+    <select id="getServers" resultType="com.netty100.pojo.vo.ServerVo">
+        select id                   id,
+               cluster_id           clusterId,
+               domain,
+               extranet_ip          extranetIp,
+               intranet_ip          intranetIp,
+               port                 port,
+               server_status        serverStatus,
+               last_boot_time       lastBootTime,
+               last_heart_beat_time lastHeartBeatTime,
+               boot_times           bootTimes,
+               client_connect_count clientConnectCount,
+               server_connect_count serverConnectCount,
+               create_time          createTime
+        from app_server
+        where cluster_id = #{clusterId}
+          and enable = 1
+    </select>
+
+    <select id="getServers0" resultType="com.netty100.pojo.vo.ServerVo">
+        select id                   id,
+               cluster_id           clusterId,
+               domain,
+               extranet_ip          extranetIp,
+               intranet_ip          intranetIp,
+               port                 port,
+               server_status        serverStatus,
+               last_boot_time       lastBootTime,
+               last_heart_beat_time lastHeartBeatTime,
+               boot_times           bootTimes,
+               client_connect_count clientConnectCount,
+               server_connect_count serverConnectCount,
+               create_time          createTime
+        from app_server
+        where cluster_id = #{clusterId}
+          and enable = 1
+          and server_status = 1
+    </select>
+
+    <select id="findDead" resultType="com.netty100.entity.Server">
+        select
+        <include refid="Base_Column_List"/>
+        from app_server
+        where server_status = 1 and enable = 1 and last_heart_beat_time <![CDATA[ < ]]> DATE_ADD(#{nowTime},INTERVAL -#{timeout} SECOND)
+    </select>
+
+
+    <select id="findOpenMonitorServers" resultType="com.netty100.entity.Server">
+        select
+        <include refid="Base_Column_List"/>
+        from app_server
+        where enable = 1 and server_status = 1
+    </select>
+
+
+    <select id="getClusterServerStatus" resultType="int">
+        SELECT server_status
+        FROM `app_server`
+        WHERE cluster_id = #{clusterId}
+        GROUP BY server_status
+    </select>
+
+    <select id="getOne" resultType="com.netty100.entity.Server">
+        select
+        <include refid="Base_Column_List"/>
+        from app_server
+        where intranet_ip = #{intranetIp}
+        and port = #{port}
+        and enable = 1
+    </select>
+
+    <select id="getById" resultType="com.netty100.entity.Server">
+        select
+        <include refid="Base_Column_List"/>
+        from app_server where id = #{serverId} and enable = 1
+    </select>
+
+    <select id="getUpServerCountByClusterId" resultType="java.lang.Integer">
+        select count(id)
+        from app_server
+        where cluster_id = #{clusterId}
+          and server_status = 1
+          and enable = 1
+    </select>
+
+    <select id="getTotalServerCountByClusterId" resultType="java.lang.Integer">
+        select count(id)
+        from app_server
+        where cluster_id = #{clusterId}
+          and enable = 1
+    </select>
+    <select id="getServerList" resultType="com.netty100.pojo.vo.ServerListVo">
+        select id                   id,
+               cluster_id           clusterId,
+                domain,
+               extranet_ip          extranetIp,
+               intranet_ip          intranetIp,
+               port                 port,
+               server_status        serverStatus,
+               last_boot_time       lastBootTime,
+               last_heart_beat_time lastHeartBeatTime,
+               boot_times           bootTimes,
+               client_connect_count clientConnectionCount,
+               server_connect_count serverConnectionCount,
+               create_time          createTime
+        from app_server
+        where cluster_id = #{clusterId}
+          and enable = 1
+    </select>
+
+    <select id="briefServerList" resultType="com.netty100.pojo.vo.ServerBriefVo">
+        select id, cluster_id,domain, extranet_ip, intranet_ip, port
+        from app_server
+        where cluster_id = #{clusterId}
+          and enable = 1
+    </select>
+
+    <select id="getAllActiveServers" resultType="com.netty100.pojo.vo.ServerVo">
+        select id                   id,
+               cluster_id           clusterId,
+               domain ,
+               extranet_ip          extranetIp,
+               intranet_ip          intranetIp,
+               port                 port,
+               server_status        serverStatus,
+               last_boot_time       lastBootTime,
+               last_heart_beat_time lastHeartBeatTime,
+               boot_times           bootTimes,
+               client_connect_count clientConnectCount,
+               server_connect_count serverConnectCount
+        from app_server
+        where server_status = 1
+          and enable = 1
+    </select>
+
+    <select id="getServerVoSetByIds" resultType="com.netty100.pojo.vo.ServerVo">
+        select id id,
+        cluster_id clusterId,
+        domain,
+        extranet_ip extranetIp,
+        intranet_ip intranetIp,
+        port port,
+        server_status serverStatus,
+        last_boot_time lastBootTime,
+        last_heart_beat_time lastHeartBeatTime,
+        boot_times bootTimes,
+        client_connect_count clientConnectCount,
+        server_connect_count serverConnectCount
+        from app_server where server_status = 1 and enable = 1
+        and id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

@@ -35,7 +35,7 @@ import java.util.Collection;
  * <p>The client is bind to the ip and port users registered. It's a abstract content to simulate the tcp session
  * client.
  *
- * @author yewenhai
+ * @author why
  */
 public class IpPortBasedClient extends AbstractClient {
     

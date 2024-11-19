@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Service cluster metadata for v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClusterMetadata implements Serializable {
     

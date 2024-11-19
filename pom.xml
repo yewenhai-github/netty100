@@ -11,7 +11,9 @@
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
-        <spring-boot.version>2.5.14</spring-boot.version>
+        <spring-boot.version>2.6.13</spring-boot.version>
+        <spring-cloud-alibaba.version>2021.0.6.1</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring.version>5.3.20</spring.version>
         <tomcat.version>9.0.63</tomcat.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -52,7 +54,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- 封装的公共功能包 -->
             <dependency>
@@ -62,7 +70,7 @@
             </dependency>
             <dependency>
                 <groupId>com.why</groupId>
-                <artifactId>netty100-client</artifactId>
+                <artifactId>netty100-server</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -72,7 +80,12 @@
             </dependency>
             <dependency>
                 <groupId>com.why</groupId>
-                <artifactId>netty100-kernel</artifactId>
+                <artifactId>netty100-broker</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.why</groupId>
+                <artifactId>netty100-nameserver</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -150,10 +163,12 @@
     </dependencyManagement>
 
     <modules>
-        <module>client</module>
         <module>cluster</module>
         <module>common</module>
-        <module>kernel</module>
+        <module>broker</module>
+        <module>nameserver</module>
+        <module>server</module>
+        <module>client</module>
         <module>example</module>
     </modules>
 

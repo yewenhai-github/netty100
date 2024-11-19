@@ -19,7 +19,7 @@ package com.netty100.cluster.api.naming;
 /**
  * Common parameters for service discovery.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public class CommonParams {

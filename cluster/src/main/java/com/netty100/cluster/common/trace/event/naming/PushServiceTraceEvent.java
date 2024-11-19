@@ -18,7 +18,7 @@ package com.netty100.cluster.common.trace.event.naming;
 
 /**
  * Naming push service trace event.
- * @author yewenhai
+ * @author why
  */
 public class PushServiceTraceEvent extends NamingTraceEvent {
     

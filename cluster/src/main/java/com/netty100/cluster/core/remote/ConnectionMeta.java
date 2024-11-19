@@ -27,7 +27,7 @@ import static com.netty100.cluster.api.common.Constants.VIPSERVER_TAG;
 /**
  * ConnectionMetaInfo.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionMetaInfo.java, v 0.1 2020年07月13日 7:28 PM liuzunfei Exp $
  */
 public class ConnectionMeta {

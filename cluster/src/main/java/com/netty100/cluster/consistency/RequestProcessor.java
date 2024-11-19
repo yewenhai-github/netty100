@@ -25,7 +25,7 @@ import com.netty100.cluster.consistency.entity.WriteRequest;
  * consistency protocols have their pwd
  * LogDispatcher. It is not recommended to directly implement this interface.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class RequestProcessor {

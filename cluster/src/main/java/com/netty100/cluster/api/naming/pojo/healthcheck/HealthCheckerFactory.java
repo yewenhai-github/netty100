@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * health checker factory.
  *
- * @author yewenhai
+ * @author why
  */
 public class HealthCheckerFactory {
     

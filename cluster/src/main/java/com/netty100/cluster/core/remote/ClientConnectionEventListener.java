@@ -23,7 +23,7 @@ import javax.annotation.PostConstruct;
 /**
  * ClientConnectionEventListener.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClientConnectionEventListener.java, v 0.1 2020年07月16日 3:06 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

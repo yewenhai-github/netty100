@@ -26,7 +26,7 @@ import com.google.protobuf.Message;
 /**
  * protobuf message utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class ProtoMessageUtil {
     

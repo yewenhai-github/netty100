@@ -37,7 +37,7 @@ import io.grpc.stub.StreamObserver;
 /**
  * grpc connection.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcConnection.java, v 0.1 2020年07月13日 7:26 PM liuzunfei Exp $
  */
 public class GrpcConnection extends Connection {

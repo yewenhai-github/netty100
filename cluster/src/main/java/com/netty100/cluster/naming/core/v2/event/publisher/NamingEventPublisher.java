@@ -34,7 +34,7 @@ import java.util.concurrent.Executor;
 /**
  * Event publisher for naming event.
  *
- * @author yewenhai
+ * @author why
  */
 public class NamingEventPublisher extends Thread implements ShardedEventPublisher {
     

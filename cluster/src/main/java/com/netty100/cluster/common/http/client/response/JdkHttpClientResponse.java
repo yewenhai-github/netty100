@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * JDk http client response implement.
  *
- * @author yewenhai
+ * @author why
  */
 public class JdkHttpClientResponse implements HttpClientResponse {
     

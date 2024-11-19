@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * local simple count rule barrier.
  *
- * @author yewenhai
+ * @author why
  */
 public class LocalSimpleCountRuleBarrier extends SimpleCountRuleBarrier {
     

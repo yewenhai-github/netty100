@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Constants for client.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientConstants {
     

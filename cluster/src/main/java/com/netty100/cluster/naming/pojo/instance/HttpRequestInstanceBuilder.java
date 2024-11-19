@@ -43,7 +43,7 @@ import java.util.Collection;
  * extension handler by spi.
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 public class HttpRequestInstanceBuilder {
     

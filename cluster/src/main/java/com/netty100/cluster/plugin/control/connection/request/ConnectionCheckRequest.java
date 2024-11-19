@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * connection check request.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConnectionCheckRequest {
     

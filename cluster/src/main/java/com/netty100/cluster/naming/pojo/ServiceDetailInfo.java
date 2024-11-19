@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Service detial info.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServiceDetailInfo.java, v 0.1 2018-09-17 上午10:47 caogu.wyp Exp $$
  */
 public class ServiceDetailInfo implements Serializable {

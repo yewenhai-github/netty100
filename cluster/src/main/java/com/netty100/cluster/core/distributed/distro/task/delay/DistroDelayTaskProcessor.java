@@ -27,7 +27,7 @@ import com.netty100.cluster.core.distributed.distro.task.DistroTaskEngineHolder;
 /**
  * Distro delay task processor.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroDelayTaskProcessor implements CapTaskProcessor {
     

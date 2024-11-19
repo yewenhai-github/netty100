@@ -26,7 +26,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroKey;
 /**
  * Distro sync change task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroSyncChangeTask extends AbstractDistroExecuteTask {
     

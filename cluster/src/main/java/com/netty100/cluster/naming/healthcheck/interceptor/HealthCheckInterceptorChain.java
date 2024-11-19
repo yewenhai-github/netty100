@@ -22,7 +22,7 @@ import com.netty100.cluster.naming.interceptor.AbstractNamingInterceptorChain;
 /**
  * Health check interceptor chain.
  *
- * @author yewenhai
+ * @author why
  */
 public class HealthCheckInterceptorChain extends AbstractNamingInterceptorChain<CapHealthCheckTask> {
     

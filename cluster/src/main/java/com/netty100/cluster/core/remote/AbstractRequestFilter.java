@@ -30,7 +30,7 @@ import java.lang.reflect.Type;
 /**
  * interceptor fo request.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: AbstractRequestFilter.java, v 0.1 2020年09月14日 11:46 AM liuzunfei Exp $
  */
 public abstract class AbstractRequestFilter {

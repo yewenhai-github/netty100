@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 /**
  * MethodUtil related.
  *
- * @author yewenhai
+ * @author why
  */
 public final class MethodUtil {
 

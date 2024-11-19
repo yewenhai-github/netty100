@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * file change event.
  *
- * @author yewenhai
+ * @author why
  */
 public class FileChangeEvent implements Serializable {
     

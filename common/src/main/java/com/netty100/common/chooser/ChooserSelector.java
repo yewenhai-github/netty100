@@ -3,7 +3,7 @@ package com.netty100.common.chooser;
 import com.netty100.common.utils.SysUtility;
 
 /**
- * @author yewenhai
+ * @author why
  * @version 1.0.0, 2022/4/18
  * @since 1.0.0, 2022/4/18
  */

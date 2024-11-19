@@ -29,7 +29,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * server push ack synchronier.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RpcAckCallbackSynchronizer.java, v 0.1 2020年07月29日 7:56 PM liuzunfei Exp $
  */
 public class RpcAckCallbackSynchronizer {

@@ -26,7 +26,7 @@ import com.netty100.cluster.api.utils.StringUtils;
  * errMsg           ->  detail error message    inherited from {@link CapException} <BR/>
  * detailErrCode    ->  error code for api v2.0 <BR/>
  * errAbstract      ->  abstract error message for api v2.0
- * @author yewenhai
+ * @author why
  * @date 2022/7/22
  */
 public class CapApiException extends CapException {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.AppConfigMapper">
+
+    <sql id="baseColumn">
+        id
+        ,app_name,cluster,message_source,message_dest,message_serialize,create_time,update_time,version
+    </sql>
+    <insert id="save">
+        insert into api_app_config
+        values (null, #{appName}, #{cluster}, #{messageSource}, #{messageDest}, #{messageSerialize}, now(), now(), 1)
+    </insert>
+
+    <update id="update">
+        update api_app_config
+        <set>
+            update_time = now(),version = version + 1,
+            <if test="@org.springframework.util.StringUtils@hasText(appName)">app_name = #{appName},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(cluster)">cluster = #{cluster},</if>
+            <if test="messageSource!=null">message_source = #{messageSource},</if>
+            <if test="messageDest!=null">message_dest = #{messageDest},</if>
+            <if test="messageSerialize!=null">message_serialize = #{messageSerialize}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete
+        from api_app_config
+        where id = #{id}
+    </delete>
+
+    <select id="getList" resultType="com.netty100.pojo.vo.AppConfigVo">
+        select id
+        ,app_name,cluster,message_source,message_dest,message_serialize,create_time
+        from api_app_config
+        <where>
+            <if test="@org.springframework.util.StringUtils@hasText(appName)">app_name like #{appName}</if>
+            <if test="@org.springframework.util.StringUtils@hasText(cluster)">and cluster like #{cluster}</if>
+        </where>
+        ORDER BY message_source,message_dest
+    </select>
+
+    <select id="getAll" resultType="com.netty100.entity.AppConfig">
+        select id
+             , app_name
+             , cluster
+             , message_source
+             , message_dest
+             , message_serialize
+             , create_time
+        from api_app_config
+    </select>
+</mapper>

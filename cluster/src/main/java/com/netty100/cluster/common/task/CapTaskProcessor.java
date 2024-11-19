@@ -19,7 +19,7 @@ package com.netty100.cluster.common.task;
 /**
  * Task processor.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CapTaskProcessor {
     

@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * rule barrier creator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface RuleBarrierCreator {
     

@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Health check reactor.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.ThreadPoolCreationRule")
 public class HealthCheckReactor {

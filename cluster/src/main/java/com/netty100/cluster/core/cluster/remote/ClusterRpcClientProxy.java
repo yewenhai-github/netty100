@@ -45,7 +45,7 @@ import static com.netty100.cluster.api.exception.CapException.CLIENT_INVALID_PAR
 /**
  * cluster rpc client proxy.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClusterRpcClientProxy.java, v 0.1 2020年08月11日 2:11 PM liuzunfei Exp $
  */
 @Service

@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * {@link AsyncHttpClientRequest} implementation that uses apache async http client to execute streaming requests.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultAsyncHttpClientRequest implements AsyncHttpClientRequest {
     

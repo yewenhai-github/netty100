@@ -31,7 +31,7 @@ import java.util.Collection;
 /**
  * Client beat check task of service for version 2.x.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientBeatCheckTaskV2 extends AbstractExecuteTask implements BeatCheckTask, CapHealthCheckTask {
     

@@ -23,7 +23,7 @@ import java.util.Collection;
 /**
  * Push result hook holder for SPI.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushResultHookHolder implements PushResultHook {
     

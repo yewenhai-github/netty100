@@ -19,7 +19,7 @@ package com.netty100.cluster.common.task;
 /**
  * Abstract task which can delay and merge.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractDelayTask implements CapTask {
     

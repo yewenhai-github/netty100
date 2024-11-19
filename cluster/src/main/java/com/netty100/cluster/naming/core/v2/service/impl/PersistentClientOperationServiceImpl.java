@@ -74,7 +74,7 @@ import java.util.zip.Checksum;
  * format of host:port.
  *
  * @author <a href="mailto:liaochuntao@live.com">liaochuntao</a>
- * @author yewenhai
+ * @author why
  */
 @Component("persistentClientOperationServiceImpl")
 public class PersistentClientOperationServiceImpl extends RequestProcessor4CP implements ClientOperationService {

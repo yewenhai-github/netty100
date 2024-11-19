@@ -30,7 +30,7 @@ import java.io.IOException;
  * <p>The similarity between this class and the NestedChecked/RuntimeException
  * class is unavoidable, as this class needs to derive from IOException.
  *
- * @author yewenhai
+ * @author why
  * @see #getMessage
  * @since 2.0
  */

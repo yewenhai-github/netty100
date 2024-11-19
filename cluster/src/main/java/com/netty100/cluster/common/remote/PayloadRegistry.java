@@ -26,7 +26,7 @@ import java.util.ServiceLoader;
 /**
  * payload registry,Define basic scan behavior request and response.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PayloadRegistry.java, v 0.1 2020年09月01日 10:56 AM liuzunfei Exp $
  */
 

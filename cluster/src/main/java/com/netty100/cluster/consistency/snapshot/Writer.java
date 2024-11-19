@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Snapshot write interface.
  *
- * @author yewenhai
+ * @author why
  */
 public class Writer {
     

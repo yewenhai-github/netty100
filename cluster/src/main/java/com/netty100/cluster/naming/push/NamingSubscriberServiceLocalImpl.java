@@ -26,7 +26,7 @@ import java.util.HashSet;
 /**
  * Naming subscriber service for local.
  *
- * @author yewenhai
+ * @author why
  */
 @org.springframework.stereotype.Service
 public class NamingSubscriberServiceLocalImpl implements NamingSubscriberService {

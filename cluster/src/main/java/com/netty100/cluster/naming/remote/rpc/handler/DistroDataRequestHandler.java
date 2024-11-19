@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 /**
  * Distro data request handler.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class DistroDataRequestHandler extends RequestHandler<DistroDataRequest, DistroDataResponse> {

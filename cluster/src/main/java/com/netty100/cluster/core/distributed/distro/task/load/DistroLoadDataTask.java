@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Distro load data task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroLoadDataTask implements Runnable {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.common.remote;
 /**
  * gRPC config.
  *
- * @author yewenhai
+ * @author why
  */
 public class TlsConfig {
     /**

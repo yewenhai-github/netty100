@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Addressable pattern base class.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractMemberLookup implements MemberLookup {
     

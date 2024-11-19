@@ -22,7 +22,7 @@ import com.netty100.cluster.common.notify.listener.Subscriber;
 /**
  * Event publisher.
  *
- * @author yewenhai
+ * @author why
  */
 public interface EventPublisher extends Closeable {
     

@@ -22,7 +22,7 @@ import java.lang.reflect.Type;
 /**
  * type utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class TypeUtils {
 

@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.constants;
 /**
  * Push constants keys and values.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushConstants {
     

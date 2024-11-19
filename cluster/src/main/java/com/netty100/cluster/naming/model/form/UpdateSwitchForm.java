@@ -26,7 +26,7 @@ import java.util.Objects;
 
 /**
  * UpdateSwitchForm.
- * @author yewenhai
+ * @author why
  * @date 2022/9/15
  */
 public class UpdateSwitchForm implements Serializable {

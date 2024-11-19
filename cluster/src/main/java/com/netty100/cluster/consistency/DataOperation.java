@@ -19,7 +19,7 @@ package com.netty100.cluster.consistency;
 /**
  * Apply action.
  *
- * @author yewenhai
+ * @author why
  */
 public enum DataOperation {
     /**

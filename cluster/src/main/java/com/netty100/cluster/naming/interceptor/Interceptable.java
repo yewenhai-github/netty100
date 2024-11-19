@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.interceptor;
 /**
  * Interceptable Interface.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Interceptable {
     

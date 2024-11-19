@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * local simple count barrier creator.
  *
- * @author yewenhai
+ * @author why
  */
 public class LocalSimpleCountBarrierCreator implements RuleBarrierCreator {
     

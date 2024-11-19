@@ -30,7 +30,7 @@ import java.util.function.Function;
 /**
  * Id generator manager.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class IdGeneratorManager {

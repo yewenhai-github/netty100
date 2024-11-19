@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Read the snapshot file interface.
  *
- * @author yewenhai
+ * @author why
  */
 public class Reader {
     

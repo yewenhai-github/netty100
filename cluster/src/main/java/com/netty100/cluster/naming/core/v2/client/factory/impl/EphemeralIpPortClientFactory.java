@@ -25,7 +25,7 @@ import io.netty.channel.Channel;
 /**
  * Client factory for ephemeral {@link IpPortBasedClient}.
  *
- * @author yewenhai
+ * @author why
  */
 public class EphemeralIpPortClientFactory implements ClientFactory<IpPortBasedClient> {
     

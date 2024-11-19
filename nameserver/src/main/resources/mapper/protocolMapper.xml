@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.MessageProtocolMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.Protocol">
+        <id column="id" property="id"/>
+        <result column="protocol_type" property="protocolType"/>
+        <result column="protocol_code" property="protocolCode"/>
+        <result column="protocol_name" property="protocolName"/>
+        <result column="protocol_desc" property="protocolDesc"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        id, protocol_type, protocol_code, protocol_name, protocol_desc
+    </sql>
+
+    <insert id="save">
+        insert into api_protocol(protocol_type, protocol_code, protocol_name, protocol_desc,protocol_code_value, enable, create_time, update_time, version)
+        values (#{protocolType}, #{protocolCode}, #{protocolName}, #{protocolDesc},#{protocolCode}, 1, now(), now(), 1)
+    </insert>
+
+    <update id="update">
+        update api_protocol
+        <set>
+            update_time = now(),version = version + 1,
+            <if test="@org.springframework.util.StringUtils@hasText(protocolCode)">protocol_code = #{protocolCode},protocol_code_value = #{protocolCode},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(protocolName)">protocol_name = #{protocolName},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(protocolDesc)">protocol_desc = #{protocolDesc}</if>
+        </set>
+        where id = #{id}
+        and enable = 1
+    </update>
+
+    <update id="deleteById">
+        delete from  api_protocol
+        where id = #{id}
+          and enable = 1
+    </update>
+
+    <select id="getAll" resultType="com.netty100.entity.Protocol">
+        select  <include refid="baseColumn"/>
+        from api_protocol
+        where enable = 1
+    </select>
+
+    <select id="getOne" resultType="com.netty100.entity.Protocol">
+        select <include refid="baseColumn"/>
+        from api_protocol
+        where protocol_type = #{protocolType}
+          and (protocol_code = #{protocolCode} or protocol_name = #{protocolName})
+          and enable = 1
+    </select>
+
+    <select id="getList" resultType="com.netty100.entity.Protocol">
+        select <include refid="baseColumn"/>
+        from api_protocol
+        where enable = 1 and protocol_type = #{protocolType}
+    </select>
+
+</mapper>

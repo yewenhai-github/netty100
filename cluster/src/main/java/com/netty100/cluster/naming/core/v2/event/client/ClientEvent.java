@@ -22,7 +22,7 @@ import com.netty100.cluster.naming.core.v2.client.Client;
 /**
  * Client event.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientEvent extends Event {
     

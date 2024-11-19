@@ -25,7 +25,7 @@ import com.alipay.sofa.jraft.rpc.RpcProcessor;
 /**
  * cap request processor for {@link WriteRequest}.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapWriteRequestProcessor extends AbstractProcessor implements RpcProcessor<WriteRequest> {
     

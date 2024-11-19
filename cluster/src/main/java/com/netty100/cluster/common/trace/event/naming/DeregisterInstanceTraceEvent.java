@@ -20,7 +20,7 @@ import com.netty100.cluster.common.trace.DeregisterInstanceReason;
 
 /**
  * Naming deregister instance trace event.
- * @author yewenhai
+ * @author why
  */
 public class DeregisterInstanceTraceEvent extends NamingTraceEvent {
     

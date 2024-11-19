@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 /**
  * Use Jackson to serialize data.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class JacksonSerializer implements Serializer {

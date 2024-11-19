@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps;
 /**
  * MonitorType.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: MonitorType.java, v 0.1 2021年01月12日 20:38 PM liuzunfei Exp $
  */
 public enum MonitorType {

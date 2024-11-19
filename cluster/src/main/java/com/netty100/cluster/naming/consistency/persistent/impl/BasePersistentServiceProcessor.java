@@ -55,7 +55,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * New service data persistence handler.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class BasePersistentServiceProcessor extends RequestProcessor4CP
         implements PersistentConsistencyService {

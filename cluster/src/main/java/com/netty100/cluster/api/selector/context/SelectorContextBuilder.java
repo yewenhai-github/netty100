@@ -24,7 +24,7 @@ import com.netty100.cluster.api.naming.pojo.Instance;
  * The {@link SelectorContextBuilder} mainly for provide the context for {@link Selector#select(Object)}.
  * It provides {@link #build(Object, Object)} method for build context. And also provide {@link #getContextType()} for get the contextType.
  *
- * @author yewenhai
+ * @author why
  * @date 2021-07-09 21:34
  */
 public interface SelectorContextBuilder<T, C, P> {

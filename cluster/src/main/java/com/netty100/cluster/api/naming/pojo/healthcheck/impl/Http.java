@@ -29,7 +29,7 @@ import java.util.Objects;
 /**
  * Implementation of health checker for HTTP.
  *
- * @author yewenhai
+ * @author why
  */
 public class Http extends AbstractHealthChecker {
     

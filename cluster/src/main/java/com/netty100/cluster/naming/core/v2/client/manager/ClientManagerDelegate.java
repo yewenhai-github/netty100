@@ -33,7 +33,7 @@ import java.util.HashSet;
 /**
  * Client manager delegate.
  *
- * @author yewenhai
+ * @author why
  */
 @DependsOn({"clientServiceIndexesManager", "namingMetadataManager"})
 @Component("clientManager")

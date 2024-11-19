@@ -30,7 +30,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * IO related tool methods.
  *
- * @author yewenhai
+ * @author why
  */
 public class IoUtils {
 

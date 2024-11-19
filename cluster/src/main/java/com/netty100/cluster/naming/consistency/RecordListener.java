@@ -21,7 +21,7 @@ import com.netty100.cluster.naming.pojo.Record;
 /**
  * Data listener public interface.
  *
- * @author yewenhai
+ * @author why
  */
 public interface RecordListener<T extends Record> {
     

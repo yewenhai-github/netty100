@@ -19,7 +19,7 @@ package com.netty100.cluster.api.utils;
 /**
  * StringUtils. copy from apache common-lang3.
  *
- * @author yewenhai
+ * @author why
  */
 public class StringUtils {
     

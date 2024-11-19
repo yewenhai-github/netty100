@@ -51,7 +51,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * Cap Hessian Serializer Factory.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapHessianSerializerFactory extends SerializerFactory {
 

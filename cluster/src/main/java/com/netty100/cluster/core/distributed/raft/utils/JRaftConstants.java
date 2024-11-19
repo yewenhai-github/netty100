@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft.utils;
 /**
  * constant.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.ClassNamingShouldBeCamelRule")
 public class JRaftConstants {

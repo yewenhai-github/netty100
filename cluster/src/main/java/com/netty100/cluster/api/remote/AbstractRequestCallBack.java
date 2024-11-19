@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote;
 /**
  * abstract request call back.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: AbstractRequestCallBack.java, v 0.1 2020年09月07日 3:30 PM liuzunfei Exp $
  */
 public abstract class AbstractRequestCallBack implements RequestCallBack {

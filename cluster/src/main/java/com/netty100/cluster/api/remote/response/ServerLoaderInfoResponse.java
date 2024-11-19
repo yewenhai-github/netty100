@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * server loader info response.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerLoaderInfoResponse.java, v 0.1 2020年09月03日 2:46 PM liuzunfei Exp $
  */
 public class ServerLoaderInfoResponse extends Response {

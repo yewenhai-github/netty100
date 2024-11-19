@@ -13,7 +13,7 @@
 
     <modules>
         <module>client</module>
-        <module>kernel</module>
+        <module>broker</module>
         <module>server</module>
     </modules>
 

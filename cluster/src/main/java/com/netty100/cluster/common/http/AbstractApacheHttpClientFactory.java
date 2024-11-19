@@ -25,7 +25,7 @@ import org.apache.http.protocol.RequestContent;
 /**
  * apache http client factory implements.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractApacheHttpClientFactory extends AbstractHttpClientFactory {
     

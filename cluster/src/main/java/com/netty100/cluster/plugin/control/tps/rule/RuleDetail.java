@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * rule detail.
  *
- * @author yewenhai
+ * @author why
  */
 public class RuleDetail {
     

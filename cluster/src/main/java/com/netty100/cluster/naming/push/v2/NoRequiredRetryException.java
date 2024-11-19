@@ -22,7 +22,7 @@ import com.netty100.cluster.api.naming.NamingResponseCode;
 /**
  * Exception that does not require retry.
  *
- * @author yewenhai
+ * @author why
  */
 public class NoRequiredRetryException extends CapRuntimeException {
     

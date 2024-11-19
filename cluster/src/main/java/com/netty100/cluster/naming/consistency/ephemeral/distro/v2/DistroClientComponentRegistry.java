@@ -32,7 +32,7 @@ import javax.annotation.PostConstruct;
 /**
  * Distro component registry for v2.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class DistroClientComponentRegistry {

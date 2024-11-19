@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * RequestMeta info.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RequestMeta.java, v 0.1 2020年07月14日 10:32 AM liuzunfei Exp $
  */
 public class RequestMeta {

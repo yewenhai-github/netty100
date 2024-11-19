@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps.rule;
 /**
  * tps control point.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: TpsControlPoint.java, v 0.1 2021年01月09日 12:38 PM liuzunfei Exp $
  */
 public class TpsControlRule {

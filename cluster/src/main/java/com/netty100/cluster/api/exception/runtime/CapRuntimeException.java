@@ -19,7 +19,7 @@ package com.netty100.cluster.api.exception.runtime;
 /**
  * Cap runtime exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapRuntimeException extends RuntimeException {
     

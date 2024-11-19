@@ -52,7 +52,7 @@ import java.util.Set;
 /**
  * Distro processor for v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroClientDataProcessor extends SmartSubscriber implements DistroDataStorage, DistroDataProcessor {
     

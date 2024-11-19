@@ -22,7 +22,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroKey;
 /**
  * Distro failed task handler.
  *
- * @author yewenhai
+ * @author why
  */
 public interface DistroFailedTaskHandler {
     

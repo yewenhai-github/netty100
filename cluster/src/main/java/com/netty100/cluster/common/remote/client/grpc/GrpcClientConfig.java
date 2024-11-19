@@ -22,7 +22,7 @@ import com.netty100.cluster.common.remote.client.RpcClientTlsConfig;
 /**
  * GrpcCleint config. Use to collect and init Grpc client configuration.
  *
- * @author yewenhai
+ * @author why
  */
 public interface GrpcClientConfig extends RpcClientConfig {
     

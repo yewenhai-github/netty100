@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Ip and address info.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: IpAddressInfo.java, v 0.1 2018-09-17 上午10:52 caogu.wyp Exp $$
  */
 public class IpAddressInfo implements Serializable {

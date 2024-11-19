@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * Kv storage implementation for naming.
  *
- * @author yewenhai
+ * @author why
  */
 public class NamingKvStorage extends MemoryKvStorage {
     

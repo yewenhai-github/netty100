@@ -39,7 +39,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Switch manager.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 @Component

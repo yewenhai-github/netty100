@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * init environment config.
  *
- * @author yewenhai
+ * @author why
  * @since 0.5.0
  */
 public class StartingApplicationListener implements CapApplicationListener {

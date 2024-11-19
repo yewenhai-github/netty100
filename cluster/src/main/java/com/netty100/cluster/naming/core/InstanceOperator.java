@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * Instance operator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface InstanceOperator {
     

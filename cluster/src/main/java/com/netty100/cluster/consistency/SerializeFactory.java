@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Serialization factory.
  *
- * @author yewenhai
+ * @author why
  */
 public class SerializeFactory {
     

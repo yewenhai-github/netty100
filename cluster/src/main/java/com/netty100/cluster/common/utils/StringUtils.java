@@ -27,8 +27,8 @@ import java.util.*;
 /**
  * string util.
  *
- * @author yewenhai
- * @author yewenhai
+ * @author why
+ * @author why
  */
 public class StringUtils {
 

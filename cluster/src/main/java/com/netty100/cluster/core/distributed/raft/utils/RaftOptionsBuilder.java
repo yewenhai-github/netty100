@@ -53,7 +53,7 @@ import static com.netty100.cluster.core.distributed.raft.RaftSysConstants.SYNC_M
 /**
  * build {@link RaftOptions}.
  *
- * @author yewenhai
+ * @author why
  */
 public class RaftOptionsBuilder {
     

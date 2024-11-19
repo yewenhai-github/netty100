@@ -19,7 +19,7 @@ package com.netty100.cluster.common.spi;
 /**
  * Cap service loader exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class ServiceLoaderException extends RuntimeException {
     

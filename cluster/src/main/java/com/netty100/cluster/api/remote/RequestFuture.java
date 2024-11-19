@@ -21,7 +21,7 @@ import com.netty100.cluster.api.remote.response.Response;
 /**
  * future for request.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RequestFuture.java, v 0.1 2020年09月01日 6:31 PM liuzunfei Exp $
  */
 public interface RequestFuture {

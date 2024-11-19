@@ -27,7 +27,7 @@ import java.io.Serializable;
 /**
  * abilities of cap server.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerAbilities.java, v 0.1 2021年01月24日 00:09 AM liuzunfei Exp $
  */
 public class ServerAbilities implements Serializable {

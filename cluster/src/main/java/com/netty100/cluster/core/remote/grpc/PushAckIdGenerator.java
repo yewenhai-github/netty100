@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * id generator to server push ack.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushAckIdGenerator.java, v 0.1 2020年07月20日 5:49 PM liuzunfei Exp $
  */
 public class PushAckIdGenerator {

@@ -28,7 +28,7 @@ import java.util.Set;
  * of transactions of different services. Corresponding LogProcessor sub-interface: LogProcessor4AP or LogProcessor4CP,
  * different consistency protocols will actively discover the corresponding LogProcessor
  *
- * @author yewenhai
+ * @author why
  */
 public interface Config<L extends RequestProcessor> extends Serializable {
     

@@ -34,7 +34,7 @@ import java.util.function.Consumer;
 /**
  * Cap global tool class.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class ApplicationUtils implements ApplicationContextInitializer<ConfigurableApplicationContext> {

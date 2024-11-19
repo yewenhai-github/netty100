@@ -33,7 +33,7 @@ import java.io.Serializable;
  *     Now, Cap only provide the {@link AbstractCmdbSelector} for user to implement their own select logic. Other type is waiting.
  * </p>
  *
- * @author yewenhai
+ * @author why
  * @date 2021-07-09 21:24
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")

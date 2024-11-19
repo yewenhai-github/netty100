@@ -23,7 +23,7 @@ import com.netty100.cluster.sys.env.EnvUtil;
 /**
  * Naming client config.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientConfig extends AbstractDynamicConfig {
     

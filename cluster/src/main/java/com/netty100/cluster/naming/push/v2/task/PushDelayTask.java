@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * Cap naming push delay task.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushDelayTask extends AbstractDelayTask {
     

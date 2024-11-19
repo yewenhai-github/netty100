@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.core.v2.pojo.Service;
 /**
  * Instance heart beat checker.
  *
- * @author yewenhai
+ * @author why
  */
 public interface InstanceBeatChecker {
     

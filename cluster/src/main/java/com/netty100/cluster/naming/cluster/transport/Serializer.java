@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.cluster.transport;
 /**
  * Serializer specially for large map of data.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public interface Serializer {

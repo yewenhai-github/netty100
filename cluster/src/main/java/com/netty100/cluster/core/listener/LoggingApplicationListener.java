@@ -26,7 +26,7 @@ import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
 /**
  * For init logging configuration.
  *
- * @author yewenhai
+ * @author why
  * @since 1.4.1
  */
 public class LoggingApplicationListener implements CapApplicationListener {

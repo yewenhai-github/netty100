@@ -24,7 +24,7 @@ package com.netty100.cluster.common.packagescan.resource;
  * without an explicit prefix, hence applying relative to the local
  * {@link ResourceLoader}'s context).
  *
- * @author yewenhai
+ * @author why
  * @since 2.5
  */
 public interface ContextResource extends Resource {

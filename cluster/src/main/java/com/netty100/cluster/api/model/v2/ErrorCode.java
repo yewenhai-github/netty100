@@ -19,7 +19,7 @@ package com.netty100.cluster.api.model.v2;
 /**
  * Response Error Code.
  *
- * @author yewenhai
+ * @author why
  * @date 2022/7/22
  */
 

@@ -21,7 +21,7 @@ package com.netty100.cluster.core.remote;
 /**
  * runtime connection ejector.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class RuntimeConnectionEjector {

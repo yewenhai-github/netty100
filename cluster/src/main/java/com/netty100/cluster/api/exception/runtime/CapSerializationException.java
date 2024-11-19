@@ -21,7 +21,7 @@ import static com.netty100.cluster.api.common.Constants.Exception.SERIALIZE_ERRO
 /**
  * Cap serialization exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapSerializationException extends CapRuntimeException {
     

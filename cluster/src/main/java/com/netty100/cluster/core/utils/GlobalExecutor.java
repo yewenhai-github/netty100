@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * core module global executor.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class GlobalExecutor {

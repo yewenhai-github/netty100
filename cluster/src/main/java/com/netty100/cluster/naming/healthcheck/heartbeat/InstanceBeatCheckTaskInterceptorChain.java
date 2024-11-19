@@ -21,7 +21,7 @@ import com.netty100.cluster.naming.interceptor.AbstractNamingInterceptorChain;
 /**
  * Instance beat check interceptor chain.
  *
- * @author yewenhai
+ * @author why
  */
 public class InstanceBeatCheckTaskInterceptorChain extends AbstractNamingInterceptorChain<InstanceBeatCheckTask> {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.consistency.exception;
 /**
  * Conformance protocol internal exceptions.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConsistencyException extends RuntimeException {
     

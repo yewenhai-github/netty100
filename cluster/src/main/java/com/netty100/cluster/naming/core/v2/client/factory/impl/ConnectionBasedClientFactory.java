@@ -24,7 +24,7 @@ import com.netty100.cluster.naming.core.v2.client.impl.ConnectionBasedClient;
 /**
  * Client factory for {@link ConnectionBasedClient}.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConnectionBasedClientFactory implements ClientFactory<ConnectionBasedClient> {
     

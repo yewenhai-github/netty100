@@ -22,7 +22,7 @@ import com.netty100.cluster.sys.env.EnvUtil;
 /**
  * Distro configuration.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroConfig extends AbstractDynamicConfig {
     

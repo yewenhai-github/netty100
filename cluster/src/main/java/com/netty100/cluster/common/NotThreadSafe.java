@@ -21,7 +21,7 @@ import java.lang.annotation.*;
 /**
  * Annotation that marks a method as not thread safe.
  *
- * @author yewenhai
+ * @author why
  */
 @Documented
 @Target({ElementType.TYPE, ElementType.METHOD})

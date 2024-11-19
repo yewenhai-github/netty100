@@ -49,7 +49,7 @@ import java.util.function.Supplier;
  * <a href="https://github.com/google/guava/wiki/PreconditionsExplained">Preconditions</a>,
  * or similar third-party libraries.
  *
- * @author yewenhai
+ * @author why
  * @since 1.1.2
  */
 public abstract class AbstractAssert {

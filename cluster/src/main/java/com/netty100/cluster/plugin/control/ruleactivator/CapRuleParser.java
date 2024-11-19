@@ -24,7 +24,7 @@ import com.netty100.cluster.plugin.control.tps.rule.TpsControlRule;
 /**
  * cap rule parser.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapRuleParser implements RuleParser {
     

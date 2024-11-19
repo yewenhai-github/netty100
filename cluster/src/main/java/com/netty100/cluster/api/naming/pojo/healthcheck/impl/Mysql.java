@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * Implementation of health checker for MYSQL.
  *
- * @author yewenhai
+ * @author why
  */
 public class Mysql extends AbstractHealthChecker {
     

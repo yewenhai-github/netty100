@@ -1,0 +1,28 @@
+{
+  "extends": "@efox/emp/emp-tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "src/global.d.ts"
+    ],
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules",
+      "dist",
+      "src/**/*.js"
+    ]
+  },
+  "include": [
+    "src/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

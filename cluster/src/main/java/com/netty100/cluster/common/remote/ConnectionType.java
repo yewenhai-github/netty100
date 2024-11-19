@@ -19,7 +19,7 @@ package com.netty100.cluster.common.remote;
 /**
  * ConnectionType.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionType.java, v 0.1 2020年07月13日 7:15 PM liuzunfei Exp $
  */
 public enum ConnectionType {

@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * local simple count rate counter.
  *
- * @author yewenhai
+ * @author why
  */
 public class LocalSimpleCountRateCounter extends RateCounter {
     

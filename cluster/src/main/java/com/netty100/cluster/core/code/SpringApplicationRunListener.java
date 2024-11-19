@@ -30,7 +30,7 @@ import java.util.Collection;
 /**
  * {@link org.springframework.boot.SpringApplicationRunListener} before {@link EventPublishingRunListener} execution.
  *
- * @author yewenhai
+ * @author why
  * @since 0.2.2
  */
 public class SpringApplicationRunListener implements org.springframework.boot.SpringApplicationRunListener, Ordered {

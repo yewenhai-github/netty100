@@ -25,7 +25,7 @@ import java.net.URI;
 /**
  * Base http method.
  *
- * @author yewenhai
+ * @author why
  */
 public enum BaseHttpMethod {
     

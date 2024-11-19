@@ -34,7 +34,7 @@ import java.util.Map;
 /**
  * RequestHandlerRegistry.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RequestHandlerRegistry.java, v 0.1 2020年07月13日 8:24 PM liuzunfei Exp $
  */
 

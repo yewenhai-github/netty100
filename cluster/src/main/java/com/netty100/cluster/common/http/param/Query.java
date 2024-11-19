@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  * Http Query object.
  *
- * @author yewenhai
+ * @author why
  */
 public class Query {
     

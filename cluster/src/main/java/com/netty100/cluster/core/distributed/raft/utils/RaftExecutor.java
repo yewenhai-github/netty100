@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * raft executor.
  *
- * @author yewenhai
+ * @author why
  */
 public final class RaftExecutor {
     

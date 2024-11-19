@@ -30,7 +30,7 @@ import java.util.function.BiConsumer;
 /**
  * Abstract snapshot operation.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractSnapshotOperation implements SnapshotOperation {
     

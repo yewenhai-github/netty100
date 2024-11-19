@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * Information for verifying client.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroClientVerifyInfo implements Serializable {
     

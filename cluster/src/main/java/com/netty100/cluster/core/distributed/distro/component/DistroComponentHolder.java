@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * Distro component holder.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class DistroComponentHolder {

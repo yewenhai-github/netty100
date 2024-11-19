@@ -19,7 +19,7 @@ package com.netty100.cluster.common.notify;
 /**
  * This event share one event-queue.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class SlowEvent extends Event {

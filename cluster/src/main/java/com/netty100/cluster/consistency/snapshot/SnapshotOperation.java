@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 /**
  * Custom snapshot operation interface Discovery via SPI.
  *
- * @author yewenhai
+ * @author why
  */
 public interface SnapshotOperation {
     

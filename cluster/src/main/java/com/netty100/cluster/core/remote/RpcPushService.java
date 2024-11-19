@@ -31,7 +31,7 @@ import java.util.concurrent.Executor;
 /**
  * push response  to clients.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushService.java, v 0.1 2020年07月20日 1:12 PM liuzunfei Exp $
  */
 @Service

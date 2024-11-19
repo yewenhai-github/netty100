@@ -29,7 +29,7 @@ import java.util.Objects;
 /**
  * An addressing pattern factory, responsible for the creation of all addressing patterns.
  *
- * @author yewenhai
+ * @author why
  */
 public final class LookupFactory {
     

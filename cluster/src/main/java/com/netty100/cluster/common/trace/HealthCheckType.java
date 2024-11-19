@@ -19,7 +19,7 @@ package com.netty100.cluster.common.trace;
 /**
  * The types of health check.
  *
- * @author yewenhai
+ * @author why
  */
 public enum HealthCheckType {
     /**

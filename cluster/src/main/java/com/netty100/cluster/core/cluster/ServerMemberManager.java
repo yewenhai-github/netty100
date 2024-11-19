@@ -83,7 +83,7 @@ import static com.netty100.cluster.api.exception.CapException.CLIENT_INVALID_PAR
  * {@link ServerMemberManager#isUnHealth(String)} Whether the target node is healthy
  * {@link ServerMemberManager#initAndStartLookup()} Initializes the addressing mode
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class ServerMemberManager implements ApplicationListener<WebServerInitializedEvent> {

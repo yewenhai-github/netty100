@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * ThreadPoolManager#register(String, String, ExecutorService)} the thread pool that needs to be included in the life
  * cycle management of the resource
  *
- * @author yewenhai
+ * @author why
  */
 public final class ThreadPoolManager {
     

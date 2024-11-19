@@ -26,7 +26,7 @@ import java.util.Collections;
 /**
  * Member node addressing mode in stand-alone mode.
  *
- * @author yewenhai
+ * @author why
  */
 public class StandaloneMemberLookup extends AbstractMemberLookup {
     

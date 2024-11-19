@@ -25,7 +25,7 @@ import java.lang.reflect.TypeVariable;
 /**
  * Encapsulates third party tools for generics acquisition.
  *
- * @author yewenhai
+ * @author why
  */
 public class GenericType<T> {
     

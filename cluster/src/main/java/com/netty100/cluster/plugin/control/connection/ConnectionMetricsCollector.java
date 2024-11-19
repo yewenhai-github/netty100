@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.connection;
 /**
  * connection count metrics collector.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ConnectionMetricsCollector {
     

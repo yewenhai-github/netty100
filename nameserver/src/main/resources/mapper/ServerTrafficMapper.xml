@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ServerTrafficMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.ServerTraffic">
+        <id column="id" property="id"/>
+        <result column="server_id" property="serverId"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="platform_c2p_connect_active_total" property="platformC2pConnectActiveTotal"/>
+        <result column="platform_c2p_connect_inactive_total" property="platformC2pConnectInactiveTotal"/>
+        <result column="platform_c2p_connect_error_total" property="platformC2pConnectErrorTotal"/>
+        <result column="platform_s2p_connect_active_total" property="platformS2pConnectActiveTotal"/>
+        <result column="platform_s2p_connect_inactive_total" property="platformS2pConnectInactiveTotal"/>
+        <result column="platform_s2p_connect_error_total" property="platformS2pConnectErrorTotal"/>
+        <result column="platform_c2p_message_read_success_total" property="platformC2pMessageReadSuccessTotal"/>
+        <result column="platform_c2p_message_read_fail_total" property="platformC2pMessageReadFailTotal"/>
+        <result column="platform_s2p_message_read_success_total" property="platformS2pMessageReadSuccessTotal"/>
+        <result column="platform_s2p_message_read_fail_total" property="platformS2pMessageReadFailTotal"/>
+        <result column="platform_p2p_message_relay_total" property="platformP2pMessageRelayTotal"/>
+        <result column="platform_c2p_message_read_success_flow" property="platformC2pMessageReadSuccessFlow"/>
+        <result column="platform_c2p_message_read_fail_flow" property="platformC2pMessageReadFailFlow"/>
+        <result column="platform_s2p_message_read_success_flow" property="platformS2pMessageReadSuccessFlow"/>
+        <result column="platform_s2p_message_read_fail_flow" property="platformS2pMessageReadFailFlow"/>
+        <result column="platform_p2p_message_relay_flow" property="platformP2pMessageRelayFlow"/>
+        <result column="platform_c2p_connect_idle_close_total" property="platformC2pConnectIdleCloseTotal"/>
+        <result column="platform_s2p_connect_idle_close_total" property="platformS2pConnectIdleCloseTotal"/>
+    </resultMap>
+
+    <insert id="save">
+        insert into api_traffic_history
+        values (null, #{serverId}, #{clusterId}, #{platformC2pConnectActiveTotal}, #{platformC2pConnectInactiveTotal},
+                #{platformC2pConnectErrorTotal}, #{platformS2pConnectActiveTotal},
+                #{platformS2pConnectInactiveTotal}, #{platformS2pConnectErrorTotal}, #{platformC2pMessageReadSuccessTotal}, #{platformC2pMessageReadFailTotal},
+                #{platformS2pMessageReadSuccessTotal}, #{platformS2pMessageReadFailTotal}, #{platformP2pMessageRelayTotal}, #{platformC2pMessageReadSuccessFlow},
+                #{platformC2pMessageReadFailFlow}, #{platformS2pMessageReadSuccessFlow}, #{platformS2pMessageReadFailFlow}, #{platformP2pMessageRelayFlow},
+                #{platformC2pConnectIdleCloseTotal}, #{platformS2pConnectIdleCloseTotal}, 1,
+                #{createDate}, #{createTime}, now(), 1)
+    </insert>
+
+    <update id="updateRecordNotStatistics">
+        update api_traffic_history
+        set enable = 0
+        where id = #{id}
+    </update>
+
+    <select id="getStatisticsData" resultType="com.netty100.pojo.vo.StatisticsServerTrafficVo">
+        select create_time as createTime,
+        IFNULL(sum(platform_c2p_message_read_success_flow),0) as platformC2pMessageReadSuccessFlow,
+        IFNULL(sum(platform_c2p_message_read_fail_flow),0) as platformC2pMessageReadFailFlow,
+        IFNULL(sum(platform_s2p_message_read_success_flow),0) as platformS2pMessageReadSuccessFlow,
+        IFNULL(sum(platform_s2p_message_read_fail_flow),0) as platformS2pMessageReadFailFlow,
+        IFNULL(sum(platform_p2p_message_relay_flow),0) as platformP2pMessageRelayFlow
+        from api_traffic_history
+        where create_date = #{date} and cluster_id in
+        <foreach collection="clusterIds" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        group by create_time
+        order by create_time asc
+    </select>
+
+    <select id="queryRemoveRecordIds" resultType="java.lang.Integer">
+        SELECT id FROM api_traffic_history WHERE 1=1
+        <if test="removeDay != null and removeDay !='' ">
+            AND create_date <![CDATA[ <= ]]> #{removeDay}
+        </if>
+        order by id asc
+        LIMIT #{pageSize}
+    </select>
+    <delete id="clearMessage">
+        delete from api_traffic_history
+        WHERE id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="queryServerMessageByCreateTime" resultType="com.netty100.pojo.dto.ServerTrafficDto">
+        SELECT
+        *, IFNULL(
+        platform_c2p_message_read_success_flow,
+        0
+        ) + IFNULL(
+        platform_c2p_message_read_fail_flow,
+        0
+        ) + IFNULL(
+        platform_s2p_message_read_success_flow,
+        0
+        ) + IFNULL(
+        platform_s2p_message_read_fail_flow,
+        0
+        ) totalTraffic,
+        IFNULL(
+        platform_c2p_message_read_success_total,
+        0
+        ) + IFNULL(
+        platform_c2p_message_read_fail_total,
+        0
+        ) + IFNULL(
+        platform_s2p_message_read_success_total,
+        0
+        ) + IFNULL(
+        platform_s2p_message_read_fail_total,
+        0
+        ) totalCount
+        FROM
+        `api_traffic_history`
+        WHERE server_id = #{serverId} and create_date = #{createDate}
+        <if test="timeList != null and timeList.size() > 0">
+            <foreach collection="timeList" item="time" separator="," open="AND create_time IN (" close=")">#{time}</foreach>
+        </if>
+    </select>
+
+    <select id="getMessageQualityByClusterIds" resultType="com.netty100.pojo.vo.MessageQuality">
+        select IFNULL(sum(platform_c2p_message_read_success_total),0) as clientSuccessSendTimes,
+        IFNULL(sum(platform_c2p_message_read_success_total)+sum(platform_c2p_message_read_fail_total),0) as clientTotalSendTimes,
+        IFNULL(sum(platform_s2p_message_read_success_total),0) as serverSuccessSendTimes,
+        IFNULL(sum(platform_s2p_message_read_success_total)+sum(platform_s2p_message_read_fail_total),0) as serverTotalSendTimes
+        from api_traffic_history where create_date = #{date}
+        and cluster_id in
+        <foreach collection="clusterIds" close=")" open="(" separator="," item="item">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getMonitorData" resultType="com.netty100.pojo.vo.TrafficConnectionFlowVo">
+        select IFNULL(sum(platform_c2p_connect_error_total),0) as disconnectTimes
+        from api_traffic_history
+        <where>
+            create_date = #{date} and create_time = #{time} and cluster_id = #{clusterId}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+    </select>
+
+    <select id="getTotal" resultType="com.netty100.pojo.vo.TrafficTotalVo">
+        select IFNULL(sum(platform_c2p_message_read_success_total) + sum(platform_c2p_message_read_fail_total), 0) as c2pTotal,
+               IFNULL(sum(platform_c2p_message_read_success_total), 0)                                             as p2sTotal,
+               IFNULL(sum(platform_s2p_message_read_success_total) + sum(platform_s2p_message_read_fail_total), 0) as s2pTotal,
+               IFNULL(sum(platform_s2p_message_read_success_total), 0)                                             as p2cTotal
+        from api_traffic_history
+        where create_date = #{createDate}
+          and server_id = #{serverId}
+    </select>
+
+    <select id="getMessageRate" resultType="com.netty100.pojo.vo.MessageRateVo">
+        select IFNULL(sum(platform_c2p_message_read_fail_total),0) as clientFailedTimes,
+        IFNULL(sum(platform_c2p_message_read_success_total)+sum(platform_c2p_message_read_fail_total),0) as clientSendTimes,
+        IFNULL(sum(platform_s2p_message_read_fail_total),0) as serverFailedTimes,
+        IFNULL(sum(platform_s2p_message_read_fail_total)+sum(platform_s2p_message_read_success_total),0) as serverSendTimes
+        from api_traffic_history
+        <where>
+            create_date = #{date} and create_time = #{time} and cluster_id = #{clusterId}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+    </select>
+    <select id="getConnectionData" resultType="com.netty100.pojo.vo.ServerTrafficConnectionVo">
+        select create_time as createTime,
+        IFNULL(sum(platform_c2p_connect_active_total), 0) as platformC2pConnectActiveTotal,
+        IFNULL(sum(platform_c2p_connect_inactive_total), 0) as platformC2pConnectInactiveTotal,
+        IFNULL(sum(platform_c2p_connect_error_total), 0) as platformC2pConnectErrorTotal,
+        IFNULL(sum(platform_c2p_connect_idle_close_total), 0) as platformC2pConnectIdleCloseTotal,
+        IFNULL(sum(platform_s2p_connect_active_total), 0) as platformS2pConnectActiveTotal,
+        IFNULL(sum(platform_s2p_connect_inactive_total), 0) as platformS2pConnectInactiveTotal,
+        IFNULL(sum(platform_s2p_connect_error_total), 0) as platformS2pConnectErrorTotal,
+        IFNULL(sum(platform_s2p_connect_idle_close_total), 0) as platformS2pConnectIdleCloseTotal
+        from api_traffic_history
+        <where>
+            create_date = #{date}
+            <if test="clusterId!=null">and cluster_id = #{clusterId}</if>
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+        group by create_time
+        order by create_time asc
+    </select>
+    <select id="getDayTotalTraffic" resultType="java.math.BigInteger">
+        select
+        IFNULL(sum(platform_c2p_message_read_success_flow)+sum(platform_c2p_message_read_fail_flow)+sum(platform_s2p_message_read_fail_flow)+sum(platform_s2p_message_read_success_flow),0)
+        from api_traffic_history
+        <where>
+            create_date = #{date} and cluster_id = #{clusterId}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+    </select>
+
+    <select id="getForwardRateVo" resultType="com.netty100.pojo.vo.ForwardRateDetectionVo">
+        select IFNULL(sum(platform_c2p_message_read_success_total), 0) as c2pTotalTimes,
+               IFNULL(sum(platform_p2p_message_relay_total), 0)        as forwardTimes,
+               IFNULL(sum(platform_s2p_message_read_success_total), 0) as s2pTotalTimes
+        from api_traffic_history
+        where create_date = #{createDate}
+          and create_time = #{createTime}
+          and cluster_id = #{clusterId}
+    </select>
+</mapper>

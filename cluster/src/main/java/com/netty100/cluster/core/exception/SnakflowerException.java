@@ -19,7 +19,7 @@ package com.netty100.cluster.core.exception;
 /**
  * SnakflowerException.
  *
- * @author yewenhai
+ * @author why
  */
 public class SnakflowerException extends RuntimeException {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.common.trace;
 /**
  * The reasons of deregister instance.
  *
- * @author yewenhai
+ * @author why
  */
 public enum DeregisterInstanceReason {
     /**

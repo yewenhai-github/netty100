@@ -21,7 +21,7 @@ import com.netty100.cluster.common.model.core.IResultCode;
 /**
  * Rest result utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class RestResultUtils {
     

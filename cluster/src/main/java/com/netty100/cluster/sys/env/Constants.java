@@ -19,7 +19,7 @@ package com.netty100.cluster.sys.env;
 /**
  * Cap common constants.
  *
- * @author yewenhai
+ * @author why
  * @since 0.2.2
  */
 public interface Constants {

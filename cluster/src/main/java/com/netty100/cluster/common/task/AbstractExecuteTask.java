@@ -19,7 +19,7 @@ package com.netty100.cluster.common.task;
 /**
  * Abstract task which should be executed immediately.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractExecuteTask implements CapTask, Runnable {
     

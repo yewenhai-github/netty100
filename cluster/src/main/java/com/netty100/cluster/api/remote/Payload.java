@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote;
 /**
  * payload class sign.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Payload {
 

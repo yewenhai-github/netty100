@@ -21,7 +21,7 @@ import com.netty100.cluster.api.exception.CapException;
 /**
  * Persistent Health operator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HealthOperator {
     

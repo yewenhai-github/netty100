@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Switch domain.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class SwitchDomain implements Record, Cloneable {

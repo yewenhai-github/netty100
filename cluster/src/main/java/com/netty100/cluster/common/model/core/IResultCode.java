@@ -19,7 +19,7 @@ package com.netty100.cluster.common.model.core;
 /**
  * IResultCode.
  *
- * @author yewenhai
+ * @author why
  * @ClassName: IResultCode
  * @Description: result code enum needs to be implemented this interface
  * @date 2019/6/28 14:44

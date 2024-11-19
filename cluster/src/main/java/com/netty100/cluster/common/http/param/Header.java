@@ -26,7 +26,7 @@ import java.util.*;
 /**
  * Http header.
  *
- * @author yewenhai
+ * @author why
  */
 public class Header {
     

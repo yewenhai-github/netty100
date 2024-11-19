@@ -25,7 +25,7 @@ import com.google.protobuf.Message;
 /**
  * implement jraft closure.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapClosure implements Closure {
     

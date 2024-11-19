@@ -20,7 +20,7 @@ import java.lang.annotation.*;
 
 /**
  * An annotation for Cap API v2 Controller.
- * @author yewenhai
+ * @author why
  * @date 2022/7/22
  */
 

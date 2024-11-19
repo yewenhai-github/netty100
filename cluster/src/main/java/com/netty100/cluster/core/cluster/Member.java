@@ -31,7 +31,7 @@ import java.util.TreeMap;
 /**
  * Cluster member node.
  *
- * @author yewenhai
+ * @author why
  */
 public class Member implements Comparable<Member>, Cloneable, Serializable {
     

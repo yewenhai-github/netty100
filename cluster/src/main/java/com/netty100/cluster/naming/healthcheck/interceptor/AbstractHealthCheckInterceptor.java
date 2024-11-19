@@ -22,7 +22,7 @@ import com.netty100.cluster.naming.interceptor.CapNamingInterceptor;
 /**
  * Abstract health check interceptor.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractHealthCheckInterceptor implements CapNamingInterceptor<CapHealthCheckTask> {
     

@@ -40,7 +40,7 @@ import java.nio.file.StandardOpenOption;
  * <p>Alternatively, for direct construction from a {@link File} handle
  * or NIO {@link java.nio.file.Path}, consider using {@link FileSystemResource}.
  *
- * @author yewenhai
+ * @author why
  * @since 5.0.2
  */
 public class FileUrlResource extends UrlResource implements WritableResource {

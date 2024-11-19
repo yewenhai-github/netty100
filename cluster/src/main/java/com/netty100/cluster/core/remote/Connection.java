@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Connection.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: Connection.java, v 0.1 2020年07月13日 7:08 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

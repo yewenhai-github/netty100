@@ -21,7 +21,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroData;
 /**
  * Distro data processor.
  *
- * @author yewenhai
+ * @author why
  */
 public interface DistroDataProcessor {
     

@@ -31,7 +31,7 @@ import java.lang.reflect.Type;
 /**
  * Serializer implement by hessian.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class HessianSerializer implements Serializer {

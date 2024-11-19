@@ -19,7 +19,7 @@ package com.netty100.cluster.api.ability.initializer;
 /**
  * Cap ability initializer.
  *
- * @author yewenhai
+ * @author why
  */
 public interface AbilityInitializer<A> {
     

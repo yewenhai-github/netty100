@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.response;
 /**
  * server reload response.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerReloadResponse.java, v 0.1 2020年11月09日 4:37 PM liuzunfei Exp $
  */
 public class ServerReloadResponse extends Response {

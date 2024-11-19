@@ -24,7 +24,7 @@ import com.netty100.cluster.common.task.engine.CapDelayTaskExecuteEngine;
 /**
  * Distro delay task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroDelayTask extends AbstractDelayTask {
     // 当前任务处理数据的key

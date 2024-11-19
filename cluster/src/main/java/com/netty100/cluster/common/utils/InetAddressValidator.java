@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * ipv4 ipv6 check util.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings({"checkstyle:AbbreviationAsWordInName", "PMD.ClassNamingShouldBeCamelRule"})
 public class InetAddressValidator {

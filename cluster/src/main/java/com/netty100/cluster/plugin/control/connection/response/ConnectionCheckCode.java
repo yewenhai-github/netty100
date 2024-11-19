@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.connection.response;
 /**
  * conection check code.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConnectionCheckCode {
     

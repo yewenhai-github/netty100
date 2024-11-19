@@ -26,7 +26,7 @@ import java.util.Collection;
 /**
  * Service operator.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ServiceOperator {
     

@@ -23,7 +23,7 @@ import java.util.concurrent.Executor;
 /**
  * An abstract subscriber class for subscriber interface.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class Subscriber<T extends Event> {

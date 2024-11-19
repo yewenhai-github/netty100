@@ -37,7 +37,7 @@ import java.io.IOException;
  * collect client attributes for 1.x.
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientAttributesFilter implements Filter {
     

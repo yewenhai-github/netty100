@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Distro records holder.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroRecordsHolder {
     

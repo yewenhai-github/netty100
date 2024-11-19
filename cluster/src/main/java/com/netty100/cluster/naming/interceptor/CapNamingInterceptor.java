@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.interceptor;
 /**
  * Cap naming interceptor.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CapNamingInterceptor<T extends Interceptable> {
     

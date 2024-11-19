@@ -48,7 +48,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * connect manager.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionManager.java, v 0.1 2020年07月13日 7:07 PM liuzunfei Exp $
  */
 @Service

@@ -38,7 +38,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Unified Event Notify Center.
  *
- * @author yewenhai
+ * @author why
  */
 public class NotifyCenter {
     

@@ -30,7 +30,7 @@ import java.util.Optional;
  * <p>In this way, we also provide space for user to extend the underlying consistency protocols, as long as they obey
  * our consistency baseline.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public interface ConsistencyService {

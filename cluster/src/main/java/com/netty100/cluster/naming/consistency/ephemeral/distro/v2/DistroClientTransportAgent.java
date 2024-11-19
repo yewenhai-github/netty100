@@ -43,7 +43,7 @@ import java.util.concurrent.Executor;
 /**
  * Distro transport agent for v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroClientTransportAgent implements DistroTransportAgent {
     

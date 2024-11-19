@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 /**
  * Realization of KV storage based on memory.
  *
- * @author yewenhai
+ * @author why
  */
 public class MemoryKvStorage implements KvStorage {
     

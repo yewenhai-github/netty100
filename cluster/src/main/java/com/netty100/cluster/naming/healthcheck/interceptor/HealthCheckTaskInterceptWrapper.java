@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.misc.Loggers;
 /**
  * Health check task intercept wrapper.
  *
- * @author yewenhai
+ * @author why
  */
 public class HealthCheckTaskInterceptWrapper implements Runnable {
     

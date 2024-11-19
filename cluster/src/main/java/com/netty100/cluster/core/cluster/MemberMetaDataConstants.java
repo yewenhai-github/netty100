@@ -19,7 +19,7 @@ package com.netty100.cluster.core.cluster;
 /**
  * The necessary metadata information for the node.
  *
- * @author yewenhai
+ * @author why
  */
 public class MemberMetaDataConstants {
     

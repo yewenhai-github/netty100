@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Naming module code starts with 20001.
  *
- * @author yewenhai
+ * @author why
  */
 public final class Constants {
     

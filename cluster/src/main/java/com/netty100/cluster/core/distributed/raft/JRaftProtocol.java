@@ -87,7 +87,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *                        └──────────────────┘
  * </pre>
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class JRaftProtocol extends AbstractConsistencyProtocol<RaftConfig, RequestProcessor4CP>

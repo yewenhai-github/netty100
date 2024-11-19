@@ -21,7 +21,7 @@ import com.netty100.common.utils.SysUtility;
 /**
  * Cap Exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapException extends Exception {
     

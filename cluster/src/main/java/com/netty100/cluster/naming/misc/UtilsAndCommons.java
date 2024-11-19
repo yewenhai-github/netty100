@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * Naming utils and common values.
  *
- * @author yewenhai
+ * @author why
  * @author jifengnan
  */
 @SuppressWarnings("PMD.ThreadPoolCreationle")

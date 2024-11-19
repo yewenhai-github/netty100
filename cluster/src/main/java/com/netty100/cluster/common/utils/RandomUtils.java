@@ -21,7 +21,7 @@ import java.util.Random;
 /**
  * Random utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class RandomUtils {
 

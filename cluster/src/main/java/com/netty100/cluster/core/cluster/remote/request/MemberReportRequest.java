@@ -23,7 +23,7 @@ import com.netty100.cluster.core.cluster.Member;
 /**
  * MemberReportRequest.
  *
- * @author yewenhai
+ * @author why
  */
 public class MemberReportRequest extends AbstractClusterRequest {
     

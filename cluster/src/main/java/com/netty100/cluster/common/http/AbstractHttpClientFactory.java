@@ -55,7 +55,7 @@ import java.util.function.BiConsumer;
 /**
  * AbstractHttpClientFactory Let the creator only specify the http client config.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractHttpClientFactory implements HttpClientFactory {
     

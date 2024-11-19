@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote;
 /**
  * abstract callback of push service.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushCallBack.java, v 0.1 2020年07月20日 1:13 PM liuzunfei Exp $
  */
 public abstract class AbstractPushCallBack implements PushCallBack {

@@ -22,7 +22,7 @@ import com.netty100.cluster.common.model.RestResult;
 /**
  * Http RestResult.
  *
- * @author yewenhai
+ * @author why
  */
 public class HttpRestResult<T> extends RestResult<T> {
     

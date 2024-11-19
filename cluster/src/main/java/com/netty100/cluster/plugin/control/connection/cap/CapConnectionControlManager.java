@@ -27,7 +27,7 @@ import com.netty100.cluster.plugin.control.connection.rule.ConnectionControlRule
 /**
  * connection control manager.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapConnectionControlManager extends ConnectionControlManager {
     

@@ -28,7 +28,7 @@ import java.util.*;
  * Aggregation naming subscriber service. Aggregate all implementation of {@link NamingSubscriberService} and
  * subscribers from other nodes.
  *
- * @author yewenhai
+ * @author why
  */
 @org.springframework.stereotype.Service
 public class NamingSubscriberServiceAggregationImpl implements NamingSubscriberService {

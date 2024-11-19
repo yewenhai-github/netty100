@@ -31,7 +31,7 @@ import java.util.Set;
 /**
  * raft config.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 @ConfigurationProperties(prefix = "cap.core.protocol.raft")

@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 /**
  * ip tool.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings({"checkstyle:AbbreviationAsWordInName", "PMD.ClassNamingShouldBeCamelRule"})
 public class InternetAddressUtil {

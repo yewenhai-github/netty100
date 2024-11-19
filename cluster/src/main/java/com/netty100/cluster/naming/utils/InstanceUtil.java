@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * Instance util.
  *
- * @author yewenhai
+ * @author why
  */
 public final class InstanceUtil {
     

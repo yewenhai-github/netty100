@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Create a rest template to ensure that each custom client config and rest template are in one-to-one correspondence.
  *
- * @author yewenhai
+ * @author why
  */
 public final class HttpClientBeanHolder {
     

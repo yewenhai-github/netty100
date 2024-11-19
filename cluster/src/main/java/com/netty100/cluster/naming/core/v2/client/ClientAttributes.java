@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Client data attributes.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientAttributes implements Serializable {
     

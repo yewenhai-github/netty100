@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * ByteUtils.
  *
- * @author yewenhai
+ * @author why
  */
 public final class ByteUtils {
 

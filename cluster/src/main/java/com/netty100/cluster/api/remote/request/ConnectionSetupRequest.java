@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * request to setup a connection.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionSetupRequest.java, v 0.1 2020年08月06日 2:42 PM liuzunfei Exp $
  */
 public class ConnectionSetupRequest extends InternalRequest {

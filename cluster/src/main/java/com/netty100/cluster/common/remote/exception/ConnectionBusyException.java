@@ -19,7 +19,7 @@ package com.netty100.cluster.common.remote.exception;
 /**
  * connection is busy exception.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionBusyException.java, v 0.1 2020年11月30日 7:28 PM liuzunfei Exp $
  */
 public class ConnectionBusyException extends RemoteException {

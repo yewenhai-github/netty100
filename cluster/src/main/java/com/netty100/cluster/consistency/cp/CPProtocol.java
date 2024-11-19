@@ -22,7 +22,7 @@ import com.netty100.cluster.consistency.ConsistencyProtocol;
 /**
  * cp protocol.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public interface CPProtocol<C extends Config, P extends RequestProcessor4CP> extends ConsistencyProtocol<C, P> {

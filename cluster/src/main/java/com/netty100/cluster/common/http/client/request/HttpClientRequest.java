@@ -25,7 +25,7 @@ import java.net.URI;
 /**
  * Represents a client-side HTTP request. Created via an implementation execute.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HttpClientRequest extends Closeable {
     

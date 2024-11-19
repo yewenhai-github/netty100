@@ -26,7 +26,7 @@ import java.lang.reflect.Type;
 /**
  * string response handler, Mainly converter response type as string type.
  *
- * @author yewenhai
+ * @author why
  */
 public class StringResponseHandler extends AbstractResponseHandler<String> {
     

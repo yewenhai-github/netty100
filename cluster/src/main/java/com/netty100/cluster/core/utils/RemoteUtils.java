@@ -21,7 +21,7 @@ import com.netty100.cluster.common.utils.NumberUtils;
 /**
  * util of remote.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RemoteUtils.java, v 0.1 2020年11月12日 8:54 PM liuzunfei Exp $
  */
 public class RemoteUtils {

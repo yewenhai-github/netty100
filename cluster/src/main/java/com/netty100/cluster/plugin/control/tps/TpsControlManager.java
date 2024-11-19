@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * abstract tps control manager.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class TpsControlManager {

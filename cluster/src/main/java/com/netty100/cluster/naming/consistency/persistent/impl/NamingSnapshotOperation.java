@@ -32,8 +32,8 @@ import java.util.zip.Checksum;
 /**
  * Snapshot processing of persistent service data for accelerated Raft protocol recovery and data synchronization.
  *
- * @author yewenhai
- * @author yewenhai
+ * @author why
+ * @author why
  */
 public class NamingSnapshotOperation extends AbstractSnapshotOperation {
     

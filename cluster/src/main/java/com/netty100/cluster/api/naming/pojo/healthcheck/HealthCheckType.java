@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Health check type.
  *
- * @author yewenhai
+ * @author why
  */
 public enum HealthCheckType {
     /**

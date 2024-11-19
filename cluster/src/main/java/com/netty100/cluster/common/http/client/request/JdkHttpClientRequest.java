@@ -40,7 +40,7 @@ import java.util.Map;
 /**
  * JDK http client request implement.
  *
- * @author yewenhai
+ * @author why
  */
 public class JdkHttpClientRequest implements HttpClientRequest {
     

@@ -21,7 +21,7 @@ import io.grpc.netty.shaded.io.netty.handler.ssl.SslProvider;
 /**
  * gRPC config for sdk.
  *
- * @author yewenhai
+ * @author why
  */
 public class TlsTypeResolve {
 

@@ -26,7 +26,7 @@ import com.netty100.cluster.core.distributed.distro.task.delay.DistroDelayTask;
 /**
  * Distro client task failed handler.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroClientTaskFailedHandler implements DistroFailedTaskHandler {
     

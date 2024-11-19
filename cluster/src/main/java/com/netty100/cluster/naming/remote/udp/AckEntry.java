@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * UDP Ack entity.
  *
- * @author yewenhai
+ * @author why
  */
 public class AckEntry {
     

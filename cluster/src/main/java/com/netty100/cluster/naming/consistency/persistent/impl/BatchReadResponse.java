@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Batch read response.
  *
- * @author yewenhai
+ * @author why
  */
 public class BatchReadResponse implements Serializable {
     

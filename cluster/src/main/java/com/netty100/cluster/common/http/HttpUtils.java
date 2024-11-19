@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 /**
  * Http utils.
  *
- * @author yewenhai
+ * @author why
  */
 public final class HttpUtils {
     

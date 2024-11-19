@@ -27,7 +27,7 @@ import java.util.Collection;
 /**
  * Client beatInfo instance builder.
  *
- * @author yewenhai
+ * @author why
  */
 public class BeatInfoInstanceBuilder {
     

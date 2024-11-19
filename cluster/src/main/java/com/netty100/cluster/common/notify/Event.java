@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * An abstract class for event.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings({"PMD.AbstractClassShouldStartWithAbstractNamingRule"})
 public abstract class Event implements Serializable {

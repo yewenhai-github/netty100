@@ -27,7 +27,7 @@ import java.util.Objects;
  * When an original object like service or instance be remove, the metadata need to be removed.
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 public class ExpiredMetadataInfo {
     

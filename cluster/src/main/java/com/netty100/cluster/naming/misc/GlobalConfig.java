@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 /**
  * Stores some configurations for Distro protocol.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 @Component

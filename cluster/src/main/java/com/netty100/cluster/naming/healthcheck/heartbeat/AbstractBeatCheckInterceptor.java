@@ -21,7 +21,7 @@ import com.netty100.cluster.naming.interceptor.CapNamingInterceptor;
 /**
  * Abstract Beat check Interceptor.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractBeatCheckInterceptor implements CapNamingInterceptor<InstanceBeatCheckTask> {
     

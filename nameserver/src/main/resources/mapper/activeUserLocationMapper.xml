@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ActiveUserLocationMapper">
+
+    <insert id="batchSave">
+        replace into api_client_active values
+        <foreach collection="list" separator="," item="item">
+            (null,#{item.province},#{item.city},#{item.userId},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <delete id="batchDelete">
+        delete from api_client_active where user_id in
+        <foreach collection="userIds" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getData" resultType="com.netty100.pojo.vo.UserLocationVo">
+        select province,count(user_id) as total
+        from api_client_active group by province
+    </select>
+</mapper>

@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 /**
  * Distro task engine holder.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class DistroTaskEngineHolder implements DisposableBean {

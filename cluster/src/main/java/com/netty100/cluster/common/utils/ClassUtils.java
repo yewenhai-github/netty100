@@ -28,7 +28,7 @@ import java.util.*;
 /**
  * Utils for Class.
  *
- * @author yewenhai
+ * @author why
  */
 public final class ClassUtils {
 

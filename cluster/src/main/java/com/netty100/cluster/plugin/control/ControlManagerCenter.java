@@ -34,7 +34,7 @@ import java.util.Collection;
 /**
  * control manager center.
  *
- * @author yewenhai
+ * @author why
  */
 public class ControlManagerCenter {
     

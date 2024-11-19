@@ -38,7 +38,7 @@ import java.util.Collection;
 /**
  * Cap naming push execute task.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushExecuteTask extends AbstractExecuteTask {
     

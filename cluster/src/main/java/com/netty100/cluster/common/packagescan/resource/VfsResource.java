@@ -33,7 +33,7 @@ import java.net.URL;
  * (package {@code org.jboss.vfs}) and is in particular compatible with
  * JBoss AS 7 and WildFly 8+.
  *
- * @author yewenhai
+ * @author why
  * @see org.jboss.vfs.VirtualFile
  * @since 3.0
  */

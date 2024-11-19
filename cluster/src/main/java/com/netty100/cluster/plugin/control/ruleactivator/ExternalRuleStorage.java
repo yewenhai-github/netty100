@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.ruleactivator;
 /**
  * external rule storage.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ExternalRuleStorage extends RuleStorage {
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ClientConnectionHistoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.ClientConnectionHistory">
+        <id column="id" property="id"/>
+        <result column="server_id" property="serverId"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="server_intranet_ip" property="serverIntranetIp"/>
+        <result column="channel_id" property="channelId"/>
+        <result column="channel_key" property="channelKey"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="user_id" property="userId"/>
+        <result column="remote_ip" property="remoteIp"/>
+        <result column="action_type" property="actionType"/>
+        <result column="occur_time" property="occurTime"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        id
+        ,server_id,cluster_id,server_intranet_ip
+        ,channel_id,channel_key,device_id,user_id,remote_ip,action_type,occur_time,create_time
+    </sql>
+
+    <insert id="batchSave">
+        insert into ${tableName} values
+        <foreach collection="list" item="item" separator=",">
+            (null,#{item.serverId},#{item.clusterId},#{item.serverIntranetIp},#{item.channelId},#{item.channelKey},
+            #{item.deviceId},#{item.userId},#{item.remoteIp},#{item.actionType},#{item.occurTime},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <delete id="deleteConnectionLogs">
+        delete from ${table}
+        WHERE id in
+        <foreach collection="ids" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectClearIds" parameterType="map" resultType="int">
+        SELECT id
+        FROM ${table}
+        WHERE create_time <![CDATA[ <= ]]> #{delEndTime} limit #{pageSize}
+    </select>
+
+    <select id="getLatestDisconnectRecord" resultType="com.netty100.entity.ClientConnectionHistory">
+        select occur_time
+        from ${tableName}
+        where channel_id = #{channelId}
+          and action_type in (2, 3, 4)
+         limit 1
+    </select>
+
+
+    <select id="getRangeTimeHistoryConnect" resultType="com.netty100.pojo.dto.ClientHistoryConnectDto">
+        SELECT server_id serverId, cluster_id clusterId, action_type actionType, user_id, occur_time occurTime
+        FROM ${table}
+        WHERE occur_time &lt; #{occurTimeEnd}
+          AND occur_time &gt;= #{occurTimeBegin}
+        ORDER BY occur_time DESC
+    </select>
+</mapper>

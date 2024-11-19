@@ -24,7 +24,7 @@ import java.util.TreeMap;
 /**
  * Request.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class Request implements Payload {

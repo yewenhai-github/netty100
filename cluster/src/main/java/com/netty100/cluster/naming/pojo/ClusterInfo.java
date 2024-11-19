@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Cluster info.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClusterInfo.java, v 0.1 2018-09-17 上午11:36 caogu.wyp Exp $$
  */
 public class ClusterInfo implements Serializable {

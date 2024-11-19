@@ -40,7 +40,7 @@ import java.util.zip.*;
 /**
  * IO operates on the utility class.
  *
- * @author yewenhai
+ * @author why
  */
 public final class DiskUtils {
     

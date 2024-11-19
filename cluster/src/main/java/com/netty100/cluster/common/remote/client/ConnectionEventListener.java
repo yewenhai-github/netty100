@@ -18,7 +18,7 @@ package com.netty100.cluster.common.remote.client;
 
 /**
  * connection event listener of client side.
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionEventListener.java, v 0.1 2020年07月14日 10:59 AM liuzunfei Exp $
  */
 public interface ConnectionEventListener {

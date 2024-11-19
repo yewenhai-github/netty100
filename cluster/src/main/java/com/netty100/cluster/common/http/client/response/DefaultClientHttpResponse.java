@@ -26,7 +26,7 @@ import java.io.InputStream;
 /**
  * ApacheClientHttpResponse implementation {@link HttpClientResponse}.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultClientHttpResponse implements HttpClientResponse {
     

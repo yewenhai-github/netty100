@@ -22,7 +22,7 @@ import com.netty100.cluster.common.notify.listener.Subscriber;
 /**
  * Node change listeners.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class MemberChangeListener extends Subscriber<MembersChangeEvent> {

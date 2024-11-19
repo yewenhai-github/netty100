@@ -33,7 +33,7 @@ import java.net.*;
  * object, which in turn allows one to obtain a {@code java.io.File} in the
  * file system through its {@code getFile()} method.
  *
- * @author yewenhai
+ * @author why
  * @since 1.1.5
  */
 public abstract class ResourceUtils {

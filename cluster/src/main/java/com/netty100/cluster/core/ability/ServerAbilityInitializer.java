@@ -22,7 +22,7 @@ import com.netty100.cluster.api.ability.initializer.AbilityInitializer;
 /**
  * Cap server ability initializer.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ServerAbilityInitializer extends AbilityInitializer<ServerAbilities> {
     

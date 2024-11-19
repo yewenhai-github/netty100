@@ -28,7 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * The default share event publisher implementation for slow event.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultSharePublisher extends DefaultPublisher implements ShardedEventPublisher {
     

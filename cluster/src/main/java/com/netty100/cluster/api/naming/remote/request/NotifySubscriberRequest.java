@@ -23,7 +23,7 @@ import com.netty100.cluster.api.common.Constants;
 /**
  * Notify subscriber request.
  *
- * @author yewenhai
+ * @author why
  */
 public class NotifySubscriberRequest extends ServerRequest {
     

@@ -30,7 +30,7 @@ import java.util.concurrent.Callable;
 /**
  * consistency configuration.
  *
- * @author yewenhai
+ * @author why
  */
 @Configuration
 public class ConsistencyConfiguration {

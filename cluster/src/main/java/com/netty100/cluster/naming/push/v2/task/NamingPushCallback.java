@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.push.v2.executor.PushExecutor;
 /**
  * Push callback for Naming.
  *
- * @author yewenhai
+ * @author why
  */
 public interface NamingPushCallback extends PushCallBack {
     

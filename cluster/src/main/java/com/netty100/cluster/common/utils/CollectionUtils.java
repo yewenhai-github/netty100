@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * Copy from {@link org.apache.commons.collections}.
  *
- * @author yewenhai
+ * @author why
  */
 public final class CollectionUtils {
 
@@ -250,7 +250,7 @@ public final class CollectionUtils {
      *
      * @param elements element array
      * @return arraylist containing all input parameters
-     * @author yewenhai
+     * @author why
      */
     public static <T> List<T> list(T... elements) {
         if (elements == null) {

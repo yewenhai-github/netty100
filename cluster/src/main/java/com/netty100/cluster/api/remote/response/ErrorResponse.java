@@ -22,7 +22,7 @@ import com.netty100.cluster.api.exception.runtime.CapRuntimeException;
 /**
  * UnKnowResponse.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: UnKnowResponse.java, v 0.1 2020年07月16日 9:47 PM liuzunfei Exp $
  */
 public class ErrorResponse extends Response {

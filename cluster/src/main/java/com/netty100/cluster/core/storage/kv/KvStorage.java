@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Universal KV storage interface.
  *
- * @author yewenhai
+ * @author why
  */
 public interface KvStorage {
     

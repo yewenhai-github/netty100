@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 /**
  * NamingUtils.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public class NamingUtils {

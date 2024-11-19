@@ -19,7 +19,7 @@ package com.netty100.cluster.common.constant;
 /**
  * Cap header constants.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HttpHeaderConsts {
     

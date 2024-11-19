@@ -40,7 +40,7 @@ import java.nio.channels.ReadableByteChannel;
  * be opened; "isOpen" will always return false; "getURL" and "getFile"
  * throw an exception; and "toString" will return the description.
  *
- * @author yewenhai
+ * @author why
  * @since 28.12.2003
  */
 public abstract class AbstractResource implements Resource {

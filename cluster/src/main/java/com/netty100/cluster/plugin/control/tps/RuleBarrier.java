@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * rule barrier.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class RuleBarrier {

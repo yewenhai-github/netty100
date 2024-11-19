@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * Consistent protocol base class.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public abstract class AbstractConsistencyProtocol<T extends Config, L extends RequestProcessor>

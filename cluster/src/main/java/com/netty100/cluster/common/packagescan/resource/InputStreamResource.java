@@ -35,7 +35,7 @@ import java.io.InputStream;
  * keep the resource descriptor somewhere, or if you need to read from a stream
  * multiple times.
  *
- * @author yewenhai
+ * @author why
  * @see ByteArrayResource
  * @see ClassPathResource
  * @see FileSystemResource

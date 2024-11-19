@@ -39,7 +39,7 @@ import org.springframework.stereotype.Service;
 /**
  * rpc request acceptor of grpc.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcCommonRequestAcceptor.java, v 0.1 2020年09月01日 10:52 AM liuzunfei Exp $
  */
 @Service

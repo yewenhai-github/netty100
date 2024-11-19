@@ -27,7 +27,7 @@ import java.util.Iterator;
 /**
  * Wrap http client request and perform corresponding interception.
  *
- * @author yewenhai
+ * @author why
  */
 public class InterceptingHttpClientRequest implements HttpClientRequest {
     

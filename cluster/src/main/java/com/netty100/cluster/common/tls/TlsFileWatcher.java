@@ -42,7 +42,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * <p>Considering that the current client needs to support jdk 1.6 and module dependencies ,
  * the WatchFileCenter in the core module is not used
  *
- * @author yewenhai
+ * @author why
  */
 public final class TlsFileWatcher {
     

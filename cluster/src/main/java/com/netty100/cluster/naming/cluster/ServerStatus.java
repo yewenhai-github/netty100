@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.cluster;
 /**
  * A flag to indicate the exact status of a server.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public enum ServerStatus {

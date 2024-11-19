@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 /**
  * Logger utils.
  *
- * @author yewenhai
+ * @author why
  */
 public final class LoggerUtils {
 

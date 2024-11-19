@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.WarnHistoryInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.WarnHistoryInfo">
+        <id column="id" property="id"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="server_id" property="serverId"/>
+        <result column="warn_level" property="warnLevel"/>
+        <result column="warn_type" property="warnType"/>
+        <result column="create_day" property="createDay"/>
+        <result column="statistics_flag" property="statisticsFlag"/>
+        <result column="detail" property="detail"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="save">
+        insert into warn_history_info
+        values (null, #{serverId}, #{clusterId}, #{warnLevel}, #{warnType}, #{detail}, #{createDay}, #{statisticsFlag}, 1, now(), now(), 1)
+    </insert>
+
+    <update id="batchDelete">
+        update warn_history_info set enable = 0
+        where id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="getWarnInfoStatistics" parameterType="string" resultType="com.netty100.pojo.dto.WarnStatisticsDto">
+        SELECT cluster_id clusterId,
+               COUNT(1) count
+        FROM
+            warn_history_info
+        WHERE
+            create_day = #{time}
+        GROUP BY
+            cluster_id
+    </select>
+
+    <select id="getTypeCount" resultType="com.netty100.pojo.vo.WarnIndexCount">
+        select warn_type as warnTypeIndex, count(id) as times
+        from warn_history_info
+        where cluster_id in
+        <foreach collection="clusterIds" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        and date_format(create_time, '%Y-%m-%d') = #{date}
+        group by warn_type
+    </select>
+
+    <select id="getWarnInfoList" resultType="com.netty100.entity.WarnHistoryInfo">
+        select * from warn_history_info
+        <where>
+            create_day = #{date} and cluster_id = #{clusterId}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+            order by create_time desc
+        </where>
+    </select>
+
+    <update id="updateByCreateDay" parameterType="string">
+        UPDATE `warn_history_info`
+        SET `statistics_flag`=1,
+            `update_time`=NOW(),
+            `version`=version + 1
+        WHERE create_day = #{createDay}
+    </update>
+</mapper>

@@ -20,7 +20,7 @@ package com.netty100.cluster.common.lifecycle;
 /**
  * An interface is used to define the resource's close and shutdown, such as IO Connection and ThreadPool.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Closeable {
     

@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * Record to transfer and store in Cap cluster.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public interface Record extends Serializable {

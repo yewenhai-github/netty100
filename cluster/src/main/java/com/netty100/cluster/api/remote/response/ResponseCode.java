@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.response;
 /**
  * ResponseCode.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ResponseCode.java, v 0.1 2020年07月14日 2:04 PM liuzunfei Exp $
  */
 public enum ResponseCode {

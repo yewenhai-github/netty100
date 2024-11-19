@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * Observable utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class Observable {
     

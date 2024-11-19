@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * http client config build.
  *
- * @author yewenhai
+ * @author why
  */
 public class HttpClientConfig {
     

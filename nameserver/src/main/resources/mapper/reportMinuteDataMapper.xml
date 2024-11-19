@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ReportMinuteDataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.ReportMinuteData">
+        <id column="id" property="id"/>
+        <result column="server_id" property="serverId"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="client_connect_count" property="clientConnectCount"/>
+        <result column="server_connect_count" property="serverConnectCount"/>
+        <result column="forward_times" property="forwardTimes"/>
+        <result column="forward_rate" property="forwardRate"/>
+        <result column="failed_rate" property="failedRate"/>
+        <result column="client_error_reconnect_times" property="clientErrorReconnectTimes"/>
+        <result column="client_idle_reconnect_times" property="clientIdleReconnectTimes"/>
+        <result column="server_error_reconnect_times" property="serverErrorReconnectTimes"/>
+        <result column="server_idle_reconnect_times" property="serverIdleReconnectTimes"/>
+        <result column="c2p_tps" property="c2pTps"/>
+        <result column="c2p_qps" property="c2pQps"/>
+        <result column="p2s_tps" property="p2sTps"/>
+        <result column="p2s_qps" property="p2sQps"/>
+        <result column="s2p_tps" property="s2pTps"/>
+        <result column="s2p_qps" property="s2pQps"/>
+        <result column="p2c_tps" property="p2cTps"/>
+        <result column="p2c_qps" property="p2cQps"/>
+        <result column="create_date" property="createDate"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+
+    <insert id="save">
+        insert into report_minute_data(server_id, cluster_id, client_connect_count, server_connect_count, forward_times,
+                                       forward_rate, failed_rate, client_error_reconnect_times, client_idle_reconnect_times,
+                                       server_error_reconnect_times, server_idle_reconnect_times,
+                                       c2p_tps, c2p_qps, p2s_tps, p2s_qps, s2p_tps, s2p_qps, p2c_tps, p2c_qps, enable, create_date, create_time, update_time, version)
+        values (#{serverId}, #{clusterId}, #{clientConnectCount}, #{serverConnectCount}, #{forwardTimes},
+                #{forwardRate}, #{failedRate}, #{clientErrorReconnectTimes}, #{clientIdleReconnectTimes},
+                #{serverErrorReconnectTimes}, #{serverIdleReconnectTimes}, #{c2pTps}, #{c2pQps},
+                #{p2sTps}, #{p2sQps}, #{s2pTps}, #{s2pQps}, #{p2cTps}, #{p2cQps}, 1,
+                #{createDate}, #{createTime}, now(), 1)
+    </insert>
+
+    <insert id="saveConnectionCount">
+        insert into report_minute_data(server_id, cluster_id, client_connect_count, server_connect_count, enable, create_date, create_time, update_time, version)
+        values (#{serverId}, #{clusterId}, #{clientConnectCount}, #{serverConnectCount}, 1, #{createDate}, #{createTime}, now(), 1) on duplicate key
+        update client_connect_count =
+        values (client_connect_count), server_connect_count =
+        values (server_connect_count),
+            version = version + 1, update_time = now()
+    </insert>
+
+    <insert id="saveTrafficFlowStatus">
+        insert into report_minute_data(server_id, cluster_id, failed_rate, forward_times, forward_rate,
+                                       c2p_tps, c2p_qps, p2s_tps, p2s_qps, s2p_tps, s2p_qps, p2c_tps, p2c_qps,
+                                       enable, create_date, create_time, update_time, version)
+        values (#{serverId}, #{clusterId}, #{failedRate}, #{forwardTimes}, #{forwardRate},
+                #{c2pTps}, #{c2pQps}, #{p2sTps}, #{p2sQps}, #{s2pTps}, #{s2pQps}, #{p2cTps}, #{p2cQps}, 1, #{createDate}, #{createTime}, now(), 1) on duplicate key
+        update failed_rate =
+        values (failed_rate), forward_times =
+        values (forward_times), forward_rate =
+        values (forward_rate),
+            c2p_tps =
+        values (c2p_tps), c2p_qps =
+        values (c2p_qps), p2s_tps =
+        values (p2s_tps), p2s_qps =
+        values (p2s_qps),
+            s2p_tps =
+        values (s2p_tps), s2p_qps =
+        values (s2p_qps), p2c_tps =
+        values (p2c_tps), p2c_qps =
+        values (p2c_qps),
+            update_time = now(), version = version + 1
+    </insert>
+
+    <insert id="saveClientReconnectTimes">
+        insert into report_minute_data(server_id, cluster_id, client_error_reconnect_times, client_idle_reconnect_times, enable, create_date, create_time, update_time, version)
+        values (#{serverId}, #{clusterId}, #{clientErrorReconnectTimes}, #{clientIdleReconnectTimes}, 1, #{createDate}, #{createTime}, now(), 1) on duplicate key
+        update client_error_reconnect_times =
+        values (client_error_reconnect_times), client_idle_reconnect_times =
+        values (client_idle_reconnect_times),
+            version = version + 1, update_time = now()
+    </insert>
+
+    <update id="updateById">
+        update report_minute_data
+        <set>
+            update_time = now(),version = version + 1,
+            <if test="clientConnectCount!=null">client_connect_count = #{clientConnectCount},</if>
+            <if test="serverConnectCount!=null">server_connect_count = #{serverConnectCount},</if>
+            <if test="forwardTimes!=null">forward_times = #{forwardTimes},</if>
+            <if test="forwardRate!=null">forward_rate = #{forwardRate},</if>
+            <if test="failedRate!=null">failed_rate = #{failedRate},</if>
+            <if test="clientErrorReconnectTimes!=null">client_error_reconnect_times = #{clientErrorReconnectTimes},</if>
+            <if test="clientIdleReconnectTimes!=null">client_idle_reconnect_times = #{clientIdleReconnectTimes},</if>
+            <if test="serverErrorReconnectTimes!=null">server_error_reconnect_times = #{serverErrorReconnectTimes},</if>
+            <if test="serverIdleReconnectTimes!=null">server_idle_reconnect_times = #{serverIdleReconnectTimes},</if>
+            <if test="c2pTps!=null">c2p_tps = #{c2pTps},</if>
+            <if test="c2pQps!=null">c2p_qps = #{c2pQps},</if>
+            <if test="p2sTps!=null">p2s_tps = #{p2sTps},</if>
+            <if test="p2sQps!=null">p2s_qps = #{p2sQps},</if>
+            <if test="s2pTps!=null">s2p_tps = #{s2pTps},</if>
+            <if test="s2pQps!=null">s2p_qps = #{s2pQps},</if>
+            <if test="p2cTps!=null">p2c_tps = #{p2cTps},</if>
+            <if test="p2sQps!=null">p2c_qps = #{p2sQps}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getOne" resultType="com.netty100.entity.ReportMinuteData">
+        select id, server_id, cluster_id, client_connect_count, server_connect_count
+        from report_minute_data
+        where server_id = #{serverId}
+          and create_date = #{createDate}
+          and create_time = #{createTime}
+    </select>
+
+    <select id="getLatest" resultType="com.netty100.entity.ReportMinuteData">
+        select *
+        from report_minute_data
+        where server_id = #{serverId}
+        order by create_date desc, create_time desc limit 1
+    </select>
+
+    <select id="getByClusterIds" resultType="com.netty100.pojo.vo.TpsQpsMinuteTotalVo">
+        select create_time as createTime,
+        IFNULL((sum(c2p_tps) + sum(p2s_tps) + sum(s2p_tps) + sum(p2c_tps))/4,0) as tpsTotal,
+        IFNULL((sum(c2p_qps) + sum(p2s_qps) + sum(s2p_qps) + sum(p2c_qps))/4,0) as qpsTotal
+        from report_minute_data
+        where cluster_id in
+        <foreach collection="clusterIds" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        and create_date = #{date}
+        group by create_time
+        order by create_time asc
+    </select>
+
+    <select id="getAvgStatisticsByCreateTime" resultType="com.netty100.pojo.dto.ReportMinuteDataDto">
+        SELECT ROUND(AVG(client_error_reconnect_times),0) avgErrorReconnectTime,ROUND(AVG(client_idle_reconnect_times),0) avgIdleReconnectTime FROM report_minute_data
+        where server_id = #{serverId}
+        and create_date = #{date}
+        <if test="times != null and times.size() > 0">
+            <foreach collection="times" item="time" separator="," open="AND create_time IN (" close=")">#{time}</foreach>
+        </if>
+
+    </select>
+    <select id="getForwardStatus" resultType="com.netty100.pojo.vo.ForwardStatus">
+        select sum(forward_times) as forwardTimes,avg(forward_rate) as forwardRate from report_minute_data
+        <where>
+            cluster_id = #{clusterId} and create_date = #{date} and create_time = #{time}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+    </select>
+
+    <select id="getMonitorTps" resultType="com.netty100.pojo.vo.MonitorTps">
+        select sum(client_connect_count) as clientConnectCount,
+        sum(server_connect_count) as serverConnectCount,
+        sum(c2p_tps) as c2pTps,
+        sum(p2s_tps) as p2sTps,
+        sum(s2p_tps) as s2pTps,
+        sum(p2c_tps) as p2cTps
+        from report_minute_data
+        <where>
+            cluster_id = #{clusterId} and create_date = #{date} and create_time = #{time}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+    </select>
+
+    <select id="getMonitorTpsQpsPeak" resultType="com.netty100.pojo.vo.MonitorTpsQpsPeak">
+        select max(c2p_tps_sum) as c2pTpsPeak ,
+        max(p2s_tps_sum) as p2sTpsPeak,
+        max(s2p_tps_sum) as s2pTpsPeak,
+        max(p2c_tps_sum) as p2cTpsPeak,
+        max(c2p_qps_sum) as c2pQpsPeak,
+        max(p2s_qps_sum) as p2sQpsPeak,
+        max(s2p_qps_sum) as s2pQpsPeak,
+        max(p2c_qps_sum) as p2cQpsPeak
+        from (select sum(c2p_tps) as c2p_tps_sum,
+        sum(p2s_tps) as p2s_tps_sum,
+        sum(s2p_tps) as s2p_tps_sum,
+        sum(p2c_tps) as p2c_tps_sum,
+        sum(c2p_qps) as c2p_qps_sum,
+        sum(p2s_qps) as p2s_qps_sum,
+        sum(s2p_qps) as s2p_qps_sum,
+        sum(p2c_qps) as p2c_qps_sum from report_minute_data
+        <where>
+            cluster_id = #{clusterId} and create_date = #{date}
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+        </where>
+        group by create_time
+        ) tps_qps_total
+    </select>
+</mapper>

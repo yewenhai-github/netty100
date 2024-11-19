@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft.exception;
 /**
  * no this raft group exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class NoSuchRaftGroupException extends RuntimeException {
     

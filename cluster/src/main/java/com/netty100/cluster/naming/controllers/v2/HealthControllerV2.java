@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * HealthControllerV2.
- * @author yewenhai
+ * @author why
  * @date 2022/9/15
  */
 @CapApi

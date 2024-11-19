@@ -38,7 +38,7 @@ import java.security.NoSuchAlgorithmException;
  * System.setProperty({@link TlsSystemConfig#CLIENT_TRUST_CERT}, "trustCert");
  * </pre>
  *
- * @author yewenhai
+ * @author why
  * @date 2020/8/19 2:59 PM
  */
 public final class TlsHelper {

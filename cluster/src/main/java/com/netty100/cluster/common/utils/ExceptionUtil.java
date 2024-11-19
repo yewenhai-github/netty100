@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * Common methods for exception.
  *
- * @author yewenhai
+ * @author why
  * @since 1.2.0
  */
 public class ExceptionUtil {

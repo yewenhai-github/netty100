@@ -39,7 +39,7 @@ import java.util.*;
 /**
  * Its own configuration information manipulation tool class.
  *
- * @author yewenhai
+ * @author why
  */
 public class EnvUtil {
     

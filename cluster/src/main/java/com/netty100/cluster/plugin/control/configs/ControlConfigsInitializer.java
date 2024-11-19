@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.configs;
 /**
  * control plugin configs initializer.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ControlConfigsInitializer {
     

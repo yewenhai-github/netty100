@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Client sync data.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientSyncData implements Serializable {
     

@@ -23,7 +23,7 @@ import com.netty100.cluster.api.remote.response.Response;
 /**
  * connection interface,define basic operation.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: Requester.java, v 0.1 2020年09月11日 4:05 PM liuzunfei Exp $
  */
 public interface Requester {

@@ -22,7 +22,7 @@ import com.netty100.cluster.consistency.ConsistencyProtocol;
 /**
  * ap protocol.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public interface APProtocol<C extends Config, P extends RequestProcessor4AP> extends ConsistencyProtocol<C, P> {

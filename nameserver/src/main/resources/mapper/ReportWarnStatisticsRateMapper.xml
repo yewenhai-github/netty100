@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.netty100.mapper.ReportWarnStatisticsRateMapper">
+    <resultMap id="BaseResultMap" type="com.netty100.entity.ReportWarnStatisticsRate">
+        <id column="id" property="id"/>
+        <result column="cluster_id" property="clusterId"/>
+        <result column="increase_rate" property="increaseRate"/>
+        <result column="calc_day" property="calcDay"/>
+    </resultMap>
+
+    <insert id="insertBatch">
+        INSERT INTO report_warn_statistics_rate VALUES
+        <foreach collection="list" separator="," item="item">
+            (null,#{item.clusterId},#{item.increaseRate},#{item.calcDay},1,now(),now(),1)
+        </foreach>
+    </insert>
+    <select id="listByClusterId" resultType="com.netty100.entity.ReportWarnStatisticsRate">
+        select increase_rate, calc_day
+        from report_warn_statistics_rate
+        where cluster_id = #{clusterId}
+          and enable = 1
+        order by calc_day asc
+    </select>
+</mapper>

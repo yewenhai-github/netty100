@@ -27,7 +27,7 @@ import com.netty100.cluster.naming.consistency.ConsistencyService;
  * successfully written to the cluster. And the data should be consistent between servers after some time without any
  * outside interfere.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public interface PersistentConsistencyService extends ConsistencyService {

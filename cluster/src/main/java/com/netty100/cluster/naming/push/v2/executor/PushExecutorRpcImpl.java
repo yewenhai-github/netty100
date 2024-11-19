@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 /**
  * Push execute service for rpc.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class PushExecutorRpcImpl implements PushExecutor {

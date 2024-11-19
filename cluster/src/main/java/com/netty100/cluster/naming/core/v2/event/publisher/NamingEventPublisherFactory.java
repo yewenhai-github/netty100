@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Some naming event is in order, so these event need publish by sync(with same thread and same queue).
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 public class NamingEventPublisherFactory implements EventPublisherFactory {
     

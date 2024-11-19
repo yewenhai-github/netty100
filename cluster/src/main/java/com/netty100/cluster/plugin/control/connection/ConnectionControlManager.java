@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 /**
  * connection control manager.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class ConnectionControlManager {

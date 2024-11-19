@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Cap service manager for v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class ServiceManager {
     

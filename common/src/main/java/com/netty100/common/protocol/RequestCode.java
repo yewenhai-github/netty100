@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author yewenhai
+ * @author why
  * @version 1.0.0, 2022/3/23
  * @since 1.0.0, 2022/3/23
  */
@@ -17,7 +17,7 @@ public enum RequestCode {
     Req04("04","netty节点基本信息启动上报"),
     Req05("05","netty节点基本信息注册上报"),
     Req06("06","停机上报（netty节点服务停机）"),
-    Req07("07","统计量上报（游戏端、内核、服务器）"),
+    Req07("07","统计量上报（App端、内核、服务器）"),
     Req11("11","连接信息上报（游戏端连接）"),
     Req12("12","连接信息上报（游戏端正常断开）"),
     Req13("13","连接信息上报（游戏端异常断开）"),

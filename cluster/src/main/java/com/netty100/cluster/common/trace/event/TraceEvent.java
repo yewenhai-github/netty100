@@ -21,7 +21,7 @@ import com.netty100.cluster.common.notify.Event;
 /**
  * Trace event.
  *
- * @author yewenhai
+ * @author why
  */
 public class TraceEvent extends Event {
     

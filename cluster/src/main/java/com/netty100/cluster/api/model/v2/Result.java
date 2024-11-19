@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * Response Result.
  *
- * @author yewenhai
+ * @author why
  * @date 2022/7/12
  */
 public class Result<T> implements Serializable {

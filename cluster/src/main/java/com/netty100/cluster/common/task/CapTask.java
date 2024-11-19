@@ -19,7 +19,7 @@ package com.netty100.cluster.common.task;
 /**
  * Cap task.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CapTask {
     

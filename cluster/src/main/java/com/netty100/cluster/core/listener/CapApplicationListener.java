@@ -23,7 +23,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 /**
  * Cap Application Listener, execute init process.
  *
- * @author yewenhai
+ * @author why
  * @since 1.4.1
  */
 public interface CapApplicationListener {

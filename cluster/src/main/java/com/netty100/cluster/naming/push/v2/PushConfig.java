@@ -23,7 +23,7 @@ import com.netty100.cluster.sys.env.EnvUtil;
 /**
  * Push configuration.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushConfig extends AbstractDynamicConfig {
     

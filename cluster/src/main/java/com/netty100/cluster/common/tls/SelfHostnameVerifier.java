@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * A HostnameVerifier verify ipv4 and localhost.
  *
- * @author yewenhai
+ * @author why
  */
 
 public final class SelfHostnameVerifier implements HostnameVerifier {

@@ -33,7 +33,7 @@ import static com.netty100.cluster.sys.env.Constants.STANDALONE_SPRING_PROFILE;
 /**
  * Standalone {@link Profile} {@link ApplicationListener} for {@link ApplicationEnvironmentPreparedEvent}.
  *
- * @author yewenhai
+ * @author why
  * @see ConfigurableEnvironment#addActiveProfile(String)
  * @since 0.2.2
  */

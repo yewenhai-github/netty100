@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.push.v2.hook;
 /**
  * Cap naming push result hook.
  *
- * @author yewenhai
+ * @author why
  */
 public interface PushResultHook {
     

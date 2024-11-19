@@ -19,7 +19,7 @@ package com.netty100.cluster.common.remote.exception;
 /**
  * connection already closed exception.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectionAlreadyClosedException.java, v 0.1 2020年07月22日 7:28 PM liuzunfei Exp $
  */
 public class ConnectionAlreadyClosedException extends RemoteException {

@@ -21,7 +21,7 @@ import com.netty100.cluster.naming.pojo.Subscriber;
 /**
  * Cap naming push executor for SPI.
  *
- * @author yewenhai
+ * @author why
  */
 public interface SpiPushExecutor extends PushExecutor {
     

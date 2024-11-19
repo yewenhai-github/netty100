@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * build thread factory.
- * @author yewenhai
+ * @author why
  * @date 2021/8/3
  */
 public class ThreadFactoryBuilder {

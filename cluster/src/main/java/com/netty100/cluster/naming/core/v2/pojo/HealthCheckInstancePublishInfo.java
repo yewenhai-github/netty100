@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Instance publish info with health check for v1.x.
  *
- * @author yewenhai
+ * @author why
  */
 public class HealthCheckInstancePublishInfo extends InstancePublishInfo {
     

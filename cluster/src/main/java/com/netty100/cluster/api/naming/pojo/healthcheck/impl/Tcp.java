@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * Implementation of health checker for TCP.
  *
- * @author yewenhai
+ * @author why
  */
 public class Tcp extends AbstractHealthChecker {
     

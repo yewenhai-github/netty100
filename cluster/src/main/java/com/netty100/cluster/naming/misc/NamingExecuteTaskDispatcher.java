@@ -23,7 +23,7 @@ import com.netty100.cluster.sys.env.EnvUtil;
 /**
  * Naming execute task dispatcher.
  *
- * @author yewenhai
+ * @author why
  */
 public class NamingExecuteTaskDispatcher {
     

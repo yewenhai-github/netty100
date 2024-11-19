@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * connection control rule.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConnectionControlRule {
     

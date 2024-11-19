@@ -21,7 +21,7 @@ import static com.netty100.cluster.api.common.Constants.Remote.INTERNAL_MODULE;
 /**
  * client active detection request from server.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClientDetectionRequest.java, v 0.1 2021年01月20日 2:42 PM liuzunfei Exp $
  */
 public class ClientDetectionRequest extends ServerRequest {

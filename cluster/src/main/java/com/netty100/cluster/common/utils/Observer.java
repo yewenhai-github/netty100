@@ -19,7 +19,7 @@ package com.netty100.cluster.common.utils;
 /**
  * Obeserver.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Observer {
     

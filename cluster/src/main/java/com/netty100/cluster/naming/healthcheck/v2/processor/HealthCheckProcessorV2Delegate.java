@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 /**
  * Delegate of health check v2.x.
  *
- * @author yewenhai
+ * @author why
  */
 @Component("healthCheckDelegateV2")
 public class HealthCheckProcessorV2Delegate implements HealthCheckProcessorV2 {

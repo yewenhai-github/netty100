@@ -29,7 +29,7 @@ import com.netty100.cluster.common.packagescan.util.ResourceUtils;
  * from Strings when running in an ApplicationContext, using the particular
  * context's resource loading strategy.
  *
- * @author yewenhai
+ * @author why
  * @see Resource
  * @see ResourcePatternResolver
  * @since 10.03.2004

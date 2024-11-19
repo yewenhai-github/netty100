@@ -23,7 +23,7 @@ import com.netty100.cluster.api.common.ResponseCode;
  *
  * <p>Every code stays between 20001 to 29999.
  *
- * @author yewenhai
+ * @author why
  * @author 1.2.0
  */
 public class NamingResponseCode extends ResponseCode {

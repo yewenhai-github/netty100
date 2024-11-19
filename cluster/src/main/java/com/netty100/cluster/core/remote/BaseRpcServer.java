@@ -29,7 +29,7 @@ import javax.annotation.PreDestroy;
 /**
  * abstract rpc server .
  *
- * @author yewenhai
+ * @author why
  * @version $Id: BaseRpcServer.java, v 0.1 2020年07月13日 3:41 PM liuzunfei Exp $
  */
 public abstract class BaseRpcServer {

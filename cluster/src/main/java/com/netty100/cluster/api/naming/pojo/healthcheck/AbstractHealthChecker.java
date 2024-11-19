@@ -30,7 +30,7 @@ import java.io.Serializable;
 /**
  * Abstract health checker.
  *
- * @author yewenhai
+ * @author why
  */
 @JsonTypeInfo(use = Id.NAME, property = "type", defaultImpl = None.class)
 @JsonSubTypes({@JsonSubTypes.Type(name = Http.TYPE, value = Http.class),

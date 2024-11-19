@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * cap tps control manager.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapTpsControlManager extends TpsControlManager {
     

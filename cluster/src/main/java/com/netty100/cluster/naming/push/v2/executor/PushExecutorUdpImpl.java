@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 /**
  * Push execute service for udp.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class PushExecutorUdpImpl implements PushExecutor {

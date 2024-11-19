@@ -26,7 +26,7 @@ import java.util.Collection;
 /**
  * tps barrier creator proxy.
  *
- * @author yewenhai
+ * @author why
  */
 public class TpsBarrierCreatorProxy {
     

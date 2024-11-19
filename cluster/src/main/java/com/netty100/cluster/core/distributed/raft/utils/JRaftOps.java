@@ -32,7 +32,7 @@ import java.util.Objects;
 /**
  * jraft maintain service.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public enum JRaftOps {

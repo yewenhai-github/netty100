@@ -32,7 +32,7 @@ import java.io.InputStream;
  * This makes this interface useful as an abstract content source for mail
  * attachments, for example.
  *
- * @author yewenhai
+ * @author why
  * @see InputStream
  * @see Resource
  * @see InputStreamResource

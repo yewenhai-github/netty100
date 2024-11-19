@@ -22,7 +22,7 @@ import com.netty100.cluster.core.utils.Loggers;
 /**
  * task.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class Task implements Runnable {

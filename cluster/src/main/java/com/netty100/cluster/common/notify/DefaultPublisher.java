@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
  *
  * <p>Internally, use {@link ArrayBlockingQueue <Event/>} as a message staging queue.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultPublisher extends Thread implements EventPublisher {
     

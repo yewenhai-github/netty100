@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Udp socket connector to send upd data and listen ack if necessary.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class UdpConnector {

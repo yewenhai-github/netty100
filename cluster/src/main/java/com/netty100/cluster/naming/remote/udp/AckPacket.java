@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.remote.udp;
 /**
  * UDP ack packet.
  *
- * @author yewenhai
+ * @author why
  */
 public class AckPacket {
     

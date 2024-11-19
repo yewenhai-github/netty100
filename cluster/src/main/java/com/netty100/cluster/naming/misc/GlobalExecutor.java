@@ -28,7 +28,7 @@ import java.util.concurrent.*;
 /**
  * Global executor for naming.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings({"checkstyle:indentation", "PMD.ThreadPoolCreationRule"})
 public class GlobalExecutor {

@@ -38,7 +38,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Abstract implementation of {@code Client}.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractClient implements Client {
     

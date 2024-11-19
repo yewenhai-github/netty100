@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Operation and maintenance command interface.
  *
- * @author yewenhai
+ * @author why
  */
 public interface CommandOperations {
     

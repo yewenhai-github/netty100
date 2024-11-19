@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Abstract cap task execute engine.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractCapTaskExecuteEngine<T extends CapTask> implements CapTaskExecuteEngine<T> {
     

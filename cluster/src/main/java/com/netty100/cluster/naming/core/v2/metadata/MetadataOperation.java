@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * Metadata operation.
  *
- * @author yewenhai
+ * @author why
  */
 public class MetadataOperation<T> implements Serializable {
     

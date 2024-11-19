@@ -27,7 +27,7 @@ import java.lang.reflect.Type;
 /**
  * Abstract response handler.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractResponseHandler<T> implements ResponseHandler<T> {
     

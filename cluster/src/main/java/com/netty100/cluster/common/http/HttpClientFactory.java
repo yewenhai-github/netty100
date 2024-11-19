@@ -22,7 +22,7 @@ import com.netty100.cluster.common.http.client.CapRestTemplate;
 /**
  * http Client Factory.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HttpClientFactory {
     

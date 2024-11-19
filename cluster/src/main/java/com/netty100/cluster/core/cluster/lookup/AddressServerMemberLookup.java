@@ -40,7 +40,7 @@ import java.util.Map;
 /**
  * Cluster member addressing mode for the address server.
  *
- * @author yewenhai
+ * @author why
  */
 public class AddressServerMemberLookup extends AbstractMemberLookup {
     
@@ -88,8 +88,8 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
     public static final String ADDRESS_SERVER_URL_ENV = "address_server_url";
     
     public static final String ADDRESS_SERVER_URL_PROPERTY = "address.server.url";
-    public static final String TOPE_NAME_SERVER_DOMAIN_PROPERTY = "com.netty100.cloud.domain";
-    public static final String TOPE_NAME_SERVER_TOKEN_PROPERTY = "com.netty100.cloud.token";
+    public static final String NAME_SERVER_DOMAIN_PROPERTY = "com.netty100.cloud.domain";
+    public static final String NAME_SERVER_TOKEN_PROPERTY = "com.netty100.cloud.token";
 
     public static final String ADDRESS_SERVER_RETRY_PROPERTY = "cap.core.address-server.retry";
     
@@ -108,9 +108,9 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
     
     private void initKernelSys() {
         //application.properties 中的配置
-        domainName = EnvUtil.getProperty(TOPE_NAME_SERVER_DOMAIN_PROPERTY, DEFAULT_SERVER_DOMAIN);
+        domainName = EnvUtil.getProperty(NAME_SERVER_DOMAIN_PROPERTY, DEFAULT_SERVER_DOMAIN);
         domainPort = EnvUtil.getProperty(ADDRESS_SERVER_PORT_PROPERTY, DEFAULT_SERVER_POINT);
-        domainToken = EnvUtil.getProperty(TOPE_NAME_SERVER_TOKEN_PROPERTY);
+        domainToken = EnvUtil.getProperty(NAME_SERVER_TOKEN_PROPERTY);
 
         //环境变量中的设置
         domainName = SysUtility.isNotEmpty(System.getenv(ADDRESS_SERVER_DOMAIN_ENV)) ? System.getenv(ADDRESS_SERVER_DOMAIN_ENV) : domainName;

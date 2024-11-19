@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Client sync datum snapshot.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientSyncDatumSnapshot {
     

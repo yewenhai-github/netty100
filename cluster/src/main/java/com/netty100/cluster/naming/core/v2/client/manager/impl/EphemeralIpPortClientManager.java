@@ -42,7 +42,7 @@ import java.util.Collection;
 /**
  * The manager of {@code IpPortBasedClient} and ephemeral.
  *
- * @author yewenhai
+ * @author why
  */
 @DependsOn("clientServiceIndexesManager")
 @Component("ephemeralIpPortClientManager")

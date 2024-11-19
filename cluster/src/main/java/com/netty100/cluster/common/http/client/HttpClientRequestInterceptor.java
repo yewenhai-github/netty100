@@ -25,7 +25,7 @@ import java.net.URI;
 /**
  * Intercepts client-side HTTP requests. Implementations of this interface can be.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HttpClientRequestInterceptor {
     

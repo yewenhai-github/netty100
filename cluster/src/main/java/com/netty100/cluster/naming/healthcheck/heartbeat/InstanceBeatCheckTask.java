@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Instance beat check task.
  *
- * @author yewenhai
+ * @author why
  */
 public class InstanceBeatCheckTask implements Interceptable {
     

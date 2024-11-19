@@ -19,7 +19,7 @@ package com.netty100.cluster.common.utils;
 /**
  * A convenient tool to get property or env value.
  *
- * @author yewenhai 2022/3/24
+ * @author why 2022/3/24
  */
 public class PropertyUtils {
 

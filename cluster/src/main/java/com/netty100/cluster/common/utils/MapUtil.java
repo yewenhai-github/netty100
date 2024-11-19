@@ -28,7 +28,7 @@ import java.util.function.Predicate;
 /**
  * Map utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class MapUtil {
 

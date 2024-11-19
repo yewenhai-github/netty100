@@ -27,7 +27,7 @@ import com.netty100.cluster.plugin.control.tps.rule.TpsControlRule;
 /**
  * tps barrier for tps point.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapTpsBarrier extends TpsBarrier {
     

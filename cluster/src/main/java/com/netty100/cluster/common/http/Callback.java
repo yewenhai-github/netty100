@@ -21,7 +21,7 @@ import com.netty100.cluster.common.model.RestResult;
 /**
  * Http callback.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Callback<T> {
     

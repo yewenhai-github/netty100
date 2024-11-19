@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * <p>An extension handler for {@link Instance}, which is to handle some specified request for 1.x client.
  *
- * @author yewenhai
+ * @author why
  */
 public interface InstanceExtensionHandler {
     

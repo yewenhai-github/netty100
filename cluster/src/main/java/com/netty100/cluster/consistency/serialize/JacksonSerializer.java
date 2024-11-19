@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 /**
  * Serializer implement by jackson.
  *
- * @author yewenhai
+ * @author why
  */
 public class JacksonSerializer implements Serializer {
     

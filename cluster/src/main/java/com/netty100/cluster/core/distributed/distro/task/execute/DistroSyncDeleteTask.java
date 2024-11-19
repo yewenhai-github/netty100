@@ -25,7 +25,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroKey;
 /**
  * Distro sync delete task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroSyncDeleteTask extends AbstractDistroExecuteTask {
     

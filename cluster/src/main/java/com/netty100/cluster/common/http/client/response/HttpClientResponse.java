@@ -25,7 +25,7 @@ import java.io.InputStream;
 /**
  * Represents a client-side HTTP response.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HttpClientResponse extends Closeable {
     

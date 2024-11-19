@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft.exception;
 /**
  * Duplicate groupId when creating Raft Group throws this exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class DuplicateRaftGroupException extends RuntimeException {
     

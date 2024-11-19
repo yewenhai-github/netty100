@@ -32,7 +32,7 @@ import com.netty100.cluster.naming.push.v2.executor.PushExecutor;
 /**
  * Cap naming push delay task execute engine.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushDelayTaskExecuteEngine extends CapDelayTaskExecuteEngine {
     

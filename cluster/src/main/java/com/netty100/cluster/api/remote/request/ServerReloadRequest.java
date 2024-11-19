@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.request;
 /**
  * reload long connection request.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerReloadRequest.java, v 0.1 2020年11月09日 4:35 PM liuzunfei Exp $
  */
 public class ServerReloadRequest extends InternalRequest {

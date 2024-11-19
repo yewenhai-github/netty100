@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.distro.component;
 /**
  * Distro callback.
  *
- * @author yewenhai
+ * @author why
  */
 public interface DistroCallback {
     

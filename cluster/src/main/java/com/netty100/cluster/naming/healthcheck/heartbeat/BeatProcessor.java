@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.healthcheck.heartbeat;
 /**
  * Thread to update ephemeral instance triggered by client beat.
  *
- * @author yewenhai
+ * @author why
  */
 public interface BeatProcessor extends Runnable {
 

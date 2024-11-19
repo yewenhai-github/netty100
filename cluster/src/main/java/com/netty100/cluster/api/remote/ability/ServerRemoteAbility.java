@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * remote abilities of cap server.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerRemoteAbility.java, v 0.1 2021年01月24日 00:09 AM liuzunfei Exp $
  */
 public class ServerRemoteAbility implements Serializable {

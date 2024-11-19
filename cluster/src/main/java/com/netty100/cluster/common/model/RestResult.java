@@ -21,7 +21,7 @@ import java.io.Serializable;
 /**
  * Rest result.
  *
- * @author yewenhai
+ * @author why
  */
 public class RestResult<T> implements Serializable {
     

@@ -21,7 +21,7 @@ import java.util.Properties;
 /**
  * Meta information for the snapshot file.
  *
- * @author yewenhai
+ * @author why
  */
 public class LocalFileMeta {
     

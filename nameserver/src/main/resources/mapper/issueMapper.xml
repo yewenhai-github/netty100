@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.IssueMapper">
+
+    <sql id="baseColumn">
+        id
+        ,issue_type,title,content,importance,enable,create_time,update_time,version
+    </sql>
+
+    <insert id="save">
+        insert into api_issue
+        values (null, #{issueType}, #{title}, #{content}, #{importance}, 1, now(), now(), 1)
+    </insert>
+
+    <update id="update">
+        update api_issue
+        <set>
+            <if test="@org.springframework.util.StringUtils@hasText(issueType)">issue_type = #{issueType},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(title)">title = #{title},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(content)">content = #{content},</if>
+            <if test="importance!=null">importance = #{importance},</if>
+            update_time = now(),version = version + 1
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="deleteById">
+        update api_issue
+        set enable      = 0,
+            update_time = now()
+        where id = #{id}
+    </update>
+
+    <select id="getList" resultType="com.netty100.entity.Issue">
+        select id
+        ,issue_type,title,content,importance from api_issue
+        <where>
+            enable = 1
+            <if test="@org.springframework.util.StringUtils@hasText(issueType)">and issue_type = #{issueType}</if>
+            <if test="@org.springframework.util.StringUtils@hasText(title)">and title like #{title}</if>
+            <if test="importance!=null">and importance = #{importance}</if>
+        </where>
+    </select>
+</mapper>

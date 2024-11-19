@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * Cap async rest template.
  *
- * @author yewenhai
+ * @author why
  * @see AsyncHttpClientRequest
  * @see HttpClientResponse
  */

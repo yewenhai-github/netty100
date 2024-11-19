@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * server list factory . use to inner client to connecte and switch servers.
- * @author yewenhai
+ * @author why
  * @version $Id: ServerListFactory.java, v 0.1 2020年07月14日 1:11 PM liuzunfei Exp $
  */
 public interface ServerListFactory {

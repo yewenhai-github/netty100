@@ -34,7 +34,7 @@ import java.util.List;
 /**
  *  support the tls and plain protocol one the same port.
  *
- * @author yewenhai.
+ * @author why.
  */
 public class OptionalTlsProtocolNegotiator implements InternalProtocolNegotiator.ProtocolNegotiator {
 

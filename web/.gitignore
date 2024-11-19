@@ -1,0 +1,12 @@
+node_modules
+yarn-error.log
+dist
+lib
+.DS_Store
+yarn.lock
+yarn-debug.lock
+.pnpm-debug.log
+.temp
+.cache
+/.idea
+.vscode

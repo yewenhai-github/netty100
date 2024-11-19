@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.UserClusterMapper">
+
+
+    <insert id="assign">
+        insert into app_user_cluster(user_id,cluster_id,create_date) values
+        <foreach collection="list" separator="," item="item">
+            (#{item.userId},#{item.clusterId},#{item.createDate})
+        </foreach>
+    </insert>
+
+    <delete id="delete">
+        delete
+        from app_user_cluster
+        where cluster_id = #{clusterId}
+    </delete>
+
+    <delete id="deleteUser">
+        delete
+        from app_user_cluster
+        where user_id = #{userId}
+    </delete>
+
+    <select id="getClusterIdsByUserId" resultType="java.lang.Integer">
+        select distinct cluster_id
+        from app_user_cluster
+        where user_id = #{userId}
+    </select>
+
+    <select id="list" resultType="com.netty100.entity.UserCluster">
+        select *
+        from app_user_cluster
+    </select>
+</mapper>

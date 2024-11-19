@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Subscribers to multiple events can be listened to.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class SmartSubscriber extends Subscriber {

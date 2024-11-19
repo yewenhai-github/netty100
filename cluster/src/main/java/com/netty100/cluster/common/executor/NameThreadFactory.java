@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Name thread factory.
  *
- * @author yewenhai
+ * @author why
  */
 public class NameThreadFactory implements ThreadFactory {
     public static final String DOT = ".";

@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * Cluster.conf file managed cluster member node addressing pattern.
  *
- * @author yewenhai
+ * @author why
  */
 public class FileConfigMemberLookup extends AbstractMemberLookup {
     

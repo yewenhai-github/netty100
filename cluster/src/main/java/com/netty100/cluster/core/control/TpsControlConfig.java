@@ -21,7 +21,7 @@ package com.netty100.cluster.core.control;
 /**
  * tps control manager.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: TpsControlManager.java, v 0.1 2021年01月12日 12:38 PM liuzunfei Exp $
  */
 public class TpsControlConfig {

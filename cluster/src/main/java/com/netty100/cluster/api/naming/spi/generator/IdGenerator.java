@@ -19,7 +19,7 @@ package com.netty100.cluster.api.naming.spi.generator;
 /**
  * Generator SPI for Instance Id.
  *
- * @author yewenhai
+ * @author why
  */
 public interface IdGenerator {
     

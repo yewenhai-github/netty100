@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Member node addressing mode.
  *
- * @author yewenhai
+ * @author why
  */
 public interface MemberLookup {
     

@@ -22,7 +22,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroData;
 /**
  * Distro data response.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroDataResponse extends Response {
     

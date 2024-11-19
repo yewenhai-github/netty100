@@ -23,7 +23,7 @@ import com.netty100.cluster.core.distributed.distro.entity.DistroData;
 /**
  * Distro data request.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroDataRequest extends AbstractClusterRequest {
     

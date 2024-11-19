@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.response;
 /**
  * response of server check.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerCheckResponse.java, v 0.1 2020年07月22日 8:37 PM liuzunfei Exp $
  */
 public class ServerCheckResponse extends Response {

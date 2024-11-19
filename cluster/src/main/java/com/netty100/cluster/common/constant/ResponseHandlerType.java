@@ -19,7 +19,7 @@ package com.netty100.cluster.common.constant;
 /**
  * Response Handler Type.
  *
- * @author yewenhai
+ * @author why
  */
 public final class ResponseHandlerType {
     

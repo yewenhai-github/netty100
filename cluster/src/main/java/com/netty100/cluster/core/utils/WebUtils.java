@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  * web utils.
  *
- * @author yewenhai
+ * @author why
  */
 public class WebUtils {
     

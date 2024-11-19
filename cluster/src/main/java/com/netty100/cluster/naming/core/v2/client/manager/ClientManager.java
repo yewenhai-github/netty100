@@ -25,7 +25,7 @@ import java.util.Collection;
 /**
  * The manager of {@code Client} Cap naming client.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ClientManager {
     

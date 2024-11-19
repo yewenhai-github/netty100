@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Closure with internal retry mechanism.
  *
- * @author yewenhai
+ * @author why
  */
 public class FailoverClosureImpl implements FailoverClosure {
     

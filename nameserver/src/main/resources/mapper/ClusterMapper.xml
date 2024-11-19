@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ClusterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.netty100.entity.Cluster">
+        <id column="id" property="id"/>
+        <result column="cluster" property="cluster"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        id
+        , cluster, description, create_time
+    </sql>
+
+    <insert id="save">
+        insert into app_cluster(cluster, description, enable, create_time, update_time, version)
+        values (#{cluster}, #{description}, 1, now(), now(), 1)
+    </insert>
+
+    <update id="update">
+        update app_cluster
+        <set>
+            update_time = now(),
+            version = version + 1,
+            <if test="@org.springframework.util.StringUtils@hasText(description)">description = #{description},</if>
+            <if test="@org.springframework.util.StringUtils@hasText(cluster)">cluster = #{cluster}</if>
+        </set>
+        where id = #{id}
+        and enable = 1
+    </update>
+
+    <select id="getById" resultType="com.netty100.entity.Cluster">
+        select
+        <include refid="baseColumn"/>
+        from app_cluster
+        where id = #{id}
+        and enable = 1
+    </select>
+
+    <select id="getByClusterName" resultType="com.netty100.entity.Cluster">
+        select
+        <include refid="baseColumn"/>
+        from app_cluster
+        where cluster = #{cluster}
+        and enable = 1
+    </select>
+
+    <select id="getAll" resultType="com.netty100.entity.Cluster">
+        select
+        <include refid="baseColumn"/>
+        from app_cluster
+        where enable = 1
+    </select>
+
+    <select id="getByIds" resultType="com.netty100.entity.Cluster">
+        select
+        <include refid="baseColumn"/>
+        from app_cluster
+        where id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        and enable = 1
+    </select>
+
+    <select id="getIds" resultType="java.lang.Integer">
+        select id
+        from app_cluster
+        where enable = 1
+    </select>
+</mapper>

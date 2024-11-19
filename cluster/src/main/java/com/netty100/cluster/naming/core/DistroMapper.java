@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Distro mapper, judge which server response input service.
  *
- * @author yewenhai
+ * @author why
  */
 @Component("distroMapper")
 public class DistroMapper extends MemberChangeListener {

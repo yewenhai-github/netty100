@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps.request;
 /**
  * barrier check request.
  *
- * @author yewenhai
+ * @author why
  */
 public class BarrierCheckRequest {
     

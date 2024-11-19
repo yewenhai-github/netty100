@@ -21,7 +21,7 @@ import com.netty100.cluster.api.naming.spi.generator.IdGenerator;
 /**
  * Default instance id generator.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultInstanceIdGenerator implements IdGenerator {
     

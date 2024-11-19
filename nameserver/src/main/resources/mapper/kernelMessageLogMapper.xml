@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.KernelMessageLogMapper">
+
+    <sql id="baseColumn">
+        id
+        ,log_point,log_content,log_time,local_address,user_id,
+         device_id,message_source,message_dest,create_time,update_time,version
+    </sql>
+
+    <insert id="batchSave">
+        insert into api_kernel_log values
+        <foreach collection="list" item="item" separator=",">
+            (null,#{item.logPoint},#{item.logContent},#{item.logTime},#{item.localAddress},
+            #{item.userId},#{item.deviceId},#{item.messageSource},#{item.messageDest},now(),
+            now(),1)
+        </foreach>
+
+    </insert>
+
+    <delete id="deleteExpiredLog">
+           delete from api_kernel_log where create_time &lt;  #{date}
+    </delete>
+
+    <select id="getList" resultType="com.netty100.pojo.vo.KernelMessageLogVo">
+        select id
+        ,log_point,log_content,log_time,local_address,user_id,
+        device_id,message_source,message_dest,create_time from api_kernel_log
+        <where>
+            <if test="startTime!=null">log_time between #{startTime} and #{endTime}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="deviceId!=null">and device_id = #{deviceId}</if>
+            <if test="@org.springframework.util.StringUtils@hasText(localAddress)">and local_address like #{localAddress}</if>
+            <if test="@org.springframework.util.StringUtils@hasText(logPoint)">and log_point like #{logPoint}</if>
+        </where>
+    </select>
+    <select id="queryMaxMinId" resultType="java.util.Map">
+        select MAX(id) maxId,MIN(id) minId from api_kernel_log where create_time &lt;  #{date}
+    </select>
+    <delete id="deleteExpiredLogById">
+        DELETE FROM api_kernel_log WHERE id &lt;= #{maxId}
+    </delete>
+</mapper>

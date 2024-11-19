@@ -31,7 +31,7 @@ import com.netty100.cluster.naming.misc.UtilsAndCommons;
 /**
  * Thread to update ephemeral instance triggered by client beat for v2.x.
  *
- * @author yewenhai
+ * @author why
  */
 public class ClientBeatProcessorV2 implements BeatProcessor {
     

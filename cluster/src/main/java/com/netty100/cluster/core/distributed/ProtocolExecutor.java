@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * ProtocolExecutor.
  *
- * @author yewenhai
+ * @author why
  */
 public final class ProtocolExecutor {
     

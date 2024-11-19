@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.raft;
 /**
  * jraft system constants.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public final class RaftSysConstants {

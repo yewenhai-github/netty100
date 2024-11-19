@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * RpcConstants.
  *
- * @author yewenhai.
+ * @author why.
  */
 public class RpcConstants {
 

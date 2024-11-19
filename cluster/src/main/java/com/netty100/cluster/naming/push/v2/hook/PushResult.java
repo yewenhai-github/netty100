@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.pojo.Subscriber;
 /**
  * Cap naming push result.
  *
- * @author yewenhai
+ * @author why
  */
 public class PushResult {
     

@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * log processor for cp.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public abstract class RequestProcessor4CP extends RequestProcessor {

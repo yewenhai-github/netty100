@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 /**
  * default http client factory.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultHttpClientFactory extends AbstractHttpClientFactory {
     

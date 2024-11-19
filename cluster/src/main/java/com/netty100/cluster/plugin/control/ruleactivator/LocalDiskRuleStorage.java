@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * local disk storage.
  *
- * @author yewenhai
+ * @author why
  */
 public class LocalDiskRuleStorage implements RuleStorage {
     

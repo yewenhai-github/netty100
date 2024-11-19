@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.ClientConnectionMapper">
+
+    <insert id="batchSave">
+        insert ignore into app_client_connection values
+        <foreach collection="list" item="item" separator=",">
+            (null,#{item.serverId},#{item.clusterId},#{item.serverIntranetIp},#{item.channelId},
+            #{item.channelKey},#{item.deviceId},#{item.userId},#{item.messageWay},#{item.messageSource},
+            #{item.messageDest},#{item.messageType},#{item.messageSerialize},#{item.remoteIp},#{item.connectTime},#{item.lastHeartbeatTime},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <insert id="batchSaveOrUpdate">
+        insert into app_client_connection values
+        <foreach collection="list" item="item" separator=",">
+            (null,#{item.serverId},#{item.clusterId},#{item.serverIntranetIp},#{item.channelId},
+            #{item.channelKey},#{item.deviceId},#{item.userId},#{item.messageWay},#{item.messageSource},
+            #{item.messageDest},#{item.messageType},#{item.messageSerialize},#{item.remoteIp},#{item.connectTime},#{item.lastHeartbeatTime},1,now(),now(),1)
+        </foreach>
+        on duplicate key update last_heartbeat_time = values(last_heartbeat_time),version = version + 1,update_time = now()
+    </insert>
+
+    <delete id="batchDelete">
+        delete from app_client_connection where channel_id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteInvalidConnections">
+        delete
+        from app_client_connection
+        where last_heartbeat_time &lt; #{timeLimit}
+    </delete>
+
+    <select id="getList" resultType="com.netty100.pojo.vo.ClientConnectionVo">
+        select * from app_client_connection
+        <where>
+            <if test="start!=null">create_time between #{start} and #{end}</if>
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="remoteIp!=null">and remote_ip like #{remoteIp}</if>
+            <if test="messageSource!=null">and message_source = #{messageSource}</if>
+            <if test="messageWay!=null">and message_way = #{messageWay}</if>
+            <if test="messageDest!=null">and message_dest = #{messageDest}</if>
+            <if test="messageType!=null">and message_type = #{messageType}</if>
+            <if test="messageSerialize!=null">and message_serialize = #{messageSerialize}</if>
+        </where>
+    </select>
+
+    <select id="getListByServerId" resultType="com.netty100.entity.ClientConnection">
+        select id,
+               server_id,
+               cluster_id,
+               server_intranet_ip,
+               channel_id,
+               channel_key,
+               device_id,
+               user_id,
+               remote_ip
+        from app_client_connection
+        where server_id = #{serverId}
+    </select>
+</mapper>

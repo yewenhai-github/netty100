@@ -18,7 +18,7 @@ package com.netty100.cluster.plugin.control.connection.response;
 
 /**
  * connection check response.
- * @author yewenhai
+ * @author why
  */
 public class ConnectionCheckResponse {
     

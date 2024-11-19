@@ -21,7 +21,7 @@ import com.netty100.cluster.api.remote.Payload;
 /**
  * abstract response model via rpc channel.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: Response.java, v 0.1 2020年07月13日 6:03 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

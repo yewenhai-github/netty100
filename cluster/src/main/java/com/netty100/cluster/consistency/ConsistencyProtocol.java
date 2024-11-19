@@ -35,7 +35,7 @@ import java.util.concurrent.CompletableFuture;
  *     protocol, such as leader, term, and other metadata information in the Raft protocol</li>
  * </ul>
  *
- * @author yewenhai
+ * @author why
  */
 public interface ConsistencyProtocol<T extends Config, P extends RequestProcessor> extends CommandOperations {
     

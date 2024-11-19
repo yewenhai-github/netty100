@@ -25,7 +25,7 @@ import java.util.HashSet;
 /**
  * Cap server ability initializer holder.
  *
- * @author yewenhai
+ * @author why
  */
 public class ServerAbilityInitializerHolder {
     

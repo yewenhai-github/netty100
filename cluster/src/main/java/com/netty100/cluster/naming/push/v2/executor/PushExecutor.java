@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.push.v2.task.NamingPushCallback;
 /**
  * Cap naming push executor for v2.
  *
- * @author yewenhai
+ * @author why
  */
 public interface PushExecutor {
     

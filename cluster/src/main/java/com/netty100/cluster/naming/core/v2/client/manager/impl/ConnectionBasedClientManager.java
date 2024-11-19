@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The manager of {@code ConnectionBasedClient}.
  *
- * @author yewenhai
+ * @author why
  */
 @Component("connectionBasedClientManager")
 public class ConnectionBasedClientManager extends ClientConnectionEventListener implements ClientManager {

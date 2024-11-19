@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
 /**
  * Cap naming metadata operate service.
  *
- * @author yewenhai
+ * @author why
  */
 @Component
 public class NamingMetadataOperateService {

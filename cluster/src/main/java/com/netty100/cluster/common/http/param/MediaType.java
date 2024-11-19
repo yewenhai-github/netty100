@@ -22,7 +22,7 @@ import com.netty100.cluster.common.utils.StringUtils;
 /**
  * Http Media type.
  *
- * @author yewenhai
+ * @author why
  */
 public final class MediaType {
     

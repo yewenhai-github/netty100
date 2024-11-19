@@ -38,7 +38,7 @@ import java.nio.file.StandardOpenOption;
  * <p>Detects the "file" protocol as well as the JBoss "vfs" protocol in URLs,
  * resolving file system references accordingly.
  *
- * @author yewenhai
+ * @author why
  * @since 3.0
  */
 public abstract class AbstractFileResolvingResource extends AbstractResource {

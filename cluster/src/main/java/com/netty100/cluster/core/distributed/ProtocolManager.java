@@ -40,7 +40,7 @@ import java.util.Set;
 /**
  * Conformance protocol management, responsible for managing the lifecycle of conformance protocols in Cap.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 @Component(value = "ProtocolManager")

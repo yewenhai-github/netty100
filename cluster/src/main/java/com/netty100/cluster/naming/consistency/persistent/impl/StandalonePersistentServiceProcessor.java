@@ -35,7 +35,7 @@ import java.util.Optional;
 /**
  * Persistent service manipulation layer in stand-alone mode.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.ServiceOrDaoClassShouldEndWithImplRule")
 public class StandalonePersistentServiceProcessor extends BasePersistentServiceProcessor {

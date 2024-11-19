@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps.response;
 /**
  * tps result code.
  *
- * @author yewenhai
+ * @author why
  */
 public class TpsResultCode {
     

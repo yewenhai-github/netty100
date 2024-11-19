@@ -25,7 +25,7 @@ import com.netty100.cluster.core.utils.Loggers;
 /**
  * Cap abstract dynamic config.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractDynamicConfig extends Subscriber<ServerConfigChangeEvent> {
     

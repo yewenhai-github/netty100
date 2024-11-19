@@ -26,7 +26,7 @@ import com.netty100.cluster.common.notify.Event;
  * to all subscriber.
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 public class ServerConfigChangeEvent extends Event {
     

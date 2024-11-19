@@ -21,7 +21,7 @@ import com.netty100.cluster.common.notify.Event;
 /**
  * Remoting connection heart beat event.
  *
- * @author yewenhai
+ * @author why
  */
 public class RemotingHeartBeatEvent extends Event {
     

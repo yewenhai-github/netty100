@@ -27,7 +27,7 @@ import com.google.protobuf.ZeroByteStringHelper;
 /**
  * JRaft snapshot operation.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.ClassNamingShouldBeCamelRule")
 interface JSnapshotOperation {

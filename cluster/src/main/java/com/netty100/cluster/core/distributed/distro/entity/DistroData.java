@@ -21,7 +21,7 @@ import com.netty100.cluster.consistency.DataOperation;
 /**
  * Distro data.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroData {
     

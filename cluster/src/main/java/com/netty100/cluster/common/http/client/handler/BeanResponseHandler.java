@@ -28,7 +28,7 @@ import java.lang.reflect.Type;
  * bean response handler,
  * Mainly converter response type as bean type.
  *
- * @author yewenhai
+ * @author why
  */
 public class BeanResponseHandler<T> extends AbstractResponseHandler<T> {
     

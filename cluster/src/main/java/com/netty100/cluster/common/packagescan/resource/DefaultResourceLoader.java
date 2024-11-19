@@ -38,7 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * and a {@link ClassPathResource} if it is a non-URL path or a
  * "classpath:" pseudo-URL.
  *
- * @author yewenhai
+ * @author why
  * @since 10.03.2004
  */
 public class DefaultResourceLoader implements ResourceLoader {

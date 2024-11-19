@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 /**
  * control rule activator.
  *
- * @author yewenhai
+ * @author why
  */
 public class ControlRuleChangeActivator {
     

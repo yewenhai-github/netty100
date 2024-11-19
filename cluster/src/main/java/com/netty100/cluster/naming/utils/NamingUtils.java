@@ -27,7 +27,7 @@ import static com.netty100.cluster.api.common.Constants.NUMBER_PATTERN_STRING;
 /**
  * NamingUtils.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public class NamingUtils {

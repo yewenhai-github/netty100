@@ -22,7 +22,7 @@ import com.netty100.cluster.common.notify.Event;
  * The RAFT protocol runs an exception event. If this event is published, it means that the current raft Group cannot
  * continue to run normally
  *
- * @author yewenhai
+ * @author why
  */
 public class RaftErrorEvent extends Event {
     

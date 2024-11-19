@@ -38,7 +38,7 @@ import java.util.Map;
 /**
  * gRPC utils, use to parse request and response.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcUtils.java, v 0.1 2020年08月09日 1:43 PM liuzunfei Exp $
  */
 public class GrpcUtils {

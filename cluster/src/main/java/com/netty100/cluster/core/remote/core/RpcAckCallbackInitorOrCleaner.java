@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 /**
  * RemoteConnectionEventListener.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RemoteConnectionEventListener.java, v 0.1 2020年08月10日 1:04 AM liuzunfei Exp $
  */
 @Component

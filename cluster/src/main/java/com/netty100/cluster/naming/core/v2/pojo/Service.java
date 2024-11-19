@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Service POJO for Cap v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class Service implements Serializable {
     

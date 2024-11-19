@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Timed to start distro verify task.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroVerifyTimedTask implements Runnable {
     

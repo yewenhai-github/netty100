@@ -28,7 +28,7 @@ import java.util.Collection;
  * <p>The abstract concept of the client stored by on the server of Cap naming module. It is used to store which
  * services the client has published and subscribed.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Client {
     

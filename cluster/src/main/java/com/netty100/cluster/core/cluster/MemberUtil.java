@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 /**
  * Member node tool class.
  *
- * @author yewenhai
+ * @author why
  */
 public class MemberUtil {
     

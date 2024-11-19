@@ -21,7 +21,7 @@ import com.netty100.cluster.common.utils.JacksonUtils;
 /**
  * Request handler.
  *
- * @author yewenhai
+ * @author why
  */
 public final class RequestHandler {
     

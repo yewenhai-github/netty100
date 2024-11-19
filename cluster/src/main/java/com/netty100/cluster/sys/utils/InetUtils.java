@@ -50,7 +50,7 @@ import static com.netty100.cluster.sys.env.Constants.USE_ONLY_SITE_INTERFACES;
 /**
  * Network card operation tool class.
  *
- * @author yewenhai
+ * @author why
  */
 public class InetUtils {
     

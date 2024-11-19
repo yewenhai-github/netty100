@@ -19,7 +19,7 @@ package com.netty100.cluster.common.utils;
 /**
  * Http method constants.
  *
- * @author yewenhai
+ * @author why
  * @since 0.8.0
  */
 public class HttpMethod {

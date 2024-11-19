@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Selector with no filtering.
  *
- * @author yewenhai
+ * @author why
  * @date 2021-08-04 13:28
  */
 public class NoneSelector<T extends Instance> implements Selector<List<T>, List<T>, String> {

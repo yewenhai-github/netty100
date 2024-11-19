@@ -19,7 +19,7 @@ package com.netty100.cluster.common.tls;
 /**
  * tls system config.
  *
- * @author yewenhai
+ * @author why
  */
 public final class TlsSystemConfig {
     

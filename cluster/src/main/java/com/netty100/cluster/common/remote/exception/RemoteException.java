@@ -21,7 +21,7 @@ import com.netty100.cluster.api.exception.runtime.CapRuntimeException;
 /**
  * super exception in remote module.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: RemoteException.java, v 0.1 2020年07月22日 7:24 PM liuzunfei Exp $
  */
 public class RemoteException extends CapRuntimeException {

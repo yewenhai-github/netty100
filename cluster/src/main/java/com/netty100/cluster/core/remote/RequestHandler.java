@@ -26,8 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Cap based request handler.
  *
- * @author yewenhai
- * @author yewenhai
+ * @author why
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class RequestHandler<T extends Request, S extends Response> {

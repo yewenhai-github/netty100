@@ -21,7 +21,7 @@ import java.util.Objects;
 /**
  * Distro key.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroKey {
     

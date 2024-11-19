@@ -21,7 +21,7 @@ import com.netty100.cluster.common.trace.event.TraceEvent;
 /**
  * Naming trace event.
  *
- * @author yewenhai
+ * @author why
  */
 public class NamingTraceEvent extends TraceEvent {
 

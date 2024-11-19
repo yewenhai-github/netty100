@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * pay load registry.
  *
- * @author yewenhai
+ * @author why
  */
 public class ResponseRegistry {
     

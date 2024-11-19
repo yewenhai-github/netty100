@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Distro record for monitor.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroRecord {
     

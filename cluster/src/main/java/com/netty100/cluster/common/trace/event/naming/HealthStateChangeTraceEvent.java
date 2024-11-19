@@ -20,7 +20,7 @@ import com.netty100.cluster.common.trace.HealthCheckType;
 
 /**
  * Naming instance health state change trace event.
- * @author yewenhai
+ * @author why
  */
 public class HealthStateChangeTraceEvent extends NamingTraceEvent {
     

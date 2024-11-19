@@ -22,7 +22,7 @@ import com.netty100.cluster.plugin.control.tps.TpsBarrierCreator;
 /**
  * default cap tps barrier creator.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultCapTpsBarrierCreator implements TpsBarrierCreator {
     

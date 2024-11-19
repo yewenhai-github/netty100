@@ -36,7 +36,7 @@ import java.lang.reflect.Type;
 /**
  * Json utils implement by Jackson.
  *
- * @author yewenhai
+ * @author why
  */
 public final class JacksonUtils {
 

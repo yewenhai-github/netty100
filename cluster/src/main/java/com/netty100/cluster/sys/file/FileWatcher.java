@@ -22,7 +22,7 @@ import java.util.concurrent.Executor;
 /**
  * file watcher.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class FileWatcher {

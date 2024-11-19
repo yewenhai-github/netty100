@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.healthcheck.heartbeat;
 /**
  * Check and update statues of ephemeral instances, remove them if they have been expired.
  *
- * @author yewenhai
+ * @author why
  */
 public interface BeatCheckTask extends Runnable {
     

@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
  * will take 150 seconds for the DataCenterId to be repeated. This is still based on the situation that the new master
  * needs to be selected after each election of the Leader
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class SnowFlowerIdGenerator implements IdGenerator {

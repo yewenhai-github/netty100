@@ -21,7 +21,7 @@ import com.netty100.cluster.api.ability.ServerAbilities;
 /**
  * Server ability initializer for remote.
  *
- * @author yewenhai
+ * @author why
  */
 public class RemoteAbilityInitializer implements ServerAbilityInitializer {
     

@@ -28,7 +28,7 @@ import java.lang.reflect.Type;
 /**
  * RestResult response handler, Mainly converter response type as {@link RestResult} type.
  *
- * @author yewenhai
+ * @author why
  */
 public class RestResultResponseHandler<T> extends AbstractResponseHandler<T> {
     

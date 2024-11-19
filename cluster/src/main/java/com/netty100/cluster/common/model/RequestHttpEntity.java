@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Represents an HTTP request , consisting of headers and body.
  *
- * @author yewenhai
+ * @author why
  */
 public class RequestHttpEntity {
     

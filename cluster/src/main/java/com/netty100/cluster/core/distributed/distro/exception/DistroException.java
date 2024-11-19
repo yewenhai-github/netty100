@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.distro.exception;
 /**
  * Distro exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroException extends RuntimeException {
     

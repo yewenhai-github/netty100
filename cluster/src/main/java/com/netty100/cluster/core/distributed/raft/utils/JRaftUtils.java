@@ -54,7 +54,7 @@ import java.util.stream.Collectors;
 /**
  * JRaft utils.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class JRaftUtils {

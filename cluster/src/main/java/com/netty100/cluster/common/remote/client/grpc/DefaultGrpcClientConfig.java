@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Default grpc client config.
  *
- * @author yewenhai
+ * @author why
  */
 public class DefaultGrpcClientConfig implements GrpcClientConfig {
     

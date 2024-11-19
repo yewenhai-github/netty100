@@ -24,7 +24,7 @@ package com.netty100.cluster.common.packagescan.util;
  *
  * <p>Mainly for use within the framework.
  *
- * @author yewenhai
+ * @author why
  * @see NestedIoException
  * @since 2.0
  */

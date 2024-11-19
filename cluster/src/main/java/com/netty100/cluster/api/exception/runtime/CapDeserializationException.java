@@ -23,7 +23,7 @@ import static com.netty100.cluster.api.common.Constants.Exception.DESERIALIZE_ER
 /**
  * Cap deserialization exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapDeserializationException extends CapRuntimeException {
     

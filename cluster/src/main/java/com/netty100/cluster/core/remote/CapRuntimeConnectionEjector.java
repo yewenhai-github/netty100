@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * cap runtime connection ejector.
  *
- * @author yewenhai
+ * @author why
  */
 public class CapRuntimeConnectionEjector extends RuntimeConnectionEjector {
     

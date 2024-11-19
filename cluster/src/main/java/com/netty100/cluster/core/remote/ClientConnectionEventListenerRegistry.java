@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * registry for client connection event listeners.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClientConnectionEventListenerRegistry.java, v 0.1 2020年07月20日 1:47 PM liuzunfei Exp $
  */
 @Service

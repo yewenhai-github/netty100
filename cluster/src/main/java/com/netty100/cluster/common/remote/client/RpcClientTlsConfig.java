@@ -23,7 +23,7 @@ import java.util.Properties;
 /**
  * gRPC config for sdk.
  *
- * @author yewenhai
+ * @author why
  */
 public class RpcClientTlsConfig extends TlsConfig {
 

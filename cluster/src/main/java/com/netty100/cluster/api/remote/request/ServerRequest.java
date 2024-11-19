@@ -19,7 +19,7 @@ package com.netty100.cluster.api.remote.request;
 /**
  * ServerPushResponse.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ServerPushResponse.java, v 0.1 2020年07月20日 1:21 PM liuzunfei Exp $
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")

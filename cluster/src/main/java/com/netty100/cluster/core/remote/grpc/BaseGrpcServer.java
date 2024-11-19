@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Grpc implementation as a rpc server.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: BaseGrpcServer.java, v 0.1 2020年07月13日 3:42 PM liuzunfei Exp $
  */
 public abstract class BaseGrpcServer extends BaseRpcServer {

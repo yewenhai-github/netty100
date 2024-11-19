@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 /**
  * push response  to clients.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushService.java, v 0.1 2021年07月17日 1:12 PM liuzunfei Exp $
  */
 @Component

@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Changes to metadata information during the raft protocol run.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class RaftEvent extends SlowEvent {

@@ -19,7 +19,7 @@ package com.netty100.cluster.api.naming;
 /**
  * Some keys of metadata that are recognized by Cap.
  *
- * @author yewenhai
+ * @author why
  * @since 1.0.0
  */
 public class PreservedMetadataKeys {

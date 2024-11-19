@@ -24,7 +24,7 @@ import com.netty100.cluster.naming.misc.ClientConfig;
  *
  * <p>The client is bind to the tcp session. When the tcp session disconnect, the client should be clean.
  *
- * @author yewenhai
+ * @author why
  */
 public class ConnectionBasedClient extends AbstractClient {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.core.utils;
 /**
  * Constants.
  *
- * @author yewenhai
+ * @author why
  */
 public final class Commons {
     

@@ -19,7 +19,7 @@ package com.netty100.cluster.core.distributed.distro;
 /**
  * Distro constants.
  *
- * @author yewenhai
+ * @author why
  */
 public class DistroConstants {
     

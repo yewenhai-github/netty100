@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * tps barrier for tps point.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("PMD.AbstractClassShouldStartWithAbstractNamingRule")
 public abstract class TpsBarrier {

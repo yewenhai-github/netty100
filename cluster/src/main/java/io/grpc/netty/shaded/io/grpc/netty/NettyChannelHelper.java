@@ -24,7 +24,7 @@ import io.grpc.netty.shaded.io.netty.channel.Channel;
 /**
  * Get netty channel.
  *
- * @author yewenhai
+ * @author why
  * @date 2023/1/4 21:08
  */
 public class NettyChannelHelper {

@@ -26,7 +26,7 @@ import java.util.Collection;
 /**
  * rule parser proxy.
  *
- * @author yewenhai
+ * @author why
  */
 public class RuleParserProxy {
     

@@ -37,7 +37,7 @@ import java.util.Map;
 /**
  * {@link HttpClientRequest} implementation that uses apache http client to execute streaming requests.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings({"unchecked", "resource"})
 public class DefaultHttpClientRequest implements HttpClientRequest {

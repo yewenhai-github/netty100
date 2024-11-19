@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Metrics info of server.
  *
- * @author yewenhai
+ * @author why
  */
 public class RsInfo {
     

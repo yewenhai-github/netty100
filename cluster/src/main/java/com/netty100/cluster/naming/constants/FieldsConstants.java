@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.constants;
 /**
  * FieldsConstants.
  *
- * @author yewenhai
+ * @author why
  */
 public class FieldsConstants {
     

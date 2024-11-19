@@ -19,7 +19,7 @@ package com.netty100.cluster.plugin.control.tps.rule;
 /**
  * rule model.
  *
- * @author yewenhai
+ * @author why
  */
 public enum RuleModel {
     

@@ -26,7 +26,7 @@ import java.util.Objects;
 /**
  * Instance POJO of client published for Cap v2.
  *
- * @author yewenhai
+ * @author why
  */
 public class InstancePublishInfo implements Serializable {
     

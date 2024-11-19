@@ -99,7 +99,7 @@ import java.util.function.BiConsumer;
  * other functional modules.
  * </p>
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public class JRaftServer {

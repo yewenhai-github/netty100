@@ -24,7 +24,7 @@ import java.util.Collection;
 /**
  * Naming subscriber service.
  *
- * @author yewenhai
+ * @author why
  */
 public interface NamingSubscriberService {
     

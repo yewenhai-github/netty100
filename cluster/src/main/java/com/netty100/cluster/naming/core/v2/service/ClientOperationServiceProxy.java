@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Implementation of external exposure.
  *
- * @author yewenhai
+ * @author why
  */
 @DependsOn("namingSubscriberServiceV2Impl")
 @SuppressWarnings("PMD.ServiceOrDaoClassShouldEndWithImplRule")

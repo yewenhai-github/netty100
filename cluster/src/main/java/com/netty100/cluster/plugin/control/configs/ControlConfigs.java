@@ -23,7 +23,7 @@ import java.util.Collection;
 /**
  * control configs params.
  *
- * @author yewenhai
+ * @author why
  */
 public class ControlConfigs {
     

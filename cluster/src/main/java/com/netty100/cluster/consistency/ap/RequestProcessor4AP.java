@@ -21,7 +21,7 @@ import com.netty100.cluster.consistency.RequestProcessor;
 /**
  * log processor for ap.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public abstract class RequestProcessor4AP extends RequestProcessor {

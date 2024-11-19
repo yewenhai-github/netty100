@@ -19,7 +19,7 @@ package com.netty100.cluster.core.exception;
 /**
  * Core module code starts with 40001.
  *
- * @author yewenhai
+ * @author why
  */
 public enum ErrorCode {
     

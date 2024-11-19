@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Naming loggers holder.
  *
- * @author yewenhai
+ * @author why
  */
 public class Loggers {
     

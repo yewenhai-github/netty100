@@ -23,7 +23,7 @@ import java.util.concurrent.Executor;
 /**
  * call back for request.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: PushCallBack.java, v 0.1 2020年09月01日 6:33 PM liuzunfei Exp $
  */
 public interface RequestCallBack<T extends Response> {

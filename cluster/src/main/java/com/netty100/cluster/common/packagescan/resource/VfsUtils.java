@@ -38,7 +38,7 @@ import java.net.URL;
  * <p>Thanks go to Marius Bogoevici for the initial patch.
  * <b>Note:</b> This is an internal class and should not be used outside the framework.
  *
- * @author yewenhai
+ * @author why
  * @since 3.0.3
  */
 public abstract class VfsUtils {

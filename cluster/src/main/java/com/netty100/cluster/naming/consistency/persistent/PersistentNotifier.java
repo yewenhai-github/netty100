@@ -32,7 +32,7 @@ import java.util.function.Function;
 /**
  * persistent notifier, It is responsible for notifying interested listeners of all write changes to the data.
  *
- * @author yewenhai
+ * @author why
  */
 public final class PersistentNotifier extends Subscriber<ValueChangeEvent> {
     

@@ -21,7 +21,7 @@ import static com.netty100.cluster.api.common.Constants.Remote.INTERNAL_MODULE;
 /**
  * ConnectResetRequest.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ConnectResetRequest.java, v 0.1 2020年07月15日 11:11 AM liuzunfei Exp $
  */
 public class ConnectResetRequest extends ServerRequest {

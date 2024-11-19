@@ -23,7 +23,7 @@ import com.netty100.cluster.common.notify.listener.Subscriber;
  *
  * <p>To support one publisher for different events.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ShardedEventPublisher extends EventPublisher {
     

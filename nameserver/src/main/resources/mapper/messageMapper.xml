@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netty100.mapper.MessageMapper">
+
+    <insert id="batchSave">
+        insert into api_message_log values
+        <foreach collection="list" separator="," item="item">
+            (#{item.id},#{item.serverId},#{item.clusterId},#{item.messageId},
+            #{item.userId},#{item.deviceId},#{item.messageWay},#{item.messageSource},#{item.messageDest},
+            #{item.messageType},#{item.messageSerialize},#{item.logPoint},#{item.logContent},#{item.localAddress},
+            #{item.localPort},#{item.remoteAddress},#{item.remotePort},#{item.logTime},#{item.leaf},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <delete id="deleteExpiredLog">
+        delete from api_message_log where log_time &lt; #{date}
+    </delete>
+
+    <select id="getList" resultType="com.netty100.entity.Message">
+        select * from api_message_log
+        <where>
+            log_time between #{start} and #{end}
+            <if test="clusterId!=null">and cluster_id = #{clusterId}</if>
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+            <if test="messageId!=null">and message_id = #{messageId}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="deviceId!=null">and device_id = #{deviceId}</if>
+            <if test="messageWay!=null">and message_way = #{messageWay}</if>
+            <if test="messageSource!=null">and message_source = #{messageSource}</if>
+            <if test="messageDest!=null">and message_dest = #{messageDest}</if>
+            <if test="messageType!=null">and message_type = #{messageType}</if>
+            <if test="messageSerialize!=null">and message_serialize = #{messageSerialize}</if>
+            <if test="remoteAddress!=null">and remote_address like #{remoteAddress}</if>
+        </where>
+    </select>
+
+    <select id="getDistinctMessageIdCount" resultType="java.lang.Long">
+        select count(1) from api_message_log
+        <where>
+            log_time between #{start} and #{end} and leaf = 0
+            <if test="clusterId!=null">and cluster_id = #{clusterId}</if>
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+            <if test="messageId!=null">and message_id = #{messageId}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="deviceId!=null">and device_id = #{deviceId}</if>
+            <if test="messageWay!=null">and message_way = #{messageWay}</if>
+            <if test="messageSource!=null">and message_source = #{messageSource}</if>
+            <if test="messageDest!=null">and message_dest = #{messageDest}</if>
+            <if test="messageType!=null">and message_type = #{messageType}</if>
+            <if test="messageSerialize!=null">and message_serialize = #{messageSerialize}</if>
+            <if test="remoteAddress!=null">and remote_address like #{remoteAddress}</if>
+        </where>
+    </select>
+
+    <select id="getMessageIdList" resultType="java.lang.String">
+        select message_id from api_message_log
+        <where>
+            log_time between #{start} and #{end} and leaf = 0
+            <if test="clusterId!=null">and cluster_id = #{clusterId}</if>
+            <if test="serverId!=null">and server_id = #{serverId}</if>
+            <if test="messageId!=null">and message_id = #{messageId}</if>
+            <if test="userId!=null">and user_id = #{userId}</if>
+            <if test="deviceId!=null">and device_id = #{deviceId}</if>
+            <if test="messageWay!=null">and message_way = #{messageWay}</if>
+            <if test="messageSource!=null">and message_source = #{messageSource}</if>
+            <if test="messageDest!=null">and message_dest = #{messageDest}</if>
+            <if test="messageType!=null">and message_type = #{messageType}</if>
+            <if test="messageSerialize!=null">and message_serialize = #{messageSerialize}</if>
+            <if test="remoteAddress!=null">and remote_address like #{remoteAddress}</if>
+        </where>
+        order by log_time desc limit #{pageSize} offset #{offsetIndex}
+    </select>
+
+    <select id="getByMessageIds" resultType="com.netty100.entity.Message">
+        select * from api_message_log
+        <where>
+            log_time between #{dto.start} and #{dto.end} and message_id in
+            <foreach collection="messageIds" item="item" separator="," close=")" open="(">
+                #{item}
+            </foreach>
+            <if test="dto.clusterId!=null">and cluster_id = #{dto.clusterId}</if>
+            <if test="dto.serverId!=null">and server_id = #{dto.serverId}</if>
+            <if test="dto.userId!=null">and user_id = #{dto.userId}</if>
+            <if test="dto.deviceId!=null">and device_id = #{dto.deviceId}</if>
+            <if test="dto.messageWay!=null">and message_way = #{dto.messageWay}</if>
+            <if test="dto.messageSource!=null">and message_source = #{dto.messageSource}</if>
+            <if test="dto.messageDest!=null">and message_dest = #{dto.messageDest}</if>
+            <if test="dto.messageType!=null">and message_type = #{dto.messageType}</if>
+            <if test="dto.messageSerialize!=null">and message_serialize = #{dto.messageSerialize}</if>
+            <if test="dto.remoteAddress!=null">and remote_address like #{dto.remoteAddress}</if>
+        </where>
+        order by log_time asc,id asc
+    </select>
+    <select id="queryMaxMinId" resultType="java.util.Map">
+        SELECT MAX(id) maxId,MIN(id) minId FROM api_message_log WHERE log_time &lt; #{date}
+    </select>
+    <delete id="deleteExpiredLogById">
+        DELETE FROM api_message_log WHERE id &lt;= #{maxId}
+    </delete>
+</mapper>

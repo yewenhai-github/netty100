@@ -29,7 +29,7 @@ import java.util.function.Supplier;
  * Simple task time calculation，Currently only the task time statistics task that supports synchronizing code blocks is
  * supported.
  *
- * @author yewenhai
+ * @author why
  */
 public class TimerContext {
     

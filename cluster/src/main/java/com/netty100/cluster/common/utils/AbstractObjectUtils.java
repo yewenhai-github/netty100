@@ -27,7 +27,7 @@ import java.util.*;
  *
  * <p>Thanks to Alex Ruiz for contributing several enhancements to this class!
  *
- * @author yewenhai
+ * @author why
  * @since 19.03.2004
  */
 public abstract class AbstractObjectUtils {

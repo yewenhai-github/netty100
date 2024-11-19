@@ -41,7 +41,7 @@ import java.util.Map;
 /**
  * Cap rest template Interface specifying a basic set of RESTful operations.
  *
- * @author yewenhai
+ * @author why
  * @see HttpClientRequest
  * @see HttpClientResponse
  */

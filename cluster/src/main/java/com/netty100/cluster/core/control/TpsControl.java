@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * tps control manager.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: TpsControlManager.java, v 0.1 2021年01月09日 12:38 PM liuzunfei Exp $
  */
 @Retention(RetentionPolicy.RUNTIME)

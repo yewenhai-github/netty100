@@ -33,7 +33,7 @@ import java.util.HashSet;
  *     <li>{@link com.netty100.cluster.naming.consistency.persistent.raft.RaftPeerSet}</li>
  * </ul>
  *
- * @author yewenhai
+ * @author why
  */
 public class MembersChangeEvent extends Event {
     

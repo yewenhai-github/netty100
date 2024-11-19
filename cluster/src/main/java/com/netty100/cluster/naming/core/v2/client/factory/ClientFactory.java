@@ -22,7 +22,7 @@ import com.netty100.cluster.naming.core.v2.client.ClientAttributes;
 /**
  * Client factory.
  *
- * @author yewenhai
+ * @author why
  */
 public interface ClientFactory<C extends Client> {
     

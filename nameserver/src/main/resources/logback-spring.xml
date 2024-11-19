@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <contextName>logback-spring</contextName>
+    <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n"/>
+    <property name="pattern-color" value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
+    <property name="LOG_HOME" value="logs"/>
+
+    <!-- 控制台输出-带颜色 -->
+    <appender name="CONSOLE-WITH-COLOR" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                [%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) | %black(%X{EagleEye-TraceID}) | %black(%X{currUserId}) | %black(%X{deviceName}) | %black(%X{versionCode}) | %black(%X{appVersion}) | %black(%X{imei}) | %black(%X{channel}) | %black(%X{from}) | %black(%X{appId}) | %marker | %blue(%thread %-5level %logger{50} - %msg) %red(%xException)]%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出 -->
+    <appender name="FILE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+                <Pattern>
+                    [%d{yyyy-MM-dd HH:mm:ss.SSS} | [%tid] | %X{currUserId} | %X{deviceName} | %X{versionCode} | %X{appVersion} | %X{imei} | %X{channel} | %X{from} | %X{appId} | %marker | %thread %-5level %logger{50} - %msg %xException]%n
+                </Pattern>
+            </layout>
+            <charset>utf-8</charset>
+        </encoder>
+
+    </appender>
+
+    <!-- 异步输出 -->
+    <appender name="ASYNC-FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志, 日志满的时候回block -->
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>45000</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <!-- 控制台输出 -->
+    <appender name="ASYNC-CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志, 日志满的时候回block -->
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>45000</queueSize>
+        <appender-ref ref="CONSOLE-WITH-COLOR"/>
+    </appender>
+
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="ASYNC-CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="dev,qa,prod">
+        <root level="INFO">
+            <appender-ref ref="ASYNC-FILE"/>
+        </root>
+    </springProfile>
+
+</configuration>

@@ -18,7 +18,7 @@ package com.netty100.cluster.plugin.control.tps.response;
 
 /**
  * tps response.
- * @author yewenhai
+ * @author why
  */
 public class TpsCheckResponse {
     

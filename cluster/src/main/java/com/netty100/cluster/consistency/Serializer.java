@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Serialization interface.
  *
- * @author yewenhai
+ * @author why
  */
 public interface Serializer {
     

@@ -31,7 +31,7 @@ import java.net.*;
  * Supports resolution as a {@code URL} and also as a {@code File} in
  * case of the {@code "file:"} protocol.
  *
- * @author yewenhai
+ * @author why
  * @see URL
  * @since 28.12.2003
  */

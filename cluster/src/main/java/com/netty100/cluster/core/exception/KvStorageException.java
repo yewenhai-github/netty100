@@ -22,7 +22,7 @@ import com.netty100.cluster.api.exception.CapException;
 /**
  * RocksDB Exception.
  *
- * @author yewenhai
+ * @author why
  */
 public class KvStorageException extends CapException {
     

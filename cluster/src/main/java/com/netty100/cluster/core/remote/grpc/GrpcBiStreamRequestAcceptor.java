@@ -40,7 +40,7 @@ import java.util.Map;
 /**
  * grpc bi stream request .
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcBiStreamRequest.java, v 0.1 2020年09月01日 10:41 PM liuzunfei Exp $
  */
 @Service

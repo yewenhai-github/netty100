@@ -25,7 +25,7 @@ import io.grpc.netty.shaded.io.netty.channel.Channel;
 /**
  * GrpcConnectionInterceptor set connection.
  *
- * @author yewenhai
+ * @author why
  * @date 2023/1/5 16:05
  */
 public class GrpcConnectionInterceptor implements ServerInterceptor {

@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Distro data storage.
  *
- * @author yewenhai
+ * @author why
  */
 public interface DistroDataStorage {
     

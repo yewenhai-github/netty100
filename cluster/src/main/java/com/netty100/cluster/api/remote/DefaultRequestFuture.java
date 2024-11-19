@@ -25,7 +25,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * default request future.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: DefaultRequestFuture.java, v 0.1 2020年09月01日 6:42 PM liuzunfei Exp $
  */
 public class DefaultRequestFuture implements RequestFuture {

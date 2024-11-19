@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * batch write request.
  *
- * @author yewenhai
+ * @author why
  */
 public class BatchWriteRequest implements Serializable {
     

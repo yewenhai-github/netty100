@@ -19,7 +19,7 @@ package com.netty100.cluster.consistency.cp;
 /**
  * Key value of metadata information of CP protocol.
  *
- * @author yewenhai
+ * @author why
  */
 public class MetadataKey {
     

@@ -22,7 +22,7 @@ import com.alipay.sofa.jraft.Closure;
 /**
  * Failure callback based on Closure.
  *
- * @author yewenhai
+ * @author why
  */
 public interface FailoverClosure extends Closure {
     

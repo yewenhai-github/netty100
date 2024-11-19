@@ -24,7 +24,7 @@ import java.lang.reflect.Type;
 /**
  * Response handler.
  *
- * @author yewenhai
+ * @author why
  */
 public final class ResponseHandler {
     

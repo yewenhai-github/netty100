@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Abstract Naming Interceptor Chain.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractNamingInterceptorChain<T extends Interceptable>
         implements CapNamingInterceptorChain<T> {

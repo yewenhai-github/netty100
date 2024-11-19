@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.pojo.Record;
 /**
  * The value changes events. //TODO Recipients need to implement the ability to receive batch events
  *
- * @author yewenhai
+ * @author why
  */
 public class ValueChangeEvent extends Event {
     

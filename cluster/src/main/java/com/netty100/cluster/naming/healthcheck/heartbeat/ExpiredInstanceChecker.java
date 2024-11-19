@@ -40,7 +40,7 @@ import java.util.Optional;
  *
  * <p>Delete the instance if has expired.
  *
- * @author yewenhai
+ * @author why
  */
 public class ExpiredInstanceChecker implements InstanceBeatChecker {
     

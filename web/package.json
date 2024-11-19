@@ -1,0 +1,41 @@
+{
+	"name": "netty-fontend-host",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"devDependencies": {
+		"@efox/emp": "2.1.7",
+		"@efox/eslint-config-vue": "2.0.0",
+		"@efox/plugin-babel-vue-3": "1.0.2",
+		"@typescript-eslint/eslint-plugin": "^7.1.0",
+		"typescript": "^4.6.3",
+		"unplugin-vue-components": "^0.19.3"
+	},
+	"dependencies": {
+		"@vueup/vue-quill": "^1.0.0-alpha.40",
+		"ant-design-vue": "^3.1.1",
+		"axios": "^0.26.1",
+		"dayjs": "^1.11.0",
+		"echarts": "^5.3.2",
+		"pinia": "^2.0.13",
+		"vue": "^3.2.31",
+		"vue-router": "^4.0.14"
+	},
+	"scripts": {
+		"dev": "emp dev --env dev",
+		"dev:qa": "emp dev --env qa",
+		"build": "emp build --env dev",
+		"build:dev": "emp build --env dev",
+		"build:qa": "emp build --env qa",
+		"build:prod": "emp build --env prod",
+		"build:sg-qa": "emp build --env sg-qa",
+		"build:sg-prod": "emp build --env sg-prod",
+		"build:serve": "emp build --env prod && serve dist -p 9002",
+		"start": "emp serve",
+		"stat": "emp build --analyze",
+		"emp": "emp",
+		"pull-types": "emp dts"
+	},
+	"author": "",
+	"license": "ISC"
+}

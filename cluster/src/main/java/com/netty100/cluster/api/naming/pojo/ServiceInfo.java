@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * ServiceInfo.
  *
- * @author yewenhai
+ * @author why
  */
 @JsonInclude(Include.NON_NULL)
 public class ServiceInfo {

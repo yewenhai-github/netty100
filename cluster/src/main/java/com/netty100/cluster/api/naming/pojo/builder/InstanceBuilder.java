@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * Builder for {@link Instance}.
  *
- * @author yewenhai
+ * @author why
  */
 public class InstanceBuilder {
     

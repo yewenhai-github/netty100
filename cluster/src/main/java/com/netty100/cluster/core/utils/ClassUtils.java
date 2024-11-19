@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * class operation utils.
  *
- * @author yewenhai
+ * @author why
  */
 @SuppressWarnings("all")
 public final class ClassUtils {

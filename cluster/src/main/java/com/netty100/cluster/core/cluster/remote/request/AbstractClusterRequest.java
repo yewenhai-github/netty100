@@ -23,7 +23,7 @@ import com.netty100.cluster.api.remote.request.Request;
 /**
  * Cluster request.
  *
- * @author yewenhai
+ * @author why
  */
 public abstract class AbstractClusterRequest extends Request {
     

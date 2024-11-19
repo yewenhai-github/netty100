@@ -25,7 +25,7 @@ import java.io.Serializable;
 /**
  * abilities of cap client.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: ClientAbilities.java, v 0.1 2021年01月24日 00:09 AM liuzunfei Exp $
  */
 public class ClientAbilities implements Serializable {

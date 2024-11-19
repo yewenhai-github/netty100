@@ -19,7 +19,7 @@ package com.netty100.cluster.naming.misc;
 /**
  * All switch entries for naming.
  *
- * @author yewenhai
+ * @author why
  */
 public class SwitchEntry {
     

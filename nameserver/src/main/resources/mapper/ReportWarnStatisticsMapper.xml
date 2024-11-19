@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.netty100.mapper.ReportWarnStatisticsMapper">
+    <resultMap id="BaseResultMap" type="com.netty100.entity.ReportWarnStatistics">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="cluster_id" property="clusterId" jdbcType="INTEGER"/>
+        <result column="server_id" property="serverId" jdbcType="INTEGER"/>
+        <result column="warn_type" property="warnType" jdbcType="INTEGER"/>
+        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="statistics_day" property="statisticsDay" jdbcType="CHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insertBatch">
+        INSERT INTO report_warn_statistics VALUES
+        <foreach collection="list" separator="," item="item">
+            (null,#{item.clusterId},#{item.serverId},#{item.warnType},#{item.count},#{item.statisticsDay},1,now(),now(),1)
+        </foreach>
+    </insert>
+
+    <select id="selectRateStatistics" parameterType="map" resultType="com.netty100.pojo.dto.WarnHistoryRateStatisticsDto">
+        SELECT create_day,cluster_id,COUNT(cluster_id) `count` FROM warn_history_info
+        WHERE 1=1
+        <if test="clusterIds != null and clusterIds.size() > 0">
+            <foreach collection="clusterIds" item="clusterId" separator="," open="AND cluster_id IN (" close=")">#{clusterId}</foreach>
+        </if>
+        <if test="timeList != null and timeList.size() > 0">
+            <foreach collection="timeList" item="time" separator="," open="AND create_day IN (" close=")">#{time}</foreach>
+        </if>
+        GROUP BY create_day,cluster_id
+    </select>
+
+    <select id="getWarnIncreaseRate" resultType="com.netty100.pojo.vo.WarnIncreaseRate">
+        select statistics_day as createDate,
+        sum(`count`) as total
+        from report_warn_statistics
+        where  cluster_id in
+        <foreach collection="clusterIds" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        group by createDate order by createDate asc
+    </select>
+</mapper>

@@ -22,7 +22,7 @@ import com.netty100.cluster.plugin.control.tps.rule.TpsControlRule;
 /**
  * parse rule content from raw string.
  *
- * @author yewenhai
+ * @author why
  */
 public interface RuleParser {
     

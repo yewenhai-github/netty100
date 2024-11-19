@@ -21,7 +21,7 @@ import java.util.Collection;
 /**
  * Service name view object.
  *
- * @author yewenhai
+ * @author why
  */
 public class ServiceNameView {
     

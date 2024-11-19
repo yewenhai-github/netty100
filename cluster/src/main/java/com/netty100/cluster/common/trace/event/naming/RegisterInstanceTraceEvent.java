@@ -18,7 +18,7 @@ package com.netty100.cluster.common.trace.event.naming;
 
 /**
  * Naming register instance trace event.
- * @author yewenhai
+ * @author why
  */
 public class RegisterInstanceTraceEvent extends NamingTraceEvent {
     

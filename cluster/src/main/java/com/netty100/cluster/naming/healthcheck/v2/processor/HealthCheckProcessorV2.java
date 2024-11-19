@@ -23,7 +23,7 @@ import com.netty100.cluster.naming.healthcheck.v2.HealthCheckTaskV2;
 /**
  * Health check processor for v2.x.
  *
- * @author yewenhai
+ * @author why
  */
 public interface HealthCheckProcessorV2 {
     

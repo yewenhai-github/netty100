@@ -43,7 +43,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * gRPC connection.
  *
- * @author yewenhai
+ * @author why
  * @version $Id: GrpcConnection.java, v 0.1 2020年08月09日 1:36 PM liuzunfei Exp $
  */
 public class GrpcConnection extends Connection {
