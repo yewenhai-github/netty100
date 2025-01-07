@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Message;
 import com.googlecode.protobuf.format.JsonFormat;
-import com.netty100.netty.codec.common.entity.TopeRequestBodyProto2;
-import com.netty100.netty.codec.common.entity.TopeRequestBody;
-import com.netty100.netty.codec.common.entity.TopeRequestBodyProto3;
+import com.netty100.netty.codec.common.entity.WhyRequestBodyProto2;
+import com.netty100.netty.codec.common.entity.WhyRequestBody;
+import com.netty100.netty.codec.common.entity.WhyRequestBodyProto3;
 import com.netty100.netty.codec.consumer.constants.CodecErrorCode;
 import com.netty100.netty.codec.consumer.service.WhyMessageConsumerService;
 import com.netty100.common.exception.CommonException;
@@ -85,33 +85,33 @@ public class WhyMessageConsumerServiceImpl implements WhyNettySdkService<byte[]>
                         token = arr[1];
                         data = arr[2];
                         validateUriToken(uri, token);
-                        getTopeConsumerService(uri).doCommand(data, header.getUserId());
+                        getWhyConsumerService(uri).doCommand(data, header.getUserId());
                     }
                     break;
                 case 2:
-                    TopeRequestBodyProto2.RequestBody requestProto2Body = getRequest2Body(body);
+                    WhyRequestBodyProto2.RequestBody requestProto2Body = getRequest2Body(body);
                     uri = requestProto2Body.getUrl();
                     validateUriToken(uri, token);
-                    whyMessageConsumerService = getTopeConsumerService(uri);
+                    whyMessageConsumerService = getWhyConsumerService(uri);
                     data = parseFrom(requestProto2Body.getData(), whyMessageConsumerService);
                     whyMessageConsumerService.doCommand(data, header.getUserId());
                     break;
                 case 3:
-                    TopeRequestBodyProto3.RequestBody requestProto3Body = getRequest3Body(body);
+                    WhyRequestBodyProto3.RequestBody requestProto3Body = getRequest3Body(body);
                     uri = requestProto3Body.getUri();
                     validateUriToken(uri, token);
-                    whyMessageConsumerService = getTopeConsumerService(uri);
+                    whyMessageConsumerService = getWhyConsumerService(uri);
                     data = parseFrom(requestProto3Body.getData(), whyMessageConsumerService);
                     whyMessageConsumerService.doCommand(data, header.getUserId());
                     break;
                 case 4:
-                    TopeRequestBody topeRequestBody = (TopeRequestBody) SerializationUtils.deserialize(body);
-                    uri = topeRequestBody.getUri();
-                    token = topeRequestBody.getToken();
-                    data = topeRequestBody.getData();
+                    WhyRequestBody whyRequestBody = (WhyRequestBody) SerializationUtils.deserialize(body);
+                    uri = whyRequestBody.getUri();
+                    token = whyRequestBody.getToken();
+                    data = whyRequestBody.getData();
 
                     validateUriToken(uri, token);
-                    getTopeConsumerService(uri).doCommand(data, header.getUserId());
+                    getWhyConsumerService(uri).doCommand(data, header.getUserId());
                     break;
                 case 5:
                     //com.alibaba.fastjson 1.2.31版本
@@ -121,7 +121,7 @@ public class WhyMessageConsumerServiceImpl implements WhyNettySdkService<byte[]>
                     data = requestJson.get("data");
 
                     validateUriToken(uri, token);
-                    getTopeConsumerService(uri).doCommand(data, header.getUserId());
+                    getWhyConsumerService(uri).doCommand(data, header.getUserId());
                     break;
                 default:
                     break;
@@ -132,20 +132,20 @@ public class WhyMessageConsumerServiceImpl implements WhyNettySdkService<byte[]>
         }
     }
 
-    private TopeRequestBodyProto2.RequestBody getRequest2Body(byte[] msg){
-        TopeRequestBodyProto2.RequestBody requestProto2Body;
+    private WhyRequestBodyProto2.RequestBody getRequest2Body(byte[] msg){
+        WhyRequestBodyProto2.RequestBody requestProto2Body;
         try {
-            requestProto2Body = TopeRequestBodyProto2.RequestBody.parseFrom(msg);
+            requestProto2Body = WhyRequestBodyProto2.RequestBody.parseFrom(msg);
         } catch (Exception e) {
             throw new CommonException(CodecErrorCode.Err003.getCodeMassage(e));
         }
         return requestProto2Body;
     }
 
-    private TopeRequestBodyProto3.RequestBody getRequest3Body(byte[] msg){
-        TopeRequestBodyProto3.RequestBody requestProto3Body;
+    private WhyRequestBodyProto3.RequestBody getRequest3Body(byte[] msg){
+        WhyRequestBodyProto3.RequestBody requestProto3Body;
         try {
-            requestProto3Body = TopeRequestBodyProto3.RequestBody.parseFrom(msg);
+            requestProto3Body = WhyRequestBodyProto3.RequestBody.parseFrom(msg);
         } catch (Exception e) {
             throw new CommonException(CodecErrorCode.Err003.getCodeMassage(e));
         }
@@ -205,7 +205,7 @@ public class WhyMessageConsumerServiceImpl implements WhyNettySdkService<byte[]>
         //TODO
     }
 
-    private WhyMessageConsumerService getTopeConsumerService(String uri){
+    private WhyMessageConsumerService getWhyConsumerService(String uri){
         Object bean;
         try {
             bean = WhySpringUtils.getBean(uri);

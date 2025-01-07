@@ -89,10 +89,10 @@ public class WhyChannelUtils {
         return NamingUtils.getGroupedName(instanceForm.getServiceName(), instanceForm.getGroupName());
     }
 
-    public static String getCurrentC2pChannelKey(WhyMessage topeMsg){
-        return topeMsg.getFixedHeader().getUserId()
-                + IpPortBasedClient.ID_DELIMITER + topeMsg.getFixedHeader().getMessageSource()
-                + IpPortBasedClient.ID_DELIMITER + topeMsg.getFixedHeader().getMessageDest();
+    public static String getCurrentC2pChannelKey(WhyMessage whyMsg){
+        return whyMsg.getFixedHeader().getUserId()
+                + IpPortBasedClient.ID_DELIMITER + whyMsg.getFixedHeader().getMessageSource()
+                + IpPortBasedClient.ID_DELIMITER + whyMsg.getFixedHeader().getMessageDest();
     }
 
     public static String getCurrentS2pChannelKey(WhyMessage whyMessage){
@@ -116,7 +116,7 @@ public class WhyChannelUtils {
      * @param channelKey
      * @param ctx
      */
-    public static void c2pChannelCache(String channelKey, ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig) {
+    public static void c2pChannelCache(String channelKey, ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig) {
         Channel channel = ctx.channel();
         Map<String, Object> newInfoAttribute = new ConcurrentHashMap<>(8);
         newInfoAttribute.put(CHANNEL_ID_KEY, getId(channel));
@@ -126,8 +126,8 @@ public class WhyChannelUtils {
         //缓存channelId，用于关闭管道时同步清空客户端连接缓存ClientCacheUtils.getClients()
 //        c2pChannelIdMap.put(ctx.channel().id(), channelKey);
         //Redis缓存所有管道的关系，用于内部消息转发定位到具体服务节点
-//        SpringUtils.getBean(RedisBoundUtils.class).putC2pCacheChannel(channelKey, TopeCloudUtils.getLocalServiceUrls());
-//        TopeReplicateUtils.setC2pIpCache(channelKey, SysUtility.getHostIp()+":"+kernelConfig.getPort(), true);
+//        SpringUtils.getBean(RedisBoundUtils.class).putC2pCacheChannel(channelKey, WhyCloudUtils.getLocalServiceUrls());
+//        WhyReplicateUtils.setC2pIpCache(channelKey, SysUtility.getHostIp()+":"+kernelConfig.getPort(), true);
     }
 
     public static boolean c2pChannelSingleSame(String channelKey, ChannelHandlerContext ctx){
@@ -140,7 +140,7 @@ public class WhyChannelUtils {
         return false;
     }
 
-    public static void c2pChannelForceClose(WhyMessage topeMsg, String channelKey, ChannelHandlerContext ctx, byte[] body, String point, String content) {
+    public static void c2pChannelForceClose(WhyMessage whyMsg, String channelKey, ChannelHandlerContext ctx, byte[] body, String point, String content) {
         if(SysUtility.isEmpty(channelKey)){
             return;
         }
@@ -157,10 +157,10 @@ public class WhyChannelUtils {
                 //统计量收集
                 WhyCountUtils.platform_c2p_connect_inactive_total.add(1);
                 //响应客户端
-                WhyMessage topeMsgForceClose = WhyMessageFactory.newMessage(topeMsg, body);
-                channel.writeAndFlush(topeMsgForceClose.bytes());
+                WhyMessage msgForceClose = WhyMessageFactory.newMessage(whyMsg, body);
+                channel.writeAndFlush(msgForceClose.bytes());
                 //日志埋点
-                WhyConnectQueue.pushClientChannelLogQueue(ctx, topeMsg, point, content);
+                WhyConnectQueue.pushClientChannelLogQueue(ctx, whyMsg, point, content);
                 //加入清空队列
                 WhyChannelPreClose.proClose(channel);
             } catch (Exception e) {
@@ -215,7 +215,7 @@ public class WhyChannelUtils {
         return false;
     }
 
-//    public static boolean c2pCloseCacheCtx(String channelKey, TopeMessage topeMsg){
+//    public static boolean c2pCloseCacheCtx(String channelKey, WhyMessage whyMsg){
 //        if(SysUtility.isEmpty(channelKey) || !ClientCacheUtils.getClients().containsKey(channelKey)){
 //            return false;
 //        }
@@ -227,8 +227,8 @@ public class WhyChannelUtils {
 //            c2pChannelIdMap.remove(channel.id());
 //            removeInstanceIntranetIp(channelKey);
 //            ClientCacheUtils.getClients().remove(channelKey);
-//            TopeMessage topeMsgForceClose = TopeMessageFactory.newMessage(topeMsg, ResponseCode.Rep118.getCodeBytes());
-//            channel.writeAndFlush(topeMsgForceClose.bytes());
+//            WhyMessage WhyMsgForceClose = WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep118.getCodeBytes());
+//            channel.writeAndFlush(WhyMsgForceClose.bytes());
 //        } catch (Exception e) {
 //            log.error("用户{}下线失败:{}", channelKey, e);
 //        } finally {
@@ -286,29 +286,29 @@ public class WhyChannelUtils {
         ctx.writeAndFlush(msg.bytes());
     }
 
-    public static void p2sWriteAndFlush(ChannelHandlerContext ctx, WhyMessage topeMsg, int serverCacheChannelReTimes) {
-        String clusterKey = getCurrentS2pChannelKey(topeMsg);
-        Channel c = getS2pCacheChannel(clusterKey, topeMsg, serverCacheChannelReTimes);
-        p2sWriteAndFlush(c, ctx, topeMsg, serverCacheChannelReTimes);
+    public static void p2sWriteAndFlush(ChannelHandlerContext ctx, WhyMessage whyMsg, int serverCacheChannelReTimes) {
+        String clusterKey = getCurrentS2pChannelKey(whyMsg);
+        Channel c = getS2pCacheChannel(clusterKey, whyMsg, serverCacheChannelReTimes);
+        p2sWriteAndFlush(c, ctx, whyMsg, serverCacheChannelReTimes);
     }
 
-    public static void p2sSimplexWriteAndFlush(ChannelHandlerContext ctx, WhyMessage topeMsg, int serverCacheChannelReTimes) {
-        Channel c = getS2pCacheChannel(getCurrentS2pChannelKeySimplex(topeMsg), topeMsg, serverCacheChannelReTimes);
+    public static void p2sSimplexWriteAndFlush(ChannelHandlerContext ctx, WhyMessage whyMsg, int serverCacheChannelReTimes) {
+        Channel c = getS2pCacheChannel(getCurrentS2pChannelKeySimplex(whyMsg), whyMsg, serverCacheChannelReTimes);
         //如果没有找到对应的channel，尝试从双工集群中获取
         if(SysUtility.isEmpty(c)){
-            c = getS2pCacheChannel(getCurrentS2pChannelKey(topeMsg), topeMsg, serverCacheChannelReTimes);
+            c = getS2pCacheChannel(getCurrentS2pChannelKey(whyMsg), whyMsg, serverCacheChannelReTimes);
         }
-        p2sWriteAndFlush(c, ctx, topeMsg, serverCacheChannelReTimes);
+        p2sWriteAndFlush(c, ctx, whyMsg, serverCacheChannelReTimes);
     }
-    public static void p2sWriteAndFlush(Channel c, ChannelHandlerContext ctx, WhyMessage topeMsg, int serverCacheChannelReTimes) {
+    public static void p2sWriteAndFlush(Channel c, ChannelHandlerContext ctx, WhyMessage whyMsg, int serverCacheChannelReTimes) {
         if(SysUtility.isNotEmpty(c)){
-            c.writeAndFlush(topeMsg.bytes());
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M02.getCode(), topeMsg, LogPointCode.M02.getMessage() + "<" + c.remoteAddress() + ">");
+            c.writeAndFlush(whyMsg.bytes());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M02.getCode(), whyMsg, LogPointCode.M02.getMessage() + "<" + c.remoteAddress() + ">");
         }else {
-            topeMsg.getFixedHeader().setMessageWay(CommonConstants.way_c2p_channelActive);
-            topeMsg = WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep115.getCodeBytes());
-            ctx.writeAndFlush(topeMsg.bytes());
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M03.getCode(), topeMsg, LogPointCode.M03.getMessage()+"<"+ WhyChannelUtils.getCurrentS2pChannelKey(topeMsg)+">");
+            whyMsg.getFixedHeader().setMessageWay(CommonConstants.way_c2p_channelActive);
+            whyMsg = WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep115.getCodeBytes());
+            ctx.writeAndFlush(whyMsg.bytes());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M03.getCode(), whyMsg, LogPointCode.M03.getMessage()+"<"+ WhyChannelUtils.getCurrentS2pChannelKey(whyMsg)+">");
         }
     }
 
@@ -372,7 +372,7 @@ public class WhyChannelUtils {
     /**
      * 获取server端缓存的Channel
      * */
-    public static Channel getS2pCacheChannel(String clusterKey, WhyMessage topeMsg, int serverCacheChannelReTimes) {
+    public static Channel getS2pCacheChannel(String clusterKey, WhyMessage whyMsg, int serverCacheChannelReTimes) {
         List<Channel> s2pCacheChannelList = getS2pCacheChannelList(clusterKey);
         if(serverCacheChannelReTimes <= 0){
             log.error("服务器管道获取失败，已重试{}次，当前管道数={}",serverCacheChannelReTimes, s2pCacheChannelList.size());
@@ -396,7 +396,7 @@ public class WhyChannelUtils {
                     log.error("异常错误{}", e);
                 }
                 serverCacheChannelReTimes --;
-                return getS2pCacheChannel(clusterKey, topeMsg, serverCacheChannelReTimes);
+                return getS2pCacheChannel(clusterKey, whyMsg, serverCacheChannelReTimes);
             }
         }
         return c;
@@ -406,42 +406,42 @@ public class WhyChannelUtils {
 
 
 
-    public static String getOfflineSingleKeys(WhyMessage topeMsg){
-        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageDest()
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getUserId()
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getUserId()+"*";
+    public static String getOfflineSingleKeys(WhyMessage whyMsg){
+        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageDest()
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getUserId()
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getUserId()+"*";
         return key;
     }
 
     //广播消息遍历的key
-    public static String getOfflineAllKeys(WhyMessage topeMsg){
-        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageDest()
+    public static String getOfflineAllKeys(WhyMessage whyMsg){
+        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageDest()
                 + WhyCloudUtils.separator + "all"+"*";
         return key;
     }
 
     //广播消息消费后，用户存储已消费的关联记录
-    public static String getOfflineAllAlreadyConsumerKey(WhyMessage topeMsg){
-        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageDest()
+    public static String getOfflineAllAlreadyConsumerKey(WhyMessage whyMsg){
+        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageDest()
                 + WhyCloudUtils.separator + "old"
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getUserId()
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getMessageId();
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getUserId()
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getMessageId();
         return key;
     }
 
     //新建
-    public static String getOfflineSingleKey(WhyMessage topeMsg){
-        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageDest()
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getUserId()
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getMessageId();
+    public static String getOfflineSingleKey(WhyMessage whyMsg){
+        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageDest()
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getUserId()
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getMessageId();
         return key;
     }
 
     //新建
-    public static String getOfflineAllKey(WhyMessage topeMsg){
-        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + topeMsg.getFixedHeader().getMessageDest()
+    public static String getOfflineAllKey(WhyMessage whyMsg){
+        String key = WhyCloudUtils.clusterId + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageSource() + WhyCloudUtils.separator_ + whyMsg.getFixedHeader().getMessageDest()
                 + WhyCloudUtils.separator + "all"
-                + WhyCloudUtils.separator + topeMsg.getFixedHeader().getMessageId();
+                + WhyCloudUtils.separator + whyMsg.getFixedHeader().getMessageId();
         return key;
     }
 
@@ -492,10 +492,10 @@ public class WhyChannelUtils {
 //        IpPortBasedClient ipPortBasedClient = clients.get(channelKey);
 //        ipPortBasedClient.setIntranetIp(intranetIp);
 
-//        InstanceForm instanceForm = TopeChannelUtils.defaultInstanceForm(channelKey, getInstanceTkp().getPort());
-//        Instance instance = TopeChannelUtils.buildInstance(instanceForm);
+//        InstanceForm instanceForm = WhyChannelUtils.defaultInstanceForm(channelKey, getInstanceTkp().getPort());
+//        Instance instance = WhyChannelUtils.buildInstance(instanceForm);
 //        instance.setIntranetIp(intranetIp);
-//        getInstanceIoci().updateInstance(instanceForm.getNamespaceId(), TopeChannelUtils.buildCompositeServiceName(instanceForm), instance);
+//        getInstanceIoci().updateInstance(instanceForm.getNamespaceId(), WhyChannelUtils.buildCompositeServiceName(instanceForm), instance);
 //    }
 
 

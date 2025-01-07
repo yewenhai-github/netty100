@@ -26,11 +26,11 @@ public class ClientChannelActive implements RequestProcessor {
     @Autowired
     EventBusUtils eventBusUtils;
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         // 发送事件消息
         ClientChannelActiveData event = new ClientChannelActiveData();
         event.setCtx(ctx);
-        event.setWhyMessage(topeMsg);
+        event.setWhyMessage(whyMsg);
         event.setKernelConfig(kernelConfig);
         event.setRemotingClient(remotingClient);
         eventBusUtils.post(event);

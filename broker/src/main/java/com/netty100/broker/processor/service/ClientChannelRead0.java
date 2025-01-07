@@ -33,50 +33,50 @@ public class ClientChannelRead0 implements RequestProcessor {
 
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-//            ByteBufferUtil.debugAll(topeMsg.buffer());
+//            ByteBufferUtil.debugAll(whyMsg.buffer());
             WhyCountUtils.platform_c2p_message_read_success_total.add(1);
-            WhyCountUtils.platform_c2p_message_read_success_flow.add(topeMsg.length());
+            WhyCountUtils.platform_c2p_message_read_success_flow.add(whyMsg.length());
 
-            String channelKey = WhyChannelUtils.getCurrentC2pChannelKey(topeMsg);
+            String channelKey = WhyChannelUtils.getCurrentC2pChannelKey(whyMsg);
 
             //重写客户端的MessageId，防止客户端一直传入重复的Id
-            topeMsg.getFixedHeader().setMessageId(WhyMessageFactory.createMessageId());
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M01.getCode(), topeMsg, LogPointCode.M01.getMessage() + "<" + ctx.channel().remoteAddress() + ">", 0);
+            whyMsg.getFixedHeader().setMessageId(WhyMessageFactory.createMessageId());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M01.getCode(), whyMsg, LogPointCode.M01.getMessage() + "<" + ctx.channel().remoteAddress() + ">", 0);
 
             //没有开启云端连接功能，不做用户注册码与配置校验
             if(SysUtility.isEmpty(whyKernelProperties)){
                 whyKernelProperties = WhySpringUtils.getBean(WhyKernelProperties.class);
             }
             if(!SysUtility.isEmpty(whyKernelProperties.getDomain())){
-                final String configStr = WhyChannelUtils.getCurrentS2pChannelKey(topeMsg);
+                final String configStr = WhyChannelUtils.getCurrentS2pChannelKey(whyMsg);
                 if(!WhyCloudUtils.serviceConfigs.contains(configStr)){
-                    WhyMessage whyMessage = WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep114.getCodeBytes());
+                    WhyMessage whyMessage = WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep114.getCodeBytes());
                     whyMessage.getFixedHeader().setMessageWay(CommonConstants.way_c2p_channelActive);
                     WhyChannelUtils.writeAndFlush(ctx, whyMessage);
-                    WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep114.getCodeBytes(), LogPointCode.C05.getCode(), LogPointCode.C05.getMessage());
+                    WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep114.getCodeBytes(), LogPointCode.C05.getCode(), LogPointCode.C05.getMessage());
                     return;
                 }
 
-                String c2pChannelKey = WhyChannelUtils.getCurrentC2pChannelKey(topeMsg);
+                String c2pChannelKey = WhyChannelUtils.getCurrentC2pChannelKey(whyMsg);
                 if(!WhyChannelUtils.getC2pCacheChannelMap().containsKey(c2pChannelKey)){
-                    WhyMessage whyMessage = WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep107.getCodeBytes());
+                    WhyMessage whyMessage = WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep107.getCodeBytes());
                     whyMessage.getFixedHeader().setMessageWay(CommonConstants.way_c2p_channelActive);
                     WhyChannelUtils.writeAndFlush(ctx, whyMessage);
-                    WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep107.getCodeBytes(), LogPointCode.C06.getCode(), LogPointCode.C06.getMessage());
+                    WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep107.getCodeBytes(), LogPointCode.C06.getCode(), LogPointCode.C06.getMessage());
                     return;
                 }
             }
-            WhyChannelUtils.p2sWriteAndFlush(ctx, topeMsg, kernelConfig.getServerCacheChannelReTimes());
+            WhyChannelUtils.p2sWriteAndFlush(ctx, whyMsg, kernelConfig.getServerCacheChannelReTimes());
         } catch (Exception e) {
             log.error("客户端消息消费失败", e);
             WhyCountUtils.platform_c2p_message_read_fail_total.add(1);
-            WhyCountUtils.platform_c2p_message_read_fail_flow.add(topeMsg.length());
-            WhyMessage whyMessage = WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep103.getCodeBytes());
+            WhyCountUtils.platform_c2p_message_read_fail_flow.add(whyMsg.length());
+            WhyMessage whyMessage = WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep103.getCodeBytes());
             whyMessage.getFixedHeader().setMessageWay(CommonConstants.way_c2p_channelActive);
             WhyChannelUtils.writeAndFlush(ctx, whyMessage);
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M04.getCode(), topeMsg, LogPointCode.M04.getMessage() + SysUtility.getErrorMsg(e));
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M04.getCode(), whyMsg, LogPointCode.M04.getMessage() + SysUtility.getErrorMsg(e));
         }
     }
 }

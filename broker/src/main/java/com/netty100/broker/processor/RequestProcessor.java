@@ -12,7 +12,7 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public interface RequestProcessor {
 
-    default void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    default void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
 
     }
 

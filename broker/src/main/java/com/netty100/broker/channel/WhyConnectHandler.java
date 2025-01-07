@@ -43,16 +43,16 @@ public class WhyConnectHandler extends ChannelDuplexHandler {
                 String[] keys = channelKey.split(IpPortBasedClient.ID_DELIMITER);
                 Long userId = Long.valueOf(keys[0]);
 
-                WhyMessage topeMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_channelInactive.getCode(), -1L, ResponseCode.Rep104.getCodeBytes(), whyKernelProperties.isVariableFlag());
-                topeMsg.getFixedHeader().setUserId(userId);
-                topeMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
-                topeMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
-                WhyChannelUtils.p2sWriteAndFlush(ctx, topeMsg, whyKernelProperties.getServerCacheChannelReTimes());
+                WhyMessage whyMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_channelInactive.getCode(), -1L, ResponseCode.Rep104.getCodeBytes(), whyKernelProperties.isVariableFlag());
+                whyMsg.getFixedHeader().setUserId(userId);
+                whyMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
+                whyMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
+                WhyChannelUtils.p2sWriteAndFlush(ctx, whyMsg, whyKernelProperties.getServerCacheChannelReTimes());
 
                 //客户端管道正常关闭，数据统计
                 WhyCountUtils.platform_c2p_connect_inactive_total.add(1);
                 WhyConnectQueue.pushClientChannelInactiveQueue(ctx, userId, channelKey);
-                WhyConnectQueue.pushClientChannelLogQueue(ctx, topeMsg, LogPointCode.C02.getCode(), LogPointCode.C02.getMessage());
+                WhyConnectQueue.pushClientChannelLogQueue(ctx, whyMsg, LogPointCode.C02.getCode(), LogPointCode.C02.getMessage());
                 return;
             }
             //服务器管道处理
@@ -98,16 +98,16 @@ public class WhyConnectHandler extends ChannelDuplexHandler {
                 String[] keys = channelKey.split(IpPortBasedClient.ID_DELIMITER);
                 Long userId = Long.valueOf(keys[0]);
 
-                WhyMessage topeMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_exceptionCaught.getCode(), -1L, ResponseCode.Rep105.getCodeBytes(), whyKernelProperties.isVariableFlag());
-                topeMsg.getFixedHeader().setUserId(userId);
-                topeMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
-                topeMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
-                WhyChannelUtils.p2sWriteAndFlush(ctx, topeMsg, whyKernelProperties.getServerCacheChannelReTimes());
+                WhyMessage whyMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_exceptionCaught.getCode(), -1L, ResponseCode.Rep105.getCodeBytes(), whyKernelProperties.isVariableFlag());
+                whyMsg.getFixedHeader().setUserId(userId);
+                whyMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
+                whyMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
+                WhyChannelUtils.p2sWriteAndFlush(ctx, whyMsg, whyKernelProperties.getServerCacheChannelReTimes());
 
                 //客户端管道异常关闭，数据统计
                 WhyCountUtils.platform_c2p_connect_error_total.add(1);
                 WhyConnectQueue.pushClientChannelExceptionCaughtQueue(ctx, userId, channelKey);
-                WhyConnectQueue.pushClientChannelLogQueue(ctx, topeMsg, LogPointCode.C03.getCode(), LogPointCode.C03.getMessage());
+                WhyConnectQueue.pushClientChannelLogQueue(ctx, whyMsg, LogPointCode.C03.getCode(), LogPointCode.C03.getMessage());
                 return;
             }
             //服务器管道处理

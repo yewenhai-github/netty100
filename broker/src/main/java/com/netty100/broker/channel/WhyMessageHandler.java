@@ -41,19 +41,19 @@ public class WhyMessageHandler extends SimpleChannelInboundHandler {
             Assert.notNull(msg, "channelRead0消息不能为空..");
             Assert.isTrue(channelIsActive(ctx));
             //2. 校验管道是否可用
-            WhyMessage topeMsg = (WhyMessage)msg;
+            WhyMessage whyMsg = (WhyMessage)msg;
             //3. 业务逻辑处理，具体的消息消费逻辑
-            byte messageWay = topeMsg.getFixedHeader().getMessageWay();
+            byte messageWay = whyMsg.getFixedHeader().getMessageWay();
             RequestPair requestPair = WhyKernelContainer.loadRequestPair(messageWay);
             if(SysUtility.isEmpty(requestPair)){
-                log.error("未知报文无法解析，数据来源{}-{}，报文类型{}", topeMsg.getFixedHeader().getMessageSource(), topeMsg.getFixedHeader().getMessageDest(), messageWay);
+                log.error("未知报文无法解析，数据来源{}-{}，报文类型{}", whyMsg.getFixedHeader().getMessageSource(), whyMsg.getFixedHeader().getMessageDest(), messageWay);
                 ctx.fireChannelRead(msg);
                 return;
             }
             RequestProcessor requestProcessor = (RequestProcessor)requestPair.getRequestProcessor();
             ExecutorService executorService = (ExecutorService)requestPair.getExecutorService();
             //4. 生成一个Runnable任务
-            Runnable runnable = () -> requestProcessor.doCommand(ctx, topeMsg, whyKernelProperties, remotingClient);
+            Runnable runnable = () -> requestProcessor.doCommand(ctx, whyMsg, whyKernelProperties, remotingClient);
             //5. 提交到执行器处理
             executorService.submit(runnable);
         } catch (IllegalArgumentException e) {

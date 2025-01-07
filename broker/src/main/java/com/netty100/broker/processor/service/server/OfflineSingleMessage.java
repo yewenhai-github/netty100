@@ -19,11 +19,11 @@ public class OfflineSingleMessage implements MessageTypeService {
 //    private RedisTemplate redisTemplate;
 
     @Override
-    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
-        String key = WhyChannelUtils.getOfflineSingleKey(topeMsg);
-        long expireTimestamp = System.currentTimeMillis() + topeMsg.getVariableHeader().getExpiresTime() * 1000;
+    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
+        String key = WhyChannelUtils.getOfflineSingleKey(whyMsg);
+        long expireTimestamp = System.currentTimeMillis() + whyMsg.getVariableHeader().getExpiresTime() * 1000;
 
-//        redisTemplate.opsForValue().set(key, topeMsg);
+//        redisTemplate.opsForValue().set(key, whyMsg);
 //        redisTemplate.expireAt(key, new Date(expireTimestamp));
 
         return true;

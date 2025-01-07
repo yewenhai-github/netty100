@@ -42,7 +42,7 @@ public class IdleServerProducer extends Thread implements SmartInitializingSingl
 
     @Override
     public void run() {
-        //集成了sdk，但未使用@EnableTopeNettyServer注解来启用sdk的功能
+        //集成了sdk，但未使用@EnableWhyNettyServer注解来启用sdk的功能
         Map<String, Object> serviceBeanMap = WhySpringUtils.getApplicationContext().getBeansWithAnnotation(EnableWhyNettyServer.class);
         if (SysUtility.isEmpty(serviceBeanMap) || serviceBeanMap.size() <= 0) {
             return;

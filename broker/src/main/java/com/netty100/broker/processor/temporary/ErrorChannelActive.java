@@ -26,11 +26,11 @@ import org.springframework.stereotype.Component;
 public class ErrorChannelActive implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
             String content = ResponseCode.Rep900.getCode()+"-"+ ResponseCode.Rep900.getMassage() ;
-            WhyMessage whyMessage = WhyMessageFactory.newMessage(topeMsg, content.getBytes());
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M99.getCode(), topeMsg, LogPointCode.M99.getMessage() /*+ SysUtility.getErrorMsg(e)*/);
+            WhyMessage whyMessage = WhyMessageFactory.newMessage(whyMsg, content.getBytes());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M99.getCode(), whyMsg, LogPointCode.M99.getMessage() /*+ SysUtility.getErrorMsg(e)*/);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

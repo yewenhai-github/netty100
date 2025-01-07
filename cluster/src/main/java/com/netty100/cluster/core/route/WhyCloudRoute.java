@@ -10,7 +10,7 @@ import java.util.Map;
  * @version 1.0.0, 2022/4/11
  * @since 1.0.0, 2022/4/11
  */
-public class TopeCloudRoute {
+public class WhyCloudRoute {
 
     public static Map<String, String> uriMap = new HashMap<String, String>();
     static {

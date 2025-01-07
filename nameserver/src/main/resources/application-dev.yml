@@ -20,7 +20,7 @@ spring:
   mail:
     host: smtp.exmail.qq.com
     port: 465
-    username: topejob-qa@ienglish.cn
+    username: whyjob-qa@ienglish.cn
     password: 75eNfDbjrqFVNh8w
     properties:
       mail:

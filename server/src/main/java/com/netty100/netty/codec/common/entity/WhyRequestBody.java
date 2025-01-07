@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @since 1.0.0, 2022/3/23
  */
 @Data
-public class TopeRequestBody<T> implements Serializable {
+public class WhyRequestBody<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**

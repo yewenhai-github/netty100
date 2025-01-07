@@ -99,20 +99,20 @@ public class ClientChannelActiveSubscribe {
 
 
 
-    private boolean kickOutSameUserNext(String channelKey, ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient){
+    private boolean kickOutSameUserNext(String channelKey, ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient){
         //将客户端在集群内在线的用户踢下线（consumer）
-        if(WhyMessageCode.type_offline_client_user.getCode() == topeMsg.getFixedHeader().getMessageType()){
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep116.getCodeBytes(), LogPointCode.C16.getCode(), LogPointCode.C16.getMessage());
+        if(WhyMessageCode.type_offline_client_user.getCode() == whyMsg.getFixedHeader().getMessageType()){
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep116.getCodeBytes(), LogPointCode.C16.getCode(), LogPointCode.C16.getMessage());
             return true;
         }
 
         //将客户端在本机重复登录的上一个用户踢下线
         if(WhyChannelUtils.c2pChannelSingleSame(channelKey, ctx)){
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep118.getCodeBytes(), LogPointCode.C18.getCode(), LogPointCode.C18.getMessage());
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep118.getCodeBytes(), LogPointCode.C18.getCode(), LogPointCode.C18.getMessage());
         }
         //将客户端在集群内在线的用户踢下线（producer）
         whyCloudUtils.getAllServiceUrls().stream().forEach(address ->{
-            WhyMessage whyMessage = WhyMessageFactory.newMessage(topeMsg, topeMsg.getPayload());
+            WhyMessage whyMessage = WhyMessageFactory.newMessage(whyMsg, whyMsg.getPayload());
             whyMessage.getFixedHeader().setMessageType(WhyMessageCode.type_offline_client_user.getCode());
             byte [] msg = whyMessage.bytes();
             if(!address.startsWith(SysUtility.getHostIp())){
@@ -125,25 +125,25 @@ public class ClientChannelActiveSubscribe {
     /**
      * 连接报文新增消息协议配置校验
      * */
-    private boolean doCommandConfigValidate(String channelKey, ChannelHandlerContext ctx, WhyMessage topeMsg){
+    private boolean doCommandConfigValidate(String channelKey, ChannelHandlerContext ctx, WhyMessage whyMsg){
         if(SysUtility.isEmpty(whyKernelProperties)){
             whyKernelProperties = WhySpringUtils.getBean(WhyKernelProperties.class);
         }
-        if(topeMsg.getFixedHeader().getMessageSource() < 0){
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep112.getCodeBytes()));
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep112.getCodeBytes(), LogPointCode.C08.getCode(), LogPointCode.C08.getMessage());
+        if(whyMsg.getFixedHeader().getMessageSource() < 0){
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep112.getCodeBytes()));
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep112.getCodeBytes(), LogPointCode.C08.getCode(), LogPointCode.C08.getMessage());
             return false;
         }
-        if(topeMsg.getFixedHeader().getMessageDest() < 0){
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep113.getCodeBytes()));
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep113.getCodeBytes(), LogPointCode.C09.getCode(), LogPointCode.C09.getMessage());
+        if(whyMsg.getFixedHeader().getMessageDest() < 0){
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep113.getCodeBytes()));
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep113.getCodeBytes(), LogPointCode.C09.getCode(), LogPointCode.C09.getMessage());
             return false;
         }
         //校验
-        String configStr = WhyChannelUtils.getCurrentS2pChannelKey(topeMsg);
+        String configStr = WhyChannelUtils.getCurrentS2pChannelKey(whyMsg);
         if(!WhyCloudUtils.serviceConfigs.contains(configStr)){
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep114.getCodeBytes()));
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep114.getCodeBytes(), LogPointCode.C10.getCode(), LogPointCode.C10.getMessage());
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep114.getCodeBytes()));
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep114.getCodeBytes(), LogPointCode.C10.getCode(), LogPointCode.C10.getMessage());
             return false;
         }
         return true;
@@ -152,8 +152,8 @@ public class ClientChannelActiveSubscribe {
     /**
      * 连接报文新增设备注册码校验
      * */
-    private boolean doCommandRegisterValidate(String channelKey, ChannelHandlerContext ctx, WhyMessage topeMsg){
-        if(-1 == topeMsg.getFixedHeader().getDeviceId()){
+    private boolean doCommandRegisterValidate(String channelKey, ChannelHandlerContext ctx, WhyMessage whyMsg){
+        if(-1 == whyMsg.getFixedHeader().getDeviceId()){
             //后门设备ID，不校验
             return true;
         }
@@ -161,38 +161,38 @@ public class ClientChannelActiveSubscribe {
         if(SysUtility.isEmpty(whyKernelProperties)){
             whyKernelProperties = WhySpringUtils.getBean(WhyKernelProperties.class);
         }
-        String paramDevicePwd = new String(topeMsg.getPayload());
+        String paramDevicePwd = new String(whyMsg.getPayload());
         if(SysUtility.isEmpty(paramDevicePwd)){
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep108.getCodeBytes()));
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep108.getCodeBytes(), LogPointCode.C11.getCode(), LogPointCode.C11.getMessage());
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep108.getCodeBytes()));
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep108.getCodeBytes(), LogPointCode.C11.getCode(), LogPointCode.C11.getMessage());
             return false;
         }
         //校验
         JSONObject params = new JSONObject();
-        params.put("userId", topeMsg.getFixedHeader().getUserId());
-        params.put("deviceId", topeMsg.getFixedHeader().getDeviceId());
+        params.put("userId", whyMsg.getFixedHeader().getUserId());
+        params.put("deviceId", whyMsg.getFixedHeader().getDeviceId());
         RemotingHttpResult rt = WhyCloudUtils.postBody(whyKernelProperties, RequestCode.Req23.getCode(), params, 1);
         if(TimerRunConstants.HTTP_CODE_SUCCESS == rt.getResponseCode()){
             JSONObject data = JSONObject.parseObject(rt.getResponseStr());
             String devicePwd = data.getString("data");
             if(SysUtility.isEmpty(devicePwd)){
                 log.info("调用一体化平台 devicePwd 返回为空 失败...");
-                WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep109.getCodeBytes()));
-                WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep109.getCodeBytes(), LogPointCode.C12.getCode(), LogPointCode.C12.getMessage());
+                WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep109.getCodeBytes()));
+                WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep109.getCodeBytes(), LogPointCode.C12.getCode(), LogPointCode.C12.getMessage());
                 return false;
             }
             if(!devicePwd.equals(paramDevicePwd)){
-                WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep110.getCodeBytes()));
-                WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep110.getCodeBytes(), LogPointCode.C13.getCode(), LogPointCode.C13.getMessage());
+                WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep110.getCodeBytes()));
+                WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep110.getCodeBytes(), LogPointCode.C13.getCode(), LogPointCode.C13.getMessage());
                 return false;
             }
         }else if(TimerRunConstants.HTTP_CODE_FAIL == rt.getResponseCode()){
             log.info("调用一体化平台失败...");
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep109.getCodeBytes()));
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep109.getCodeBytes()));
             return false;
         }else{
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep111.getCodeBytes()));
-            WhyChannelUtils.c2pChannelForceClose(topeMsg, channelKey, ctx, ResponseCode.Rep111.getCodeBytes(), LogPointCode.C14.getCode(), LogPointCode.C14.getMessage());
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep111.getCodeBytes()));
+            WhyChannelUtils.c2pChannelForceClose(whyMsg, channelKey, ctx, ResponseCode.Rep111.getCodeBytes(), LogPointCode.C14.getCode(), LogPointCode.C14.getMessage());
             return false;
         }
 
@@ -206,13 +206,13 @@ public class ClientChannelActiveSubscribe {
 
         //遍历当前用户缓存的个人离线消息
 //        try {
-//            String offlineSingleMsgKey = TopeChannelUtils.getOfflineSingleKeys(connMsg);
+//            String offlineSingleMsgKey = WhyChannelUtils.getOfflineSingleKeys(connMsg);
 //            Set<String> keys = redisTemplate.keys(offlineSingleMsgKey);
 //            for (String key : keys) {
 //                try {
-//                    TopeMessage topeMessage = (TopeMessage) redisTemplate.opsForValue().get(key);
+//                    WhyMessage WhyMessage = (WhyMessage) redisTemplate.opsForValue().get(key);
 //                    //发送离线消息
-//                    sendOfflineMsg(channel, topeMessage);
+//                    sendOfflineMsg(channel, WhyMessage);
 //                } catch (Exception e) {
 //                    log.error("离线消息发送失败:{}", e);
 //                } finally {
@@ -222,19 +222,19 @@ public class ClientChannelActiveSubscribe {
 //            }
 //
 //            //遍历当前用户缓存的个人离线消息
-//            String offlineAllMsgKey = TopeChannelUtils.getOfflineAllKeys(connMsg);
+//            String offlineAllMsgKey = WhyChannelUtils.getOfflineAllKeys(connMsg);
 //            keys = redisTemplate.keys(offlineAllMsgKey);
 //            for (String key : keys) {
 //                Object value = redisTemplate.opsForValue().get(key);
-//                TopeMessage topeMessage = (TopeMessage) SerializationUtils.deserialize((byte[]) value);
+//                WhyMessage WhyMessage = (WhyMessage) SerializationUtils.deserialize((byte[]) value);
 //
 //                //跳过已经发送过的有效期内的广播消息
-//                String oldKey = TopeChannelUtils.getOfflineAllAlreadyConsumerKey(topeMessage);
+//                String oldKey = WhyChannelUtils.getOfflineAllAlreadyConsumerKey(WhyMessage);
 //                if (redisTemplate.hasKey(oldKey)) {
 //                    continue;
 //                }
 //                //发送离线消息
-//                sendOfflineMsg(channel, topeMessage);
+//                sendOfflineMsg(channel, WhyMessage);
 //
 //                //当前时间加上旧key的剩余时间，得到一个绝对时间
 //                long expireTimestamp = System.currentTimeMillis() + redisTemplate.getExpire(key, TimeUnit.MILLISECONDS);
@@ -249,7 +249,7 @@ public class ClientChannelActiveSubscribe {
 
     private void sendOfflineMsg(Channel channel, WhyMessage whyMessage){
         //是否剔除可变头
-        channel.writeAndFlush(WhyMessageFactory.getClientTopeMessage(whyMessage).bytes());
+        channel.writeAndFlush(WhyMessageFactory.getClientWhyMessage(whyMessage).bytes());
 
         //如果该值为1，表示发送客户端的同时发送一份到服务端，0表示只发送客户端
         if(whyMessage.getVariableHeader().isTwoWayMsg()){

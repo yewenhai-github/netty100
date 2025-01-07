@@ -11,8 +11,8 @@ import java.nio.ByteBuffer;
 @Slf4j
 public final class WhyMessageFactory {
 
-    public static WhyMessage newMessage(WhyMessage topeMsg, byte[] body) {
-        WhyMessage msg = newMessage(topeMsg.getFixedHeader(), topeMsg.getVariableHeader(), body);
+    public static WhyMessage newMessage(WhyMessage whyMsg, byte[] body) {
+        WhyMessage msg = newMessage(whyMsg.getFixedHeader(), whyMsg.getVariableHeader(), body);
         msg.getFixedHeader().setMessageSerialize(WhyMessageCode.serialize_string.getCode());
         return msg;
     }
@@ -105,35 +105,35 @@ public final class WhyMessageFactory {
         //读取低7位的值，0x7F = 0111 1111
         byte messageWay = (byte) (f1 & 0x7F);
         //消息对象
-        WhyMessage topeMsg = new WhyMessage();
+        WhyMessage whyMsg = new WhyMessage();
         //读取固定头
-        decodeFixedHeader(buffer, topeMsg, variableFlag, messageWay);
+        decodeFixedHeader(buffer, whyMsg, variableFlag, messageWay);
         //报文范围校验
         if(messageWay > 25){
-            printDecodeError(topeMsg, messageWay);
-            return topeMsg;
+            printDecodeError(whyMsg, messageWay);
+            return whyMsg;
         }
         //读取可变头
         if(variableFlag){
-            decodeVariableHeader(buffer, topeMsg);
+            decodeVariableHeader(buffer, whyMsg);
         }
         //读取消息载体
-        decodePayload(buffer, dataLength, topeMsg);
+        decodePayload(buffer, dataLength, whyMsg);
 
-        return topeMsg;
+        return whyMsg;
     }
 
-    private static void decodePayload(ByteBuf buffer, int dataLength, WhyMessage topeMsg) {
-        int payloadLength = dataLength - CommonConstants.MESSAGE_FIXED_HEADER_LENGTH - topeMsg.variableHeader.getVariableLength();
-        topeMsg.setPayload(new byte[payloadLength]);
+    private static void decodePayload(ByteBuf buffer, int dataLength, WhyMessage whyMsg) {
+        int payloadLength = dataLength - CommonConstants.MESSAGE_FIXED_HEADER_LENGTH - whyMsg.variableHeader.getVariableLength();
+        whyMsg.setPayload(new byte[payloadLength]);
         if(payloadLength > 0){
-            buffer.readBytes(topeMsg.getPayload());
+            buffer.readBytes(whyMsg.getPayload());
         }
     }
 
-    private static void decodeVariableHeader(ByteBuf buffer, WhyMessage topeMsg) {
-        topeMsg.variableHeader.setVariableLength((short) buffer.readUnsignedShort());
-        topeMsg.variableHeader.setApiVersion((byte) buffer.readUnsignedByte());
+    private static void decodeVariableHeader(ByteBuf buffer, WhyMessage whyMsg) {
+        whyMsg.variableHeader.setVariableLength((short) buffer.readUnsignedShort());
+        whyMsg.variableHeader.setApiVersion((byte) buffer.readUnsignedByte());
         short v4 = buffer.readUnsignedByte();
 
         //leaf字段占据v4的第7位（从右往左数），因此可以通过与0x40（01000000）进行按位与操作来判断它是否为1。
@@ -149,37 +149,37 @@ public final class WhyMessageFactory {
         //rewriteFlag字段占据v4的最低位，因此可以通过与0x01（00000001）进行按位与操作来判断它是否为1。
         boolean rewriteFlag = (v4 & 0x01) != 0;
 
-        topeMsg.variableHeader.setLeaf(leaf);
-        topeMsg.variableHeader.setTwoWayMsg(twoWayMsg);
-        topeMsg.variableHeader.setFirstTime(firstTime);
-        topeMsg.variableHeader.setDup(dupFlag);
-        topeMsg.variableHeader.setQosLevel(WhyMessageQoS.valueOf(qosLevel));
-        topeMsg.variableHeader.setRewrite(rewriteFlag);
-        topeMsg.variableHeader.setExpiresTime((int) buffer.readUnsignedInt());
+        whyMsg.variableHeader.setLeaf(leaf);
+        whyMsg.variableHeader.setTwoWayMsg(twoWayMsg);
+        whyMsg.variableHeader.setFirstTime(firstTime);
+        whyMsg.variableHeader.setDup(dupFlag);
+        whyMsg.variableHeader.setQosLevel(WhyMessageQoS.valueOf(qosLevel));
+        whyMsg.variableHeader.setRewrite(rewriteFlag);
+        whyMsg.variableHeader.setExpiresTime((int) buffer.readUnsignedInt());
     }
 
-    private static void decodeFixedHeader(ByteBuf buffer, WhyMessage topeMsg, boolean variableFlag, byte messageWay) {
-        topeMsg.fixedHeader.setVariableFlag(variableFlag);
-        topeMsg.fixedHeader.setMessageWay(messageWay);
-        topeMsg.fixedHeader.setMessageSource((byte) buffer.readUnsignedByte());
-        topeMsg.fixedHeader.setMessageDest((byte) buffer.readUnsignedByte());
-        topeMsg.fixedHeader.setMessageType((byte) buffer.readUnsignedByte());
-        topeMsg.fixedHeader.setMessageSerialize((byte) buffer.readUnsignedByte());
-        topeMsg.fixedHeader.setMessageId(buffer.readLong());
-        topeMsg.fixedHeader.setDeviceId(buffer.readLong());
-        topeMsg.fixedHeader.setUserId(buffer.readLong());
+    private static void decodeFixedHeader(ByteBuf buffer, WhyMessage whyMsg, boolean variableFlag, byte messageWay) {
+        whyMsg.fixedHeader.setVariableFlag(variableFlag);
+        whyMsg.fixedHeader.setMessageWay(messageWay);
+        whyMsg.fixedHeader.setMessageSource((byte) buffer.readUnsignedByte());
+        whyMsg.fixedHeader.setMessageDest((byte) buffer.readUnsignedByte());
+        whyMsg.fixedHeader.setMessageType((byte) buffer.readUnsignedByte());
+        whyMsg.fixedHeader.setMessageSerialize((byte) buffer.readUnsignedByte());
+        whyMsg.fixedHeader.setMessageId(buffer.readLong());
+        whyMsg.fixedHeader.setDeviceId(buffer.readLong());
+        whyMsg.fixedHeader.setUserId(buffer.readLong());
     }
 
-    private static void printDecodeError(WhyMessage topeMsg, byte messageWay) {
+    private static void printDecodeError(WhyMessage whyMsg, byte messageWay) {
         log.error("未知报文：way={},source={},dest={},type={},serialize={},id={},deviceId={},userId={},",
                 messageWay,
-                topeMsg.fixedHeader.getMessageSource(),
-                topeMsg.fixedHeader.getMessageDest(),
-                topeMsg.fixedHeader.getMessageType(),
-                topeMsg.fixedHeader.getMessageSerialize(),
-                topeMsg.fixedHeader.getMessageId(),
-                topeMsg.fixedHeader.getDeviceId(),
-                topeMsg.fixedHeader.getUserId());
+                whyMsg.fixedHeader.getMessageSource(),
+                whyMsg.fixedHeader.getMessageDest(),
+                whyMsg.fixedHeader.getMessageType(),
+                whyMsg.fixedHeader.getMessageSerialize(),
+                whyMsg.fixedHeader.getMessageId(),
+                whyMsg.fixedHeader.getDeviceId(),
+                whyMsg.fixedHeader.getUserId());
     }
 
     public static ByteBuffer encode(WhyMessage whyMessage){
@@ -258,7 +258,7 @@ public final class WhyMessageFactory {
         return Unpooled.wrappedBuffer(buff);
     }
 
-    public static WhyMessage getClientTopeMessage(WhyMessage whyMessage) {
+    public static WhyMessage getClientWhyMessage(WhyMessage whyMessage) {
         boolean rewrite = whyMessage.getVariableHeader().isRewrite();
         if(rewrite){
             WhyMessage tempMessage = whyMessage.deepClone();

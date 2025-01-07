@@ -29,24 +29,24 @@ import org.springframework.stereotype.Component;
 public class SimplexChannelRead0 implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-//            ByteBufferUtil.debugAll(topeMsg.buffer());
+//            ByteBufferUtil.debugAll(whyMsg.buffer());
 
             WhyCountUtils.platform_s2p_message_read_success_total.add(1);
-            WhyCountUtils.platform_s2p_message_read_success_flow.add(topeMsg.length());
+            WhyCountUtils.platform_s2p_message_read_success_flow.add(whyMsg.length());
 
-            topeMsg.getFixedHeader().setMessageId(WhyMessageFactory.createMessageId());
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M31.getCode(), topeMsg, LogPointCode.M31.getMessage() + "<" + ctx.channel().remoteAddress() + ">", 0);
+            whyMsg.getFixedHeader().setMessageId(WhyMessageFactory.createMessageId());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M31.getCode(), whyMsg, LogPointCode.M31.getMessage() + "<" + ctx.channel().remoteAddress() + ">", 0);
 
             //消息响应
-            WhyChannelUtils.p2sSimplexWriteAndFlush(ctx, topeMsg, kernelConfig.getServerCacheChannelReTimes());
+            WhyChannelUtils.p2sSimplexWriteAndFlush(ctx, whyMsg, kernelConfig.getServerCacheChannelReTimes());
         } catch (Exception e) {
             log.error("单工消息消费失败", e);
             WhyCountUtils.platform_s2p_message_read_fail_total.add(1);
-            WhyCountUtils.platform_s2p_message_read_fail_flow.add(topeMsg.length());
-            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep203.getCodeBytes()));
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M34.getCode(), topeMsg, LogPointCode.M34.getMessage() + SysUtility.getErrorMsg(e));
+            WhyCountUtils.platform_s2p_message_read_fail_flow.add(whyMsg.length());
+            WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep203.getCodeBytes()));
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M34.getCode(), whyMsg, LogPointCode.M34.getMessage() + SysUtility.getErrorMsg(e));
         }
     }
 }

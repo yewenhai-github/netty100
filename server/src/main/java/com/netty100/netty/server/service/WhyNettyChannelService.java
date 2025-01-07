@@ -1,6 +1,6 @@
 package com.netty100.netty.server.service;
 
-import com.netty100.common.service.TopeChannelService;
+import com.netty100.common.service.WhyChannelService;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
  * @version 1.0.0, 2022/3/23
  * @since 1.0.0, 2022/3/23
  */
-public interface WhyNettyChannelService<I> extends TopeChannelService<I> {
+public interface WhyNettyChannelService<I> extends WhyChannelService<I> {
 
     /**
      * 用户上线

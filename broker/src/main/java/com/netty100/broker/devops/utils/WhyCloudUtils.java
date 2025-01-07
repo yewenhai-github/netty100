@@ -2,7 +2,7 @@ package com.netty100.broker.devops.utils;
 
 import com.netty100.cluster.core.cluster.Member;
 import com.netty100.cluster.core.cluster.ServerMemberManager;
-import com.netty100.cluster.core.route.TopeCloudRoute;
+import com.netty100.cluster.core.route.WhyCloudRoute;
 import com.netty100.broker.autoconfig.WhyKernelProperties;
 import com.netty100.broker.devops.entity.ChannelDto;
 import com.netty100.broker.devops.queue.WhyMessageQueue;
@@ -71,7 +71,7 @@ public class WhyCloudUtils {
 
     public static RemotingHttpResult postBody(String domain,String token, int timeout, String requestCode, Object requestObj, int desc){
         RemotingHttpResult rt = new RemotingHttpResult();
-        String uri = TopeCloudRoute.uriMap.get(requestCode);
+        String uri = WhyCloudRoute.uriMap.get(requestCode);
         //1. 校验uri
         if(SysUtility.isEmpty(uri)){
             log.error("该接口未定义:{}", requestCode);
@@ -112,7 +112,7 @@ public class WhyCloudUtils {
             WhyMessageQueue.pushKernelMessageLogQueue(null, LogPointCode.K03.getCode(), LogPointCode.K03.getMessage()  +"{"+desc+"}" + error);
         }
 //        else{
-//            log.warn("http请求成功（{}-{}-{}）：{}", requestCode, RequestCode.getMassageByCode(requestCode), desc, topeKernelProperties.getDomain() + uri);
+//            log.warn("http请求成功（{}-{}-{}）：{}", requestCode, RequestCode.getMassageByCode(requestCode), desc, WhyKernelProperties.getDomain() + uri);
 //        }
         return rt;
     }

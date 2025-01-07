@@ -18,7 +18,7 @@ public class WhyMessageProducerAutoConfiguration {
 
     @Bean
     @Primary
-    public WhyMessageProducerService topeMessageProducerService() {
+    public WhyMessageProducerService whyMessageProducerService() {
         return whyMessageProducerServiceImpl;
     }
 }

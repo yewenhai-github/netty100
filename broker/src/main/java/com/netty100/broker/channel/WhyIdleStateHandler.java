@@ -42,20 +42,20 @@ public class WhyIdleStateHandler extends ChannelDuplexHandler {
                     String[] keys = channelKey.split(IpPortBasedClient.ID_DELIMITER);
                     Long userId = Long.valueOf(keys[0]);
 
-                    WhyMessage topeMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_idleState.getCode(), userId, ResponseCode.Rep106.getCodeBytes(), whyKernelProperties.isVariableFlag());
-                    topeMsg.getFixedHeader().setUserId(userId);
-                    topeMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
-                    topeMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
+                    WhyMessage whyMsg = WhyMessageFactory.newDefaultMessage(WhyMessageCode.way_c2p_idleState.getCode(), userId, ResponseCode.Rep106.getCodeBytes(), whyKernelProperties.isVariableFlag());
+                    whyMsg.getFixedHeader().setUserId(userId);
+                    whyMsg.getFixedHeader().setMessageSource(Byte.valueOf(keys[1]));
+                    whyMsg.getFixedHeader().setMessageDest(Byte.valueOf(keys[2]));
 
                     //通知到客户端
-                    WhyChannelUtils.writeAndFlush(ctx, topeMsg);
+                    WhyChannelUtils.writeAndFlush(ctx, whyMsg);
                     //推送到服务器
-                    WhyChannelUtils.p2sWriteAndFlush(ctx, topeMsg, whyKernelProperties.getServerCacheChannelReTimes());
+                    WhyChannelUtils.p2sWriteAndFlush(ctx, whyMsg, whyKernelProperties.getServerCacheChannelReTimes());
 
                     //客户端管道关闭成功
                     WhyCountUtils.platform_c2p_connect_idle_close_total.add(1);
                     WhyConnectQueue.pushClientChannelIdleInactiveQueue(ctx, userId, channelKey);
-                    WhyConnectQueue.pushClientChannelLogQueue(ctx, topeMsg, LogPointCode.C04.getCode(), LogPointCode.C04.getMessage());
+                    WhyConnectQueue.pushClientChannelLogQueue(ctx, whyMsg, LogPointCode.C04.getCode(), LogPointCode.C04.getMessage());
                     return;
                 }
 

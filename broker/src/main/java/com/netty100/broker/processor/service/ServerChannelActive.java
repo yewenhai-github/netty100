@@ -25,17 +25,17 @@ import org.springframework.stereotype.Component;
 public class ServerChannelActive implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-            String clusterKey = WhyChannelUtils.getCurrentS2pChannelKey(topeMsg);
+            String clusterKey = WhyChannelUtils.getCurrentS2pChannelKey(whyMsg);
             //缓存客户端连接的Channel
             WhyChannelUtils.addS2pCacheChannel(clusterKey, WhyChannelUtils.s2pChannelType, ctx);
-//                    TopeMessageQueue.logMsgPoint(ctx, "kernel-s2pConnect", topeMsg);
+//                    WhyMessageQueue.logMsgPoint(ctx, "kernel-s2pConnect", whyMsg);
             //消息响应
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep201.getCodeBytes()));
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep201.getCodeBytes()));
             //统计信息收集
             WhyCountUtils.platform_s2p_connect_active_total.add(1);
-            WhyConnectQueue.pushServerChannelActiveQueue(ctx, topeMsg.getFixedHeader(), clusterKey);
+            WhyConnectQueue.pushServerChannelActiveQueue(ctx, whyMsg.getFixedHeader(), clusterKey);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

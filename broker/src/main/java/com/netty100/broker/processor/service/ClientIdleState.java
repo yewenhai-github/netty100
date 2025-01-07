@@ -27,18 +27,18 @@ import org.springframework.stereotype.Component;
 public class ClientIdleState implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
             //校验
-            String configStr = WhyChannelUtils.getCurrentS2pChannelKey(topeMsg);
+            String configStr = WhyChannelUtils.getCurrentS2pChannelKey(whyMsg);
             if(!WhyCloudUtils.serviceConfigs.contains(configStr)){
-                log.info("客户端配置失败(3)，消息协议未配置，用户{}，设备Id{}", topeMsg.getFixedHeader().getUserId(), topeMsg.getFixedHeader().getDeviceId());
-                WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep114.getCodeBytes()));
+                log.info("客户端配置失败(3)，消息协议未配置，用户{}，设备Id{}", whyMsg.getFixedHeader().getUserId(), whyMsg.getFixedHeader().getDeviceId());
+                WhyChannelUtils.writeAndFlush(ctx,  WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep114.getCodeBytes()));
                 return;
             }
 
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep102.getCodeBytes()));
-            WhyConnectQueue.pushClientChannelIdleActiveQueue(ctx, topeMsg.getFixedHeader(), WhyChannelUtils.getCurrentC2pChannelKey(topeMsg));
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep102.getCodeBytes()));
+            WhyConnectQueue.pushClientChannelIdleActiveQueue(ctx, whyMsg.getFixedHeader(), WhyChannelUtils.getCurrentC2pChannelKey(whyMsg));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

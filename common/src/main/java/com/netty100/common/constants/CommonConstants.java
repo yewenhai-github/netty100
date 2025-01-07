@@ -66,7 +66,7 @@ public class CommonConstants {
     public final static byte DEFAULT_MESSAGE_DEST = -1;
     public final static byte DEFAULT_MESSAGE_SERIALIZE = -1;
     public final static byte DEFAULT_MESSAGE_WAY = -1;
-    public final static byte DEFAULT_MESSAGE_TYPE = 1; //TopeMessageCode.type_online_single_message.getCode()
+    public final static byte DEFAULT_MESSAGE_TYPE = 1; //WhyMessageCode.type_online_single_message.getCode()
     public final static Long DEFAULT_DEVICE_ID = -1L;
 
     public final static Long DEFAULT_USER_ID = -1L;

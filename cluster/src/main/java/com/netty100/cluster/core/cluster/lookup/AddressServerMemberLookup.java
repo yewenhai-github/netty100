@@ -24,7 +24,7 @@ import com.netty100.cluster.common.http.client.CapRestTemplate;
 import com.netty100.cluster.common.utils.ExceptionUtil;
 import com.netty100.cluster.core.cluster.AbstractMemberLookup;
 import com.netty100.cluster.core.cluster.MemberUtil;
-import com.netty100.cluster.core.route.TopeCloudRoute;
+import com.netty100.cluster.core.route.WhyCloudRoute;
 import com.netty100.cluster.core.utils.GenericType;
 import com.netty100.cluster.core.utils.GlobalExecutor;
 import com.netty100.cluster.core.utils.Loggers;
@@ -117,11 +117,11 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
         domainPort = SysUtility.isNotEmpty(System.getenv(ADDRESS_SERVER_PORT_ENV)) ? System.getenv(ADDRESS_SERVER_PORT_ENV): domainPort;
 
         //获取
-        addressServerUrl = domainName + ":" + domainPort + TopeCloudRoute.uriMap.get(RequestCode.Req03.getCode());
+        addressServerUrl = domainName + ":" + domainPort + WhyCloudRoute.uriMap.get(RequestCode.Req03.getCode());
         //启动注册
-        addressStartServerUrl = domainName + ":" + domainPort + TopeCloudRoute.uriMap.get(RequestCode.Req04.getCode());
+        addressStartServerUrl = domainName + ":" + domainPort + WhyCloudRoute.uriMap.get(RequestCode.Req04.getCode());
         //定时上报
-        addressHeatBeatServerUrl = domainName + ":" + domainPort + TopeCloudRoute.uriMap.get(RequestCode.Req05.getCode());
+        addressHeatBeatServerUrl = domainName + ":" + domainPort + WhyCloudRoute.uriMap.get(RequestCode.Req05.getCode());
 
         Loggers.CORE.info("ServerListService address-server port:" + domainPort);
         Loggers.CORE.info("ADDRESS_SERVER_URL:" + addressServerUrl);
@@ -211,7 +211,7 @@ public class AddressServerMemberLookup extends AbstractMemberLookup {
             return;
         }
         // 加载类
-        Class<?> clazz = Class.forName("com.netty100.kernel.utils.TopeChannelUtils");
+        Class<?> clazz = Class.forName("com.netty100.kernel.utils.WhyChannelUtils");
         // 创建对象（如果方法是非静态的）
         Object obj = ReflectUtil.newInstance(clazz);
 

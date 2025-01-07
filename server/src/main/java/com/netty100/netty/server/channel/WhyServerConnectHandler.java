@@ -95,16 +95,16 @@ public class WhyServerConnectHandler extends ChannelDuplexHandler {
     }
 
 
-    public void logMsgPoint(String point, WhyMessage topeMsg){
+    public void logMsgPoint(String point, WhyMessage whyMsg){
 
         log.info(point+":UserId={},Id={},Type={},Way={},Serialize={},Source={},Dest={}",
-                topeMsg.getFixedHeader().getUserId(),
-                topeMsg.getFixedHeader().getMessageId(),
-                topeMsg.getFixedHeader().getMessageType(),
-                topeMsg.getFixedHeader().getMessageWay(),
-                topeMsg.getFixedHeader().getMessageSerialize(),
-                topeMsg.getFixedHeader().getMessageSource(),
-                topeMsg.getFixedHeader().getMessageDest());
+                whyMsg.getFixedHeader().getUserId(),
+                whyMsg.getFixedHeader().getMessageId(),
+                whyMsg.getFixedHeader().getMessageType(),
+                whyMsg.getFixedHeader().getMessageWay(),
+                whyMsg.getFixedHeader().getMessageSerialize(),
+                whyMsg.getFixedHeader().getMessageSource(),
+                whyMsg.getFixedHeader().getMessageDest());
     }
 }
 

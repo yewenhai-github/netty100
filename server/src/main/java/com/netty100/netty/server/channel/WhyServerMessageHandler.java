@@ -31,19 +31,19 @@ public class WhyServerMessageHandler extends SimpleChannelInboundHandler {
      */
     @Override
     public void channelRead0(ChannelHandlerContext ctx, Object msg) {
-        WhyMessage topeMsg = (WhyMessage)msg;
+        WhyMessage whyMsg = (WhyMessage)msg;
         try {
             SysUtility.setCurrentProducerChannel(ctx.channel());
-            SysUtility.setCurrentClientMessageId(topeMsg.getFixedHeader().getMessageId());
+            SysUtility.setCurrentClientMessageId(whyMsg.getFixedHeader().getMessageId());
 
-            switch (topeMsg.getFixedHeader().getMessageWay()){
+            switch (whyMsg.getFixedHeader().getMessageWay()){
                 case CommonConstants.way_c2p_channelActive:
-                    WhyServerUtils.channelActive(topeMsg.getFixedHeader().getUserId(), ctx);
+                    WhyServerUtils.channelActive(whyMsg.getFixedHeader().getUserId(), ctx);
                     break;
                 case CommonConstants.way_c2p_channelInactive:
                 case CommonConstants.way_c2p_exceptionCaught:
                 case CommonConstants.way_c2p_idleState:
-                    WhyServerUtils.channelInactive(topeMsg.getFixedHeader().getUserId(), ctx);
+                    WhyServerUtils.channelInactive(whyMsg.getFixedHeader().getUserId(), ctx);
                     break;
                 case CommonConstants.way_c2p_channelRead0:
                 case CommonConstants.way_s2p_channelRead0:
@@ -51,7 +51,7 @@ public class WhyServerMessageHandler extends SimpleChannelInboundHandler {
                     //1.总请求数收集
                     WhyServerCountUtils.countTotalRead.incrementAndGet();
                     //2.数据处理
-                    WhyServerUtils.doCommand(topeMsg.getPayload(), topeMsg.getFixedHeader(), ctx.channel());
+                    WhyServerUtils.doCommand(whyMsg.getPayload(), whyMsg.getFixedHeader(), ctx.channel());
                     //3.成功请求数收集
                     WhyServerCountUtils.countSuccessRead.incrementAndGet();
                     break;
@@ -60,7 +60,7 @@ public class WhyServerMessageHandler extends SimpleChannelInboundHandler {
                     break;
             }
         }catch (Exception e) {
-            log.error("sdk兜底策略触发,用户{} 报错", topeMsg.getFixedHeader().getUserId(), e);
+            log.error("sdk兜底策略触发,用户{} 报错", whyMsg.getFixedHeader().getUserId(), e);
             if(SysUtility.isEmpty(whyMessageProducerService)){
                 whyMessageProducerService = WhySpringUtils.getBean(WhyMessageProducerService.class);
             }
@@ -74,7 +74,7 @@ public class WhyServerMessageHandler extends SimpleChannelInboundHandler {
                     whyNettyCommonProperties.getMessageSource(),
                     whyNettyCommonProperties.getMessageDest(),
                     WhyMessageCode.serialize_string.getCode(),
-                    topeMsg.getFixedHeader().getUserId(),
+                    whyMsg.getFixedHeader().getUserId(),
                     content.getBytes());
         } finally {
             ctx.flush();

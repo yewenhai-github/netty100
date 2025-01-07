@@ -150,10 +150,10 @@ public class WhyConnectQueue {
         entity.setMessageDest(hearders.getMessageDest());
         entity.setMessageSerialize(hearders.getMessageSerialize());
         pushClientChannelIdleActiveQueue(entity);
-//        WheelTimerUtils.addClientChannelIdleActiveTask(topeKernelProperties, false);
+//        WheelTimerUtils.addClientChannelIdleActiveTask(WhyKernelProperties, false);
     }
 
-    public static void pushClientChannelLogQueue(ChannelHandlerContext ctx, WhyMessage topeMsg, String point, String content){
+    public static void pushClientChannelLogQueue(ChannelHandlerContext ctx, WhyMessage whyMsg, String point, String content){
         String[] addrs = SysUtility.getChannelAddr(ctx);
         ClientChannelLog entity = new ClientChannelLog();
         entity.setLogPoint(point);
@@ -163,13 +163,13 @@ public class WhyConnectQueue {
         entity.setLocalPort(addrs[1]);
         entity.setRemoteAddress(addrs[2]);
         entity.setRemotePort(addrs[3]);
-        if(SysUtility.isNotEmpty(topeMsg)){
-            entity.setUserId(topeMsg.getFixedHeader().getUserId());
-            entity.setMessageSource(topeMsg.getFixedHeader().getMessageSource());
-            entity.setMessageDest(topeMsg.getFixedHeader().getMessageDest());
+        if(SysUtility.isNotEmpty(whyMsg)){
+            entity.setUserId(whyMsg.getFixedHeader().getUserId());
+            entity.setMessageSource(whyMsg.getFixedHeader().getMessageSource());
+            entity.setMessageDest(whyMsg.getFixedHeader().getMessageDest());
         }
         pushClientChannelLogQueue(entity);
-//        WheelTimerUtils.addClientChannelLogTask(topeKernelProperties, false);
+//        WheelTimerUtils.addClientChannelLogTask(WhyKernelProperties, false);
     }
 
 
@@ -228,7 +228,7 @@ public class WhyConnectQueue {
         entity.setMessageDest(hearders.getMessageDest());
         entity.setMessageSerialize(hearders.getMessageSerialize());
         pushServerChannelIdleActiveQueue(entity);
-//        WheelTimerUtils.addServerChannelIdleActiveTask(topeKernelProperties, false);
+//        WheelTimerUtils.addServerChannelIdleActiveTask(WhyKernelProperties, false);
     }
 
 }

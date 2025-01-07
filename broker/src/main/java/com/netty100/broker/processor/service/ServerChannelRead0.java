@@ -31,17 +31,17 @@ import org.springframework.stereotype.Component;
 public class ServerChannelRead0 implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
             WhyCountUtils.platform_s2p_message_read_success_total.add(1);
-            WhyCountUtils.platform_s2p_message_read_success_flow.add(topeMsg.length());
+            WhyCountUtils.platform_s2p_message_read_success_flow.add(whyMsg.length());
 
-//            ByteBufferUtil.debugAll(topeMsg.buffer());
+//            ByteBufferUtil.debugAll(whyMsg.buffer());
 
             //只有sdk触发的消息才需要区分叶子，sdk中job、mq这类主动发起生成的消息，属于第一次消息  0主节点 1叶子节点
-            if(WhyMessageCode.type_online_single_message.getCode() == topeMsg.getFixedHeader().getMessageType()
-                || WhyMessageCode.type_online_all_message.getCode() == topeMsg.getFixedHeader().getMessageType()){
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M31.getCode(), topeMsg, LogPointCode.M31.getMessage() + "<" + ctx.channel().remoteAddress() + ">", topeMsg.getVariableHeader().isLeaf() ? 0 : 1);
+            if(WhyMessageCode.type_online_single_message.getCode() == whyMsg.getFixedHeader().getMessageType()
+                || WhyMessageCode.type_online_all_message.getCode() == whyMsg.getFixedHeader().getMessageType()){
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M31.getCode(), whyMsg, LogPointCode.M31.getMessage() + "<" + ctx.channel().remoteAddress() + ">", whyMsg.getVariableHeader().isLeaf() ? 0 : 1);
             }
 
             /***
@@ -56,14 +56,14 @@ public class ServerChannelRead0 implements RequestProcessor {
              * 7在线单用户-群发转发（和1配套使用，redis找不到addr，群发后只有消费成功的channel，将对应的addr记录到redis中）
              * 8平台客户端消息踢人下线内部报文
              */
-            WhyKernelContainer.loadHandler(topeMsg.getFixedHeader().getMessageType()).doCommand(ctx, topeMsg, remotingClient, kernelConfig);
+            WhyKernelContainer.loadHandler(whyMsg.getFixedHeader().getMessageType()).doCommand(ctx, whyMsg, remotingClient, kernelConfig);
         } catch (Exception e) {
             e.printStackTrace();
 //            log.error("服务器消息处理失败：{}", e);
             WhyCountUtils.platform_s2p_message_read_fail_total.add(1);
-            WhyCountUtils.platform_s2p_message_read_fail_flow.add(topeMsg.length());
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep203.getCodeBytes()));
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M34.getCode(), topeMsg, LogPointCode.M34.getMessage() + SysUtility.getErrorMsg(e));
+            WhyCountUtils.platform_s2p_message_read_fail_flow.add(whyMsg.length());
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep203.getCodeBytes()));
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M34.getCode(), whyMsg, LogPointCode.M34.getMessage() + SysUtility.getErrorMsg(e));
         }
     }
 

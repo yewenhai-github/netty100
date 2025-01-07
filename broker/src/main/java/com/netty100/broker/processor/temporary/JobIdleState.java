@@ -24,10 +24,10 @@ import org.springframework.stereotype.Component;
 public class JobIdleState implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep202.getCodeBytes()));
-            WhyConnectQueue.pushServerChannelIdleActiveQueue(ctx, topeMsg.getFixedHeader(), WhyChannelUtils.getCurrentS2pChannelKeyJob(topeMsg));
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep202.getCodeBytes()));
+            WhyConnectQueue.pushServerChannelIdleActiveQueue(ctx, whyMsg.getFixedHeader(), WhyChannelUtils.getCurrentS2pChannelKeyJob(whyMsg));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

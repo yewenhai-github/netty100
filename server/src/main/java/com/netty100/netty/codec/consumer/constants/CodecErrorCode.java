@@ -14,7 +14,7 @@ public enum CodecErrorCode {
     Err006("006","消息解析失败 "),
     Err007("007","错误的接口 "),
     Err008("008","未知的接口 "),
-    Err009("009","请检查是否实现接口TopeNettyStarterService"),
+    Err009("009","请检查是否实现接口WhyNettyStarterService"),
     Err010("010","data数据转换异常"),
     Err011("011","鉴权服务异常，基础服务网关地址调用失败"),
     Err012("012","鉴权服务异常，鉴权不通过"),

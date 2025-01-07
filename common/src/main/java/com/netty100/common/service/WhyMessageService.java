@@ -7,7 +7,7 @@ import com.netty100.common.protocol.WhyMessageFixedHeader;
  * @version 1.0.0, 2022/3/23
  * @since 1.0.0, 2022/3/23
  */
-public interface TopeMessageService<I> {
+public interface WhyMessageService<I> {
 
     /**
      * 消息处理接口

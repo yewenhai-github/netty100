@@ -57,7 +57,7 @@ netty100:
     server:
       clientStartNum: 10
     cloud:
-      domain: http://dev-netty100-api-inner.tope365.com
+      domain: http://dev-netty100-api-inner.why.com
       token: 65f19658093c42a7bf990c38a0ec6b8f
       cluster: common
 ~~~

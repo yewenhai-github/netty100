@@ -25,16 +25,16 @@ import org.springframework.stereotype.Component;
 public class MqPlatformChannelActive implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-            String clusterKeyMq = WhyChannelUtils.getCurrentS2pChannelKeyMq(topeMsg);
+            String clusterKeyMq = WhyChannelUtils.getCurrentS2pChannelKeyMq(whyMsg);
             //缓存客户端连接的Channel
             WhyChannelUtils.addS2pCacheChannel(clusterKeyMq, WhyChannelUtils.s2pMqChannelType, ctx);
             //消息响应
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep201.getCodeBytes()));
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep201.getCodeBytes()));
             //统计信息收集
             WhyCountUtils.platform_s2p_connect_active_total.add(1);
-            WhyConnectQueue.pushServerChannelActiveQueue(ctx, topeMsg.getFixedHeader(), clusterKeyMq);
+            WhyConnectQueue.pushServerChannelActiveQueue(ctx, whyMsg.getFixedHeader(), clusterKeyMq);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

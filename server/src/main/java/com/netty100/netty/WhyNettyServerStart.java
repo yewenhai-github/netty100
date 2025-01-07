@@ -46,11 +46,11 @@ public class WhyNettyServerStart implements SmartInitializingSingleton {
 
     @Override
     public void afterSingletonsInstantiated() {
-        new TopeNettyServer().connect(whyNettyServerProperties, whyNettyCloudProperties, clientReconnect);
+        new WhyNettyServer().connect(whyNettyServerProperties, whyNettyCloudProperties, clientReconnect);
     }
 
 
-    private class TopeNettyServer {
+    private class WhyNettyServer {
 
         public void connect(WhyNettyServerProperties whyNettyServerProperties, WhyNettyCloudProperties whyNettyCloudProperties, ClientReconnect clientReconnect) {
             EventExecutorGroup group = new DefaultEventExecutorGroup(whyNettyServerProperties.getExecutorNum());

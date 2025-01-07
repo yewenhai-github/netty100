@@ -34,67 +34,67 @@ public class OnlineRelayMessage implements MessageTypeService {
     private WhyKernelProperties whyKernelProperties;
 
     @Override
-    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
+    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
         try {
-            String channelKey = WhyChannelUtils.getCurrentC2pChannelKey(topeMsg);
+            String channelKey = WhyChannelUtils.getCurrentC2pChannelKey(whyMsg);
             Channel channel = WhyChannelUtils.getChannel(channelKey);
 
-            if (SysUtility.isEmpty(channel) && WhyMessageCode.type_online_relay_point_message.getCode() == topeMsg.getFixedHeader().getMessageType()) {
+            if (SysUtility.isEmpty(channel) && WhyMessageCode.type_online_relay_point_message.getCode() == whyMsg.getFixedHeader().getMessageType()) {
                 //定点发送消费失败，表示从redis取到的ip地址为错误地址，需要清除
-//                TopeChannelUtils.updateIntranetIp(channelKey, "");
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M43.getCode(), topeMsg, LogPointCode.M43.getMessage()+"用户不在线");
+//                WhyChannelUtils.updateIntranetIp(channelKey, "");
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M43.getCode(), whyMsg, LogPointCode.M43.getMessage()+"用户不在线");
                 return false;//丢弃这一次消息
-            }else if (SysUtility.isEmpty(channel) && WhyMessageCode.type_online_relay_all_message.getCode() == topeMsg.getFixedHeader().getMessageType()) {
+            }else if (SysUtility.isEmpty(channel) && WhyMessageCode.type_online_relay_all_message.getCode() == whyMsg.getFixedHeader().getMessageType()) {
                 //群发消费触发消费成功，表示redis并未记录转发地址，需要记录
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M46.getCode(), topeMsg, LogPointCode.M46.getMessage()+"用户不在线");
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M46.getCode(), whyMsg, LogPointCode.M46.getMessage()+"用户不在线");
                 return false;//丢弃这一次消息
-            }else if (SysUtility.isNotEmpty(channel) && WhyMessageCode.type_online_relay_all_message.getCode() == topeMsg.getFixedHeader().getMessageType()) {
-//                TopeChannelUtils.updateIntranetIp(channelKey, "");
-//              TODO  TopeChannelUtils.updateInstanceIntranetIp(channelKey, SysUtility.getHostIp(), ctx);
+            }else if (SysUtility.isNotEmpty(channel) && WhyMessageCode.type_online_relay_all_message.getCode() == whyMsg.getFixedHeader().getMessageType()) {
+//                WhyChannelUtils.updateIntranetIp(channelKey, "");
+//              TODO  WhyChannelUtils.updateInstanceIntranetIp(channelKey, SysUtility.getHostIp(), ctx);
             }
 
-            channel.writeAndFlush(WhyMessageFactory.getClientTopeMessage(topeMsg).bytes());
+            channel.writeAndFlush(WhyMessageFactory.getClientWhyMessage(whyMsg).bytes());
 
-            if (WhyMessageCode.type_online_relay_point_message.getCode() == topeMsg.getFixedHeader().getMessageType()) {
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M44.getCode(), topeMsg, LogPointCode.M44.getMessage());
-            }else if (WhyMessageCode.type_online_relay_all_message.getCode() == topeMsg.getFixedHeader().getMessageType()) {
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M47.getCode(), topeMsg, LogPointCode.M47.getMessage());
+            if (WhyMessageCode.type_online_relay_point_message.getCode() == whyMsg.getFixedHeader().getMessageType()) {
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M44.getCode(), whyMsg, LogPointCode.M44.getMessage());
+            }else if (WhyMessageCode.type_online_relay_all_message.getCode() == whyMsg.getFixedHeader().getMessageType()) {
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M47.getCode(), whyMsg, LogPointCode.M47.getMessage());
             }
         } catch (Exception e) {
-            log.error("用户{},消息发送失败{}", topeMsg.getFixedHeader().getUserId(), e);
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M48.getCode(), topeMsg, LogPointCode.M48.getMessage() + SysUtility.getErrorMsg(e));
+            log.error("用户{},消息发送失败{}", whyMsg.getFixedHeader().getUserId(), e);
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M48.getCode(), whyMsg, LogPointCode.M48.getMessage() + SysUtility.getErrorMsg(e));
             return false;
         }
         return true;
     }
 
 
-    public boolean doRelayProducer(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient) {
+    public boolean doRelayProducer(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient) {
         //消息转发
-        String key = WhyChannelUtils.getCurrentC2pChannelKey(topeMsg);
+        String key = WhyChannelUtils.getCurrentC2pChannelKey(whyMsg);
         String addr = WhyChannelUtils.getIntranetIp(key);
         if(SysUtility.isEmpty(addr)){
             //群发消息
             AtomicBoolean sendFlag = new AtomicBoolean(false);
-            topeMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_relay_all_message.getCode());
+            whyMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_relay_all_message.getCode());
             whyCloudUtils.getAllServiceUrls().stream().forEach(address ->{
                 if(!address.startsWith(SysUtility.getHostIp())){
-                    sendRelayMessage(topeMsg, remotingClient, addrCompletion(address));
+                    sendRelayMessage(whyMsg, remotingClient, addrCompletion(address));
                     sendFlag.set(true);
                 }
             });
             if(sendFlag.get()){
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M45.getCode(), topeMsg, LogPointCode.M45.getMessage() + whyCloudUtils.getAllServiceUrls().toString());
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M45.getCode(), whyMsg, LogPointCode.M45.getMessage() + whyCloudUtils.getAllServiceUrls().toString());
             }
             return true;
         }else if(!addr.startsWith(SysUtility.getHostIp())){
             //定点机器发送
-            topeMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_relay_point_message.getCode());
-            boolean rt = sendRelayMessage(topeMsg, remotingClient, addrCompletion(addr));
+            whyMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_relay_point_message.getCode());
+            boolean rt = sendRelayMessage(whyMsg, remotingClient, addrCompletion(addr));
             if(rt){
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M41.getCode(), topeMsg, LogPointCode.M41.getMessage() + "转发地址=" + addr);
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M41.getCode(), whyMsg, LogPointCode.M41.getMessage() + "转发地址=" + addr);
             }else{
-                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M42.getCode(), topeMsg, LogPointCode.M42.getMessage() + "转发地址=" + addr);
+                WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M42.getCode(), whyMsg, LogPointCode.M42.getMessage() + "转发地址=" + addr);
             }
             return true;
         }
@@ -106,20 +106,20 @@ public class OnlineRelayMessage implements MessageTypeService {
     }
 
 
-    private boolean sendRelayMessage(WhyMessage topeMsg, WhyNettyRemoting remotingClient, String addr) {
-        byte [] msg = topeMsg.bytes();
+    private boolean sendRelayMessage(WhyMessage whyMsg, WhyNettyRemoting remotingClient, String addr) {
+        byte [] msg = whyMsg.bytes();
         boolean rt = remotingClient.invokeOneway(addr, msg, 3000L);
         if(!rt){
             //定点发送消费失败，表示从redis取到的ip地址为错误地址，需要清除
-//            String channelKey = TopeChannelUtils.getCurrentC2pChannelKey(topeMsg);
+//            String channelKey = WhyChannelUtils.getCurrentC2pChannelKey(whyMsg);
 
-//            InstanceForm instanceForm = TopeChannelUtils.defaultInstanceForm(channelKey, topeKernelProperties.getPort());
-//            Instance instance = TopeChannelUtils.buildInstance(instanceForm);
+//            InstanceForm instanceForm = WhyChannelUtils.defaultInstanceForm(channelKey, WhyKernelProperties.getPort());
+//            Instance instance = WhyChannelUtils.buildInstance(instanceForm);
 //            instance.setIntranetIp(SysUtility.getHostIp());
-//            instanceService.removeInstance(instanceForm.getNamespaceId(), TopeChannelUtils.buildCompositeServiceName(instanceForm), instance, channelKey);
+//            instanceService.removeInstance(instanceForm.getNamespaceId(), WhyChannelUtils.buildCompositeServiceName(instanceForm), instance, channelKey);
 
-//            TopeChannelUtils.updateIntranetIp(channelKey, "");;
-            log.info("消息转发至{}失败，messageId={}，丢失此消息，redis地址更新成功..", addr, topeMsg.getFixedHeader().getMessageId());
+//            WhyChannelUtils.updateIntranetIp(channelKey, "");;
+            log.info("消息转发至{}失败，messageId={}，丢失此消息，redis地址更新成功..", addr, whyMsg.getFixedHeader().getMessageId());
         }else{
             WhyCountUtils.platform_p2p_message_relay_total.add(1);
             WhyCountUtils.platform_p2p_message_relay_flow.add(msg.length);

@@ -39,11 +39,11 @@ public class WhyMessageQueue {
         getInstance().kernelMessageLogQueue.offer(entity);
     }
 
-    public static void pushClientMessageLogQueue(ChannelHandlerContext ctx, String point, WhyMessage topeMsg, String content){
-        pushClientMessageLogQueue(ctx, point, topeMsg, content, 1);
+    public static void pushClientMessageLogQueue(ChannelHandlerContext ctx, String point, WhyMessage whyMsg, String content){
+        pushClientMessageLogQueue(ctx, point, whyMsg, content, 1);
     }
 
-    public static void pushClientMessageLogQueue(ChannelHandlerContext ctx, String point, WhyMessage topeMsg, String content, Integer leaf){
+    public static void pushClientMessageLogQueue(ChannelHandlerContext ctx, String point, WhyMessage whyMsg, String content, Integer leaf){
         String[] addrs = SysUtility.getChannelAddr(ctx);
         ClientMessageLog entity = new ClientMessageLog();
         entity.setLogPoint(point);
@@ -53,32 +53,32 @@ public class WhyMessageQueue {
         entity.setLocalPort(addrs[1]);
         entity.setRemoteAddress(addrs[2]);
         entity.setRemotePort(addrs[3]);
-        entity.setUserId(topeMsg.getFixedHeader().getUserId());
-        entity.setDeviceId(topeMsg.getFixedHeader().getDeviceId());
-        entity.setMessageId(topeMsg.getFixedHeader().getMessageId());
-        entity.setMessageType(topeMsg.getFixedHeader().getMessageType());
-        entity.setMessageWay(topeMsg.getFixedHeader().getMessageWay());
-        entity.setMessageSerialize(topeMsg.getFixedHeader().getMessageSerialize());
-        entity.setMessageSource(topeMsg.getFixedHeader().getMessageSource());
-        entity.setMessageDest(topeMsg.getFixedHeader().getMessageDest());
+        entity.setUserId(whyMsg.getFixedHeader().getUserId());
+        entity.setDeviceId(whyMsg.getFixedHeader().getDeviceId());
+        entity.setMessageId(whyMsg.getFixedHeader().getMessageId());
+        entity.setMessageType(whyMsg.getFixedHeader().getMessageType());
+        entity.setMessageWay(whyMsg.getFixedHeader().getMessageWay());
+        entity.setMessageSerialize(whyMsg.getFixedHeader().getMessageSerialize());
+        entity.setMessageSource(whyMsg.getFixedHeader().getMessageSource());
+        entity.setMessageDest(whyMsg.getFixedHeader().getMessageDest());
         entity.setLeaf(leaf);
         pushClientMessageLogQueue(entity);
-//        WheelTimerUtils.addClientMessageLogTask(topeKernelProperties, false);
+//        WheelTimerUtils.addClientMessageLogTask(WhyKernelProperties, false);
     }
 
-    public static void pushKernelMessageLogQueue(WhyMessage topeMsg, String point, String content){
+    public static void pushKernelMessageLogQueue(WhyMessage whyMsg, String point, String content){
         KernelMessageLog entity = new KernelMessageLog();
         entity.setLogPoint(point);
         entity.setLogTime(new Date());
         entity.setLogContent(content);
         entity.setLocalAddress(SysUtility.getHostIp());
-        if(SysUtility.isNotEmpty(topeMsg)){
-            entity.setUserId(topeMsg.getFixedHeader().getUserId());
-            entity.setDeviceId(topeMsg.getFixedHeader().getDeviceId());
-            entity.setMessageSource(topeMsg.getFixedHeader().getMessageSource());
-            entity.setMessageDest(topeMsg.getFixedHeader().getMessageDest());
+        if(SysUtility.isNotEmpty(whyMsg)){
+            entity.setUserId(whyMsg.getFixedHeader().getUserId());
+            entity.setDeviceId(whyMsg.getFixedHeader().getDeviceId());
+            entity.setMessageSource(whyMsg.getFixedHeader().getMessageSource());
+            entity.setMessageDest(whyMsg.getFixedHeader().getMessageDest());
         }
         pushKernelMessageLogQueue(entity);
-//        WheelTimerUtils.addKernelMessageLogTask(topeKernelProperties, false);
+//        WheelTimerUtils.addKernelMessageLogTask(WhyKernelProperties, false);
     }
 }

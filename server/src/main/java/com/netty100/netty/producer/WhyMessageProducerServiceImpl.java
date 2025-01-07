@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
 import com.netty100.common.protocol.*;
-import com.netty100.netty.codec.common.entity.TopeResponseBody;
-import com.netty100.netty.codec.common.entity.TopeResponseBodyProto2;
-import com.netty100.netty.codec.common.entity.TopeResponseBodyProto3;
+import com.netty100.netty.codec.common.entity.WhyResponseBody;
+import com.netty100.netty.codec.common.entity.WhyResponseBodyProto2;
+import com.netty100.netty.codec.common.entity.WhyResponseBodyProto3;
 import com.netty100.common.constants.CommonConstants;
 import com.netty100.common.properties.WhyNettyCommonProperties;
 import com.netty100.common.utils.SysUtility;
@@ -219,21 +219,21 @@ public class WhyMessageProducerServiceImpl implements WhyMessageProducerService 
         //构造消息
         WhyMessageFixedHeader fixedHeader = WhyMessageFactory.newFixedHeader(messageWay, messageSource, messageDest, messageType, messageSerialize, messageId, CommonConstants.DEFAULT_DEVICE_ID, userId, true);
         WhyMessageVariableHeader variableHeader = WhyMessageFactory.newVariableHeader(apiVersion, isLeaf, isTwoWayMsg, isFirstTime, false, qosLevel, isRewrite, expiresTime);
-        WhyMessage topeMsg = WhyMessageFactory.newMessage(fixedHeader, variableHeader, data);
+        WhyMessage whyMsg = WhyMessageFactory.newMessage(fixedHeader, variableHeader, data);
 
         //消息发送
-        return send(topeMsg, userId, whyNettyServerProperties.getMessageSendRetry(), false);
+        return send(whyMsg, userId, whyNettyServerProperties.getMessageSendRetry(), false);
     }
 
     //TODO isDup变量功能暂不实现，与qos一同实现
-    private boolean send(WhyMessage topeMsg, Long userId, int messageSendRetry, boolean isDup){
+    private boolean send(WhyMessage whyMsg, Long userId, int messageSendRetry, boolean isDup){
         Channel channel = WhyServerUtils.getCurrentChannel();
         try {
             if(SysUtility.isEmpty(channel)){
                 log.error("用户{}消息发送失败,重试次数{},管道为空，ip={}", userId, whyNettyServerProperties.getMessageSendRetry() - messageSendRetry, SysUtility.getHostIp());
                 return false;
             }
-            channel.writeAndFlush(topeMsg.bytes());
+            channel.writeAndFlush(whyMsg.bytes());
             return true;
         } catch (Exception e) {
             if(messageSendRetry <= 0){
@@ -252,7 +252,7 @@ public class WhyMessageProducerServiceImpl implements WhyMessageProducerService 
             }
 
             //递归消息重发
-            return send(topeMsg, userId, messageSendRetry, isDup);
+            return send(whyMsg, userId, messageSendRetry, isDup);
         }
     }
 
@@ -267,7 +267,7 @@ public class WhyMessageProducerServiceImpl implements WhyMessageProducerService 
                 case 1:
                     return ((String)data).getBytes(StandardCharsets.UTF_8);
                 case 2:
-                    TopeResponseBodyProto2.ResponseBody.Builder builder2 = TopeResponseBodyProto2.ResponseBody.newBuilder();
+                    WhyResponseBodyProto2.ResponseBody.Builder builder2 = WhyResponseBodyProto2.ResponseBody.newBuilder();
                     if (data != null) {
                         ByteString bytes = ((AbstractMessageLite) data).toByteString();
                         builder2.setData(bytes);
@@ -277,7 +277,7 @@ public class WhyMessageProducerServiceImpl implements WhyMessageProducerService 
                     builder2.setMessage("");
                     return builder2.build().toByteArray();
                 case 3:
-                    TopeResponseBodyProto3.ResponseBody.Builder builder3 = TopeResponseBodyProto3.ResponseBody.newBuilder();
+                    WhyResponseBodyProto3.ResponseBody.Builder builder3 = WhyResponseBodyProto3.ResponseBody.newBuilder();
                     if (data != null) {
                         ByteString bytes = ((AbstractMessageLite) data).toByteString();
                         builder3.setData(bytes);
@@ -294,12 +294,12 @@ public class WhyMessageProducerServiceImpl implements WhyMessageProducerService 
                     responseJson.put("data", data);
                     return responseJson.toJSONString().getBytes(StandardCharsets.UTF_8);
                 case 5:
-                    TopeResponseBody topeRequestBody = new TopeResponseBody();
-                    topeRequestBody.setUri(uri);
-                    topeRequestBody.setCode("200");
-                    topeRequestBody.setMessage("");
-                    topeRequestBody.setData(SerializationUtils.serialize(data));
-                    return SerializationUtils.serialize(topeRequestBody);
+                    WhyResponseBody whyRequestBody = new WhyResponseBody();
+                    whyRequestBody.setUri(uri);
+                    whyRequestBody.setCode("200");
+                    whyRequestBody.setMessage("");
+                    whyRequestBody.setData(SerializationUtils.serialize(data));
+                    return SerializationUtils.serialize(whyRequestBody);
                 default:
                     throw new RuntimeException("不支持的序列化类型：" + messageSerialize);
             }

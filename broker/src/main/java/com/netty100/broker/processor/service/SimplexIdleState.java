@@ -24,10 +24,10 @@ import org.springframework.stereotype.Component;
 public class SimplexIdleState implements RequestProcessor {
 
     @Override
-    public void doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
+    public void doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyKernelProperties kernelConfig, WhyNettyRemoting remotingClient) {
         try {
-            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(topeMsg, ResponseCode.Rep202.getCodeBytes()));
-            WhyConnectQueue.pushServerChannelIdleActiveQueue(ctx, topeMsg.getFixedHeader(), WhyChannelUtils.getCurrentS2pChannelKeySimplex(topeMsg));
+            WhyChannelUtils.writeAndFlush(ctx, WhyMessageFactory.newMessage(whyMsg, ResponseCode.Rep202.getCodeBytes()));
+            WhyConnectQueue.pushServerChannelIdleActiveQueue(ctx, whyMsg.getFixedHeader(), WhyChannelUtils.getCurrentS2pChannelKeySimplex(whyMsg));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

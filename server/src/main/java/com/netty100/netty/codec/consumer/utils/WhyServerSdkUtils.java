@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WhyServerSdkUtils {
 
-    public static WhyMessageConsumerService getTopeConsumerService(String url){
+    public static WhyMessageConsumerService getWhyConsumerService(String url){
         Object bean;
         try {
             bean = WhySpringUtils.getBean(url);

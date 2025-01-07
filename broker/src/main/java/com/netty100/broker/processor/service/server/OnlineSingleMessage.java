@@ -25,12 +25,12 @@ public class OnlineSingleMessage implements MessageTypeService {
     private OnlineRelayMessage onlineRelayMessage;
 
     @Override
-    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
-        boolean send = MessageTypeService.super.doCommand(ctx, topeMsg, remotingClient, kernelConfig);
+    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
+        boolean send = MessageTypeService.super.doCommand(ctx, whyMsg, remotingClient, kernelConfig);
         if(send){
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M32.getCode(), topeMsg, LogPointCode.M32.getMessage());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M32.getCode(), whyMsg, LogPointCode.M32.getMessage());
         }else {
-            onlineRelayMessage.doRelayProducer(ctx, topeMsg, remotingClient);
+            onlineRelayMessage.doRelayProducer(ctx, whyMsg, remotingClient);
         }
         return send;
     }

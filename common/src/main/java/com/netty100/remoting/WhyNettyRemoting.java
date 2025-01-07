@@ -86,7 +86,7 @@ public class WhyNettyRemoting {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
-//                        if (topeNettyCoreProperties.isUseTLS()) {
+//                        if (whyNettyCoreProperties.isUseTLS()) {
 //                            if (null != sslContext) {
 //                                pipeline.addFirst(defaultEventExecutorGroup, "sslHandler", sslContext.newHandler(ch.alloc()));
 //                                log.info("Prepend SSL handler");
@@ -493,7 +493,6 @@ public class WhyNettyRemoting {
 //            log.info("NETTY CLIENT PIPELINE: CLOSE {}", remoteAddress);
             closeChannel(ctx.channel());
             super.close(ctx, promise);
-//            TopeNettyRemoting.this.failFast(ctx.channel());
         }
 
         @Override

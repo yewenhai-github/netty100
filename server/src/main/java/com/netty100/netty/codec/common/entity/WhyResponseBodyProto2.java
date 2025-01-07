@@ -5,77 +5,136 @@ package com.netty100.netty.codec.common.entity;
  * @version 1.0.0, 2022/3/23
  * @since 1.0.0, 2022/3/23
  */
-public final class TopeRequestBodyProto2 {
-  private TopeRequestBodyProto2() {}
+public final class WhyResponseBodyProto2 {
+  private WhyResponseBodyProto2() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface RequestBodyOrBuilder
+  public interface ResponseBodyOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // required string url = 1;
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     boolean hasUrl();
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     String getUrl();
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     com.google.protobuf.ByteString
         getUrlBytes();
 
-    // required string token = 2;
+    // optional bytes data = 2;
     /**
-     * <code>required string token = 2;</code>
-     */
-    boolean hasToken();
-    /**
-     * <code>required string token = 2;</code>
-     */
-    String getToken();
-    /**
-     * <code>required string token = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getTokenBytes();
-
-    // optional bytes data = 3;
-    /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional bytes data = 2;</code>
+     *
+     * <pre>
+     *业务信息
+     * </pre>
      */
     boolean hasData();
     /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional bytes data = 2;</code>
+     *
+     * <pre>
+     *业务信息
+     * </pre>
      */
     com.google.protobuf.ByteString getData();
+
+    // optional string code = 3;
+    /**
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
+     */
+    boolean hasCode();
+    /**
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
+     */
+    String getCode();
+    /**
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getCodeBytes();
+
+    // optional string message = 4;
+    /**
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
+     */
+    boolean hasMessage();
+    /**
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
+     */
+    String getMessage();
+    /**
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
   }
   /**
-   * Protobuf type {@code RequestBody}
+   * Protobuf type {@code ResponseBody}
    *
    * <pre>
-   *Netty框架请求参数消息协议
+   *Netty框架返回参数消息协议
    * </pre>
    */
-  public static final class RequestBody extends
+  public static final class ResponseBody extends
       com.google.protobuf.GeneratedMessage
-      implements RequestBodyOrBuilder {
-    // Use RequestBody.newBuilder() to construct.
-    private RequestBody(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements ResponseBodyOrBuilder {
+    // Use ResponseBody.newBuilder() to construct.
+    private ResponseBody(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private RequestBody(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private ResponseBody(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final RequestBody defaultInstance;
-    public static RequestBody getDefaultInstance() {
+    private static final ResponseBody defaultInstance;
+    public static ResponseBody getDefaultInstance() {
       return defaultInstance;
     }
 
-    public RequestBody getDefaultInstanceForType() {
+    public ResponseBody getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -85,7 +144,7 @@ public final class TopeRequestBodyProto2 {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private RequestBody(
+    private ResponseBody(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -115,12 +174,17 @@ public final class TopeRequestBodyProto2 {
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              token_ = input.readBytes();
+              data_ = input.readBytes();
               break;
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              data_ = input.readBytes();
+              code_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              message_ = input.readBytes();
               break;
             }
           }
@@ -137,28 +201,28 @@ public final class TopeRequestBodyProto2 {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return TopeRequestBodyProto2.internal_static_RequestBody_descriptor;
+      return WhyResponseBodyProto2.internal_static_ResponseBody_descriptor;
     }
 
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return TopeRequestBodyProto2.internal_static_RequestBody_fieldAccessorTable
+      return WhyResponseBodyProto2.internal_static_ResponseBody_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              RequestBody.class, Builder.class);
+              ResponseBody.class, Builder.class);
     }
 
-    public static com.google.protobuf.Parser<RequestBody> PARSER =
-        new com.google.protobuf.AbstractParser<RequestBody>() {
-      public RequestBody parsePartialFrom(
+    public static com.google.protobuf.Parser<ResponseBody> PARSER =
+        new com.google.protobuf.AbstractParser<ResponseBody>() {
+      public ResponseBody parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RequestBody(input, extensionRegistry);
+        return new ResponseBody(input, extensionRegistry);
       }
     };
 
     @Override
-    public com.google.protobuf.Parser<RequestBody> getParserForType() {
+    public com.google.protobuf.Parser<ResponseBody> getParserForType() {
       return PARSER;
     }
 
@@ -168,12 +232,20 @@ public final class TopeRequestBodyProto2 {
     private Object url_;
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     public boolean hasUrl() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     public String getUrl() {
       Object ref = url_;
@@ -191,6 +263,10 @@ public final class TopeRequestBodyProto2 {
     }
     /**
      * <code>required string url = 1;</code>
+     *
+     * <pre>
+     *业务标识
+     * </pre>
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
@@ -206,20 +282,52 @@ public final class TopeRequestBodyProto2 {
       }
     }
 
-    // required string token = 2;
-    public static final int TOKEN_FIELD_NUMBER = 2;
-    private Object token_;
+    // optional bytes data = 2;
+    public static final int DATA_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString data_;
     /**
-     * <code>required string token = 2;</code>
+     * <code>optional bytes data = 2;</code>
+     *
+     * <pre>
+     *业务信息
+     * </pre>
      */
-    public boolean hasToken() {
+    public boolean hasData() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string token = 2;</code>
+     * <code>optional bytes data = 2;</code>
+     *
+     * <pre>
+     *业务信息
+     * </pre>
      */
-    public String getToken() {
-      Object ref = token_;
+    public com.google.protobuf.ByteString getData() {
+      return data_;
+    }
+
+    // optional string code = 3;
+    public static final int CODE_FIELD_NUMBER = 3;
+    private Object code_;
+    /**
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
+     */
+    public boolean hasCode() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
+     */
+    public String getCode() {
+      Object ref = code_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -227,48 +335,92 @@ public final class TopeRequestBodyProto2 {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          token_ = s;
+          code_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>required string token = 2;</code>
+     * <code>optional string code = 3;</code>
+     *
+     * <pre>
+     *状态码 200成功 500服务器错误
+     * </pre>
      */
     public com.google.protobuf.ByteString
-        getTokenBytes() {
-      Object ref = token_;
+        getCodeBytes() {
+      Object ref = code_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
-        token_ = b;
+        code_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    // optional bytes data = 3;
-    public static final int DATA_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString data_;
+    // optional string message = 4;
+    public static final int MESSAGE_FIELD_NUMBER = 4;
+    private Object message_;
     /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
      */
-    public boolean hasData() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+    public boolean hasMessage() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional bytes data = 3;</code>
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
      */
-    public com.google.protobuf.ByteString getData() {
-      return data_;
+    public String getMessage() {
+      Object ref = message_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          message_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string message = 4;</code>
+     *
+     * <pre>
+     *提示消息
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      Object ref = message_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private void initFields() {
       url_ = "";
-      token_ = "";
       data_ = com.google.protobuf.ByteString.EMPTY;
+      code_ = "";
+      message_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -278,10 +430,6 @@ public final class TopeRequestBodyProto2 {
       }
 
       if (!hasUrl()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasToken()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -296,10 +444,13 @@ public final class TopeRequestBodyProto2 {
         output.writeBytes(1, getUrlBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTokenBytes());
+        output.writeBytes(2, data_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, data_);
+        output.writeBytes(3, getCodeBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getMessageBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -318,11 +469,15 @@ public final class TopeRequestBodyProto2 {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTokenBytes());
+          .computeBytesSize(2, data_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, data_);
+          .computeBytesSize(3, getCodeBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getMessageBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -336,53 +491,53 @@ public final class TopeRequestBodyProto2 {
       return super.writeReplace();
     }
 
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RequestBody parseFrom(byte[] data)
+    public static ResponseBody parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static RequestBody parseFrom(java.io.InputStream input)
+    public static ResponseBody parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static RequestBody parseDelimitedFrom(java.io.InputStream input)
+    public static ResponseBody parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static RequestBody parseDelimitedFrom(
+    public static ResponseBody parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static RequestBody parseFrom(
+    public static ResponseBody parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -391,7 +546,7 @@ public final class TopeRequestBodyProto2 {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(RequestBody prototype) {
+    public static Builder newBuilder(ResponseBody prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -403,28 +558,28 @@ public final class TopeRequestBodyProto2 {
       return builder;
     }
     /**
-     * Protobuf type {@code RequestBody}
+     * Protobuf type {@code ResponseBody}
      *
      * <pre>
-     *Netty框架请求参数消息协议
+     *Netty框架返回参数消息协议
      * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements RequestBodyOrBuilder {
+       implements ResponseBodyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return TopeRequestBodyProto2.internal_static_RequestBody_descriptor;
+        return WhyResponseBodyProto2.internal_static_ResponseBody_descriptor;
       }
 
       protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return TopeRequestBodyProto2.internal_static_RequestBody_fieldAccessorTable
+        return WhyResponseBodyProto2.internal_static_ResponseBody_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                RequestBody.class, Builder.class);
+                ResponseBody.class, Builder.class);
       }
 
-      // Construct using TopeProto2RequestBody.RequestBody.newBuilder()
+      // Construct using WhyProto2ResponseBody.ResponseBody.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -446,10 +601,12 @@ public final class TopeRequestBodyProto2 {
         super.clear();
         url_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        token_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         data_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        code_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        message_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -459,23 +616,23 @@ public final class TopeRequestBodyProto2 {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return TopeRequestBodyProto2.internal_static_RequestBody_descriptor;
+        return WhyResponseBodyProto2.internal_static_ResponseBody_descriptor;
       }
 
-      public RequestBody getDefaultInstanceForType() {
-        return RequestBody.getDefaultInstance();
+      public ResponseBody getDefaultInstanceForType() {
+        return ResponseBody.getDefaultInstance();
       }
 
-      public RequestBody build() {
-        RequestBody result = buildPartial();
+      public ResponseBody build() {
+        ResponseBody result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public RequestBody buildPartial() {
-        RequestBody result = new RequestBody(this);
+      public ResponseBody buildPartial() {
+        ResponseBody result = new ResponseBody(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -485,27 +642,31 @@ public final class TopeRequestBodyProto2 {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.token_ = token_;
+        result.data_ = data_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.data_ = data_;
+        result.code_ = code_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.message_ = message_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof RequestBody) {
-          return mergeFrom((RequestBody)other);
+        if (other instanceof ResponseBody) {
+          return mergeFrom((ResponseBody)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(RequestBody other) {
-        if (other == RequestBody.getDefaultInstance()){
+      public Builder mergeFrom(ResponseBody other) {
+        if (other == ResponseBody.getDefaultInstance()){
           return this;
         }
         if (other.hasUrl()) {
@@ -513,13 +674,18 @@ public final class TopeRequestBodyProto2 {
           url_ = other.url_;
           onChanged();
         }
-        if (other.hasToken()) {
-          bitField0_ |= 0x00000002;
-          token_ = other.token_;
-          onChanged();
-        }
         if (other.hasData()) {
           setData(other.getData());
+        }
+        if (other.hasCode()) {
+          bitField0_ |= 0x00000004;
+          code_ = other.code_;
+          onChanged();
+        }
+        if (other.hasMessage()) {
+          bitField0_ |= 0x00000008;
+          message_ = other.message_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -530,10 +696,6 @@ public final class TopeRequestBodyProto2 {
           
           return false;
         }
-        if (!hasToken()) {
-          
-          return false;
-        }
         return true;
       }
 
@@ -541,11 +703,11 @@ public final class TopeRequestBodyProto2 {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        RequestBody parsedMessage = null;
+        ResponseBody parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (RequestBody) e.getUnfinishedMessage();
+          parsedMessage = (ResponseBody) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -560,12 +722,20 @@ public final class TopeRequestBodyProto2 {
       private Object url_ = "";
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public boolean hasUrl() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public String getUrl() {
         Object ref = url_;
@@ -580,6 +750,10 @@ public final class TopeRequestBodyProto2 {
       }
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
@@ -596,6 +770,10 @@ public final class TopeRequestBodyProto2 {
       }
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public Builder setUrl(
           String value) {
@@ -609,6 +787,10 @@ public final class TopeRequestBodyProto2 {
       }
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public Builder clearUrl() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -618,6 +800,10 @@ public final class TopeRequestBodyProto2 {
       }
       /**
        * <code>required string url = 1;</code>
+       *
+       * <pre>
+       *业务标识
+       * </pre>
        */
       public Builder setUrlBytes(
           com.google.protobuf.ByteString value) {
@@ -630,132 +816,270 @@ public final class TopeRequestBodyProto2 {
         return this;
       }
 
-      // required string token = 2;
-      private Object token_ = "";
+      // optional bytes data = 2;
+      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional bytes data = 2;</code>
+       *
+       * <pre>
+       *业务信息
+       * </pre>
        */
-      public boolean hasToken() {
+      public boolean hasData() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional bytes data = 2;</code>
+       *
+       * <pre>
+       *业务信息
+       * </pre>
        */
-      public String getToken() {
-        Object ref = token_;
+      public com.google.protobuf.ByteString getData() {
+        return data_;
+      }
+      /**
+       * <code>optional bytes data = 2;</code>
+       *
+       * <pre>
+       *业务信息
+       * </pre>
+       */
+      public Builder setData(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        data_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes data = 2;</code>
+       *
+       * <pre>
+       *业务信息
+       * </pre>
+       */
+      public Builder clearData() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        data_ = getDefaultInstance().getData();
+        onChanged();
+        return this;
+      }
+
+      // optional string code = 3;
+      private Object code_ = "";
+      /**
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
+       */
+      public boolean hasCode() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
+       */
+      public String getCode() {
+        Object ref = code_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
-          token_ = s;
+          code_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
        */
       public com.google.protobuf.ByteString
-          getTokenBytes() {
-        Object ref = token_;
+          getCodeBytes() {
+        Object ref = code_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
-          token_ = b;
+          code_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
        */
-      public Builder setToken(
+      public Builder setCode(
           String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        token_ = value;
+  bitField0_ |= 0x00000004;
+        code_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
        */
-      public Builder clearToken() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        token_ = getDefaultInstance().getToken();
+      public Builder clearCode() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        code_ = getDefaultInstance().getCode();
         onChanged();
         return this;
       }
       /**
-       * <code>required string token = 2;</code>
+       * <code>optional string code = 3;</code>
+       *
+       * <pre>
+       *状态码 200成功 500服务器错误
+       * </pre>
        */
-      public Builder setTokenBytes(
+      public Builder setCodeBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
-        token_ = value;
+  bitField0_ |= 0x00000004;
+        code_ = value;
         onChanged();
         return this;
       }
 
-      // optional bytes data = 3;
-      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
+      // optional string message = 4;
+      private Object message_ = "";
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
        */
-      public boolean hasData() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+      public boolean hasMessage() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
        */
-      public com.google.protobuf.ByteString getData() {
-        return data_;
+      public String getMessage() {
+        Object ref = message_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
        */
-      public Builder setData(com.google.protobuf.ByteString value) {
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
+       */
+      public Builder setMessage(
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
-        data_ = value;
+  bitField0_ |= 0x00000008;
+        message_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bytes data = 3;</code>
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
        */
-      public Builder clearData() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        data_ = getDefaultInstance().getData();
+      public Builder clearMessage() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string message = 4;</code>
+       *
+       * <pre>
+       *提示消息
+       * </pre>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        message_ = value;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:RequestBody)
+      // @@protoc_insertion_point(builder_scope:ResponseBody)
     }
 
     static {
-      defaultInstance = new RequestBody(true);
+      defaultInstance = new ResponseBody(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:RequestBody)
+    // @@protoc_insertion_point(class_scope:ResponseBody)
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_RequestBody_descriptor;
+    internal_static_ResponseBody_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_RequestBody_fieldAccessorTable;
+      internal_static_ResponseBody_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -765,21 +1089,22 @@ public final class TopeRequestBodyProto2 {
       descriptor;
   static {
     String[] descriptorData = {
-      "\n\033TopeProto2RequestBody.proto\"7\n\013Request" +
-      "Body\022\013\n\003url\030\001 \002(\t\022\r\n\005token\030\002 \002(\t\022\014\n\004data" +
-      "\030\003 \001(\014B\037\n\035com.why.netty.core.entity"
+      "\n\034WhyProto2ResponseBody.proto\"H\n\014Respon" +
+      "seBody\022\013\n\003url\030\001 \002(\t\022\014\n\004data\030\002 \001(\014\022\014\n\004cod" +
+      "e\030\003 \001(\t\022\017\n\007message\030\004 \001(\tB\037\n\035com.why." +
+      "netty.core.entity"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_RequestBody_descriptor =
+          internal_static_ResponseBody_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_RequestBody_fieldAccessorTable = new
+          internal_static_ResponseBody_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_RequestBody_descriptor,
-              new String[] { "Url", "Token", "Data", });
+              internal_static_ResponseBody_descriptor,
+              new String[] { "Url", "Data", "Code", "Message", });
           return null;
         }
       };

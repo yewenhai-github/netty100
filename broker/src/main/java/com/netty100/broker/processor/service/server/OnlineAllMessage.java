@@ -37,33 +37,33 @@ public class OnlineAllMessage implements MessageTypeService {
     LinkedBlockingQueue<WhyMessage> messageBroadcastQueue = new LinkedBlockingQueue<WhyMessage>();
 
     @Override
-    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage topeMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
+    public boolean doCommand(ChannelHandlerContext ctx, WhyMessage whyMsg, WhyNettyRemoting remotingClient, WhyKernelProperties kernelConfig) {
         //如果是群发消息，先设置下需要再次群发的标识，进行集群内机器群发
-        if(topeMsg.getFixedHeader().getMessageType() == CommonConstants.type_online_all_message){
+        if(whyMsg.getFixedHeader().getMessageType() == CommonConstants.type_online_all_message){
             //设置消息类型为内部广播类型
-            topeMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_broadcast_message.getCode());
+            whyMsg.getFixedHeader().setMessageType(WhyMessageCode.type_online_broadcast_message.getCode());
             //通知其他服务器消费广播数据
             whyCloudUtils.getAllServiceUrls().stream().forEach((addr)->{
                 if(!addr.startsWith(SysUtility.getHostIp())){
-                    remotingClient.invokeOneway(addr, topeMsg.bytes(), 3000L);
+                    remotingClient.invokeOneway(addr, whyMsg.bytes(), 3000L);
                 }
             });
-            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M61.getCode(), topeMsg, LogPointCode.M61.getMessage() + "广播地址=" + whyCloudUtils.getAllServiceUrls().toString());
+            WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M61.getCode(), whyMsg, LogPointCode.M61.getMessage() + "广播地址=" + whyCloudUtils.getAllServiceUrls().toString());
         }
 
         //将群发的数据放入队列，异步消费
-        messageBroadcastQueue.offer(topeMsg);
-        WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M62.getCode(), topeMsg, LogPointCode.M62.getMessage() + "消费地址=" + SysUtility.getHostIp());
+        messageBroadcastQueue.offer(whyMsg);
+        WhyMessageQueue.pushClientMessageLogQueue(ctx, LogPointCode.M62.getCode(), whyMsg, LogPointCode.M62.getMessage() + "消费地址=" + SysUtility.getHostIp());
         return true;
     }
 
     //消费广播数据
     @Scheduled(initialDelay = 10000, fixedRate = 1000)
     public void doConsumer() throws InterruptedException {
-        WhyMessage topeMsg = messageBroadcastQueue.poll(3L, TimeUnit.SECONDS);
-        if (SysUtility.isNotEmpty(topeMsg)) {
+        WhyMessage whyMsg = messageBroadcastQueue.poll(3L, TimeUnit.SECONDS);
+        if (SysUtility.isNotEmpty(whyMsg)) {
             WhyChannelUtils.getC2pCacheChannelMap().forEach((userId, channel) ->{
-                MessageTypeService.super.doCommand(null, topeMsg, null, null);
+                MessageTypeService.super.doCommand(null, whyMsg, null, null);
             });
         }
     }
